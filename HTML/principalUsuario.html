@@ -1,0 +1,45 @@
+<?php
+	session_start();
+	if(!isset($_SESSION["usuario"])){
+		header("location:inicioUsuario.html");
+	}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" href="../Imagenes/favicon.ico">
+	<title>Principal</title>
+
+	<!--Estilos-->
+	<link rel="stylesheet" type="text/css" href="../Estilos/menu.css">
+	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
+</head>
+<body>
+	<ul>
+	  	<li class="left"><a href="principalUsuario.html">Principal</a></li>
+	  	<li class="right"><a href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
+	  	<li class="right"><a href="registroUsuario.html">Nuevo Usuario</a></li>
+	  	<li class="left dropdown">
+		    <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+		    <div class="dropdown-content">
+		     	<a href="#">Link 1</a>
+		      	<a href="#">Link 2</a>
+		      	<a href="#">Link 3</a>
+		    </div>
+	  	</li>
+	</ul>
+
+	<div class="mensaje">
+		<?php
+			echo "Bienvenid@ ".$_SESSION["usuario"];
+		?>
+	</div>
+
+	<div>
+		<a href="registroAlumno.html">Registrar un Alumno</a>
+		<br>
+		<a href="consultaSaldo.html">Registrar un Recibo</a>
+	</div>
+</body>
+</html>
+

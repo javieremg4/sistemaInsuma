@@ -1,0 +1,44 @@
+<?php
+	session_start();
+	if(!isset($_SESSION["usuario"])){
+		header("location:inicioUsuario.html");
+	}else{
+		if($_SESSION['error']==1){
+			echo "<script type='text/javascript'>alert('Error: Usuario no Registrado');</script>";
+			$_SESSION['error']=0;
+		}else{
+			if($_SESSION['reg']==1){
+				echo "<script type='text/javascript'>alert('Usuario Registrado con éxito');</script>";
+				$_SESSION['reg']=0;
+			}
+		}
+	}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" hre="../Imagenes/favicon.icon">
+	<link rel="stylesheet" type="text/css" href="../Estilos/menu.css">
+	<title>Registro de Usuario</title>
+
+	<!--Estilos-->
+	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
+</head>
+<body> 
+
+	<ul>
+	  	<li class="left"><a href="principalUsuario.html">Principal</a></li>
+	  	<li class="right"><a href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
+	</ul>
+
+	<div class="contenedor">
+		<div class="texto-form">Registro de Usuario</div>
+		<form class="formulario" method="post" action="../PHP/registroUsuario.php">
+			Usuario: <input type="text" name="usuario" required>
+			Contraseña: <input type="password" name="clave" required>
+			<input class="boton" type="submit" name="btnRegistro" value="Registrarse">
+		</form>
+	</div>
+</body>
+</html>
+			

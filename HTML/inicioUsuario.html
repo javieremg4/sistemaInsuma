@@ -1,0 +1,27 @@
+<?php
+	session_start();
+	if(isset($_SESSION['usuario'])){
+		header("location:principalUsuario.html");
+	}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" href="../Imagenes/favicon.ico">
+	<title>Iniciar sesión</title>
+
+	<!--Estilos-->
+	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
+</head>
+<body>
+	<div class="contenedor">
+		<div class="texto-form">Iniciar Sesión</div>
+		<form class="formulario" method="post" action="../PHP/inicioUsuario.php">
+			Usuario: <input type="text" name="usuario" required><br>
+			Contraseña: <input type="password" name="clave" required><br>
+			<input class="boton" type="submit" name="btnInicio" value="Entrar" required>
+		</form>
+	</div>
+</body>
+</html>
+
