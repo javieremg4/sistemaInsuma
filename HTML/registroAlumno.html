@@ -8,17 +8,22 @@
 	<title>Registro de Alumnos</title>
 
 	<!--Estilos-->
+	<link rel="stylesheet" type="text/css" href="../Estilos/menu.css">
 	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
 
 	<!--Javascript-->
 	<script type="text/javascript" src="../Javascript/validar.js"></script>
 </head>
 <body>
+	<ul>
+	  	<li class="left"><a href="principalUsuario.html">Principal</a></li>
+	  	<li class="right"><a href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
+	</ul>
 	<div class="contenedor">
 		<div class="texto-form">Registro de Alumno</div>
 			<form class="formulario" enctype="multipart/form-data" method="post" action="../PHP/registroAlumno.php" onsubmit="return validar();">
 				<div class="div-style">
-					<input class="campo" type="text" id="curp" placeholder="CURP"><br>
+					<input class="campo" type="text" id="curp" name="curp" placeholder="CURP"><br>
 				</div>
 				<div class="div-style" style="width: 100%; overflow: hidden;">
 					<div style="width: 50%; display: inline-block;" >
@@ -28,30 +33,30 @@
 						</select>
 					</div>
 					<div style="width: 50%; display: inline-block; float: right;" >
-						Grado: <input  class="campo" type="number" id="grado" style="width:25%;">
+						Grado: <input  class="campo" type="number" id="grado" name="grado" style="width:25%;">
 					</div> 
 				</div>
 				<div class="div-style">
-					<input style="width: 49%;" class="campo" type="text" id="apepat" placeholder="Apellido Paterno" >
-					<input style="width: 49%; float: right;" class="campo" type="text" id="apemat" placeholder="Apellido Materno" >
+					<input style="width: 49%;" class="campo" type="text" id="apepat" name="apepat" placeholder="Apellido Paterno" >
+					<input style="width: 49%; float: right;" class="campo" type="text" id="apemat" name="apemat" placeholder="Apellido Materno" >
 				</div>
 				<div class="div-style">
-					<input class="campo" type="text" id="nombre" placeholder="Nombre" >
+					<input class="campo" type="text" id="nombre" name="nombre" placeholder="Nombre" >
 				</div>
 				<div class="div-style" style="width: 100%; overflow: hidden;">
 					<div style="width: 49%; display: inline-block;">
-						Fecha de inscripción <input class="campo" type="date" name="inscripcion" value="<?php echo date('Y-m-d');?>">
+						Fecha de inscripción <input class="campo" type="date" id="finscrip" name="finscrip" value="<?php echo date('Y-m-d');?>">
 					</div>
 					<div style="width: 49%; display: inline-block; float: right;">
-						Fecha de nacimiento <input class="campo" type="date" id="fnac" >
+						Fecha de nacimiento <input class="campo" type="date" id="fnac" name="fnac">
 					</div>
 				</div>
 				<div class="div-style">
-					<input class="campo" type="text" id="direccion" placeholder="Dirección" >
+					<input class="campo" type="text" id="direccion" name="direccion" placeholder="Dirección" >
 				</div>
 				<div class="div-style">
-					<input style="width: 49%;" class="campo" type="text" id="telcel" placeholder="Tel. Celular" >
-					<input style="width: 49%; float: right;" class="campo" type="text" id="telcasa" placeholder="Tel. Casa">
+					<input style="width: 49%;" class="campo" type="text" id="telcel" name="telcel" placeholder="Tel. Celular" >
+					<input style="width: 49%; float: right;" class="campo" type="text" id="telcasa" name="telcasa" placeholder="Tel. Casa">
 				</div>
 				<!--multipart/form-data -> Para mostrar la ventana de seleccion de archivo-->
 				<input  type="hidden" name="MAX_FILE_SIZE" value="200000" >
@@ -61,4 +66,3 @@
 	</div>
 </body>
 </html>
-
