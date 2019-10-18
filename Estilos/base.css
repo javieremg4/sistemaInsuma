@@ -1,22 +1,37 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 body{
-	font-family: 'Open Sans', sans-serif; 
+	font-family: 'Open Sans', sans-serif;
+    margin: 0; 
 }
-.contenedor{
-    margin: auto;
+.content{
     border: 1px solid #333;
     border-radius: 5px;
-    width: 30%;
     margin-top: 5%;
+    margin: auto;
 }
-.formulario{
+div.content.col-lg-4, div.content.col-lg-3{
+    padding: 0;
+}
+.text-form{
+    background: #333;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.form{
     border-radius: 5px;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
     padding: 15px;
     padding-top: 0;
-    width: 100%;
 }
 .div-style{
+    box-sizing: border-box;
     font-size: 15px;
     margin-bottom: 10px;
 }
@@ -26,17 +41,23 @@ body{
     font-size: 15px;
     height: 25px;
     padding-left: 5px;
-    width: 100%;
 }
-.texto-form{
-    background: #333;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    color: white;
-    font-size: 20px;
+.right{
+    float: right;
+}
+.left{
+    float: left;
+}
+input[type="date"]{
+    border: 1px solid #A4A4A4;
+    padding: 0;
     text-align: center;
-    margin-bottom: 10px;
-    padding: 10px;
+}
+div.col-lg-6.ap1{
+    padding-right: 3px;
+}
+div.col-lg-6.ap2{
+    padding-left: 3px;
 }
 .boton{
     color: white;
@@ -50,6 +71,10 @@ body{
     border: none;
     width: 50%;
     margin-left: 25%;
+}
+input.col-lg-5{
+    padding: 0;
+    text-align: center;
 }
 .mensaje{
     background: #333;

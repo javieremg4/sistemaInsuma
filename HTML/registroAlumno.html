@@ -13,56 +13,92 @@
 
 	<!--Javascript-->
 	<script type="text/javascript" src="../Javascript/validar.js"></script>
+
+	<!--Bootstrap-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 	<ul>
 	  	<li class="left"><a href="principalUsuario.html">Principal</a></li>
 	  	<li class="right"><a href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
 	</ul>
-	<div class="contenedor">
-		<div class="texto-form">Registro de Alumno</div>
-			<form class="formulario" enctype="multipart/form-data" method="post" action="../PHP/registroAlumno.php" onsubmit="return validar();">
-				<div class="div-style">
-					<input class="campo" type="text" id="curp" name="curp" placeholder="CURP"><br>
+
+
+	<div class="content col-lg-4">
+		<div class="text-form col-lg-12">Registro de Alumno</div>
+		<form class="form" enctype="multipart/form-data" method="post" action="../PHP/registroAlumno.php" onsubmit="return validar();">
+			<div class="div-style">
+				<input class="campo col-lg-12" type="text" id="curp" name="curp" placeholder="CURP">
+			</div>
+			<div class="row div-style">
+				<div class="col-lg-4">
+					Género 
+					<select class="campo right" name="genero">
+						<option selected value="0">M</option>
+						<option value="1">F</option>
+					</select>
 				</div>
-				<div class="div-style" style="width: 100%; overflow: hidden;">
-					<div style="width: 50%; display: inline-block;" >
-						Género: <select  class="campo" name="genero" style=" width: 25%;" >
-							<option selected value="0">M</option>
-							<option value="1">F</option>
+				<div class="col-lg-8 right">
+					Fec. Nac. 					
+					<input class="campo right col-lg-8" type="date" id="fnac" name="fnac">
+				</div>
+			</div>
+			<div class="row div-style">
+				<div class="col-lg-6 ap1">
+					<input class="campo col-lg-12" type="text" id="apepat" name="apepat" placeholder="Apellido Paterno" >
+				</div>
+				<div class="col-lg-6 ap2">
+					<input class="campo col-lg-12" type="text" id="apemat" name="apemat" placeholder="Apellido Materno" >
+				</div>
+			</div>
+			<div class="div-style">
+				<input class="campo col-lg-12" type="text" id="nombre" name="nombre" placeholder="Nombre" >
+			</div>
+			<div class="div-style">
+				<input class="campo col-lg-12" type="text" id="direccion" name="direccion" placeholder="Dirección" >
+			</div>
+			<div class="row div-style">
+				<div class="col-lg-6 ap1">
+					<input class="campo col-lg-12" type="text" id="telcel" name="telcel" placeholder="Tel. Celular" >
+				</div>
+				<div class="col-lg-6 ap2">
+					<input class="campo col-lg-12" type="text" id="telcasa" name="telcasa" placeholder="Tel. Casa">
+				</div>
+			</div>
+			<div class="row div-style">
+				<div class="col-lg-3">
+					Grado 
+					<input class="campo col-lg-5" type="number" id="grado" name="grado">
+				</div>
+				<div class="col-lg-4">
+					<div class="col-lg-12" style="margin: 0 auto;">
+						Grupo 					
+						<select name="grupo">
+							<option selected value="0">A</option>
+							<option value="1">B</option>
+							<option value="2">C</option>
+							<option value="3">D</option>
 						</select>
 					</div>
-					<div style="width: 50%; display: inline-block; float: right;" >
-						Grado: <input  class="campo" type="number" id="grado" name="grado" style="width:25%;">
-					</div> 
 				</div>
-				<div class="div-style">
-					<input style="width: 49%;" class="campo" type="text" id="apepat" name="apepat" placeholder="Apellido Paterno" >
-					<input style="width: 49%; float: right;" class="campo" type="text" id="apemat" name="apemat" placeholder="Apellido Materno" >
+				<div class="col-lg-5">	
+					<div class="left">Turno</div> 						
+					<select class="campo right" name="turno">
+						<option selected value="0">Matutino</option>
+						<option value="1">Mixto</option>
+					</select>					
 				</div>
-				<div class="div-style">
-					<input class="campo" type="text" id="nombre" name="nombre" placeholder="Nombre" >
-				</div>
-				<div class="div-style" style="width: 100%; overflow: hidden;">
-					<div style="width: 49%; display: inline-block;">
-						Fecha de inscripción <input class="campo" type="date" id="finscrip" name="finscrip" value="<?php echo date('Y-m-d');?>">
-					</div>
-					<div style="width: 49%; display: inline-block; float: right;">
-						Fecha de nacimiento <input class="campo" type="date" id="fnac" name="fnac">
-					</div>
-				</div>
-				<div class="div-style">
-					<input class="campo" type="text" id="direccion" name="direccion" placeholder="Dirección" >
-				</div>
-				<div class="div-style">
-					<input style="width: 49%;" class="campo" type="text" id="telcel" name="telcel" placeholder="Tel. Celular" >
-					<input style="width: 49%; float: right;" class="campo" type="text" id="telcasa" name="telcasa" placeholder="Tel. Casa">
-				</div>
-				<!--multipart/form-data -> Para mostrar la ventana de seleccion de archivo-->
-				<input  type="hidden" name="MAX_FILE_SIZE" value="200000" >
-				<input  class="div-style" name="uploadedfile" type="file" style="font-size: 15px;">
-				<input class="boton" type="submit" name="btnRegistro">
-			</form>
+			</div>
+			<div class="div-style">					
+				Fecha de inscripción 
+				<input class="campo" type="date" id="finscrip" name="finscrip" value="<?php echo date('Y-m-d');?>">
+			</div>
+			<!--multipart/form-data -> Para mostrar la ventana de seleccion de archivo-->
+			<input  type="hidden" name="MAX_FILE_SIZE" value="200000" >
+			<input  class="div-style" name="uploadedfile" type="file" style="font-size: 15px;">
+			<input class="boton" type="submit" name="btnRegistro">
+		</form>
 	</div>
+
 </body>
 </html>

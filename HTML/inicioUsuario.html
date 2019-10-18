@@ -12,13 +12,22 @@
 
 	<!--Estilos-->
 	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
+
+	<!--Bootstrap-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-	<div class="contenedor">
-		<div class="texto-form">Iniciar Sesión</div>
-		<form class="formulario" method="post" action="../PHP/inicioUsuario.php">
-			Usuario: <input class="campo" type="text" name="usuario" required><br>
-			Contraseña: <input class="campo" type="password" name="clave" required><br>
+	<div class="content col-lg-3">
+		<div class="text-form col-lg-12">Iniciar Sesión</div>
+		<form class="form" method="post" action="../PHP/inicioUsuario.php">
+			<div class="div-style">
+				Usuario: 
+				<input class="campo col-lg-8 right" type="text" name="usuario" required>
+			</div>
+			<div class="div-style">
+				Contraseña:
+				<input class="campo col-lg-8 right" type="password" name="clave" required>
+			</div>
 			<input class="boton" type="submit" name="btnInicio" value="Entrar" required>
 		</form>
 	</div>
