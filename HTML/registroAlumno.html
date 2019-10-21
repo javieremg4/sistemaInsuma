@@ -12,21 +12,20 @@
 	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
 
 	<!--Javascript-->
-	<script type="text/javascript" src="../Javascript/validar.js"></script>
+	<script type="text/javascript" src="../Javascript/validarRegistro.js"></script>
 
 	<!--Bootstrap-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-	<ul>
-	  	<li class="left"><a href="principalUsuario.html">Principal</a></li>
-	  	<li class="right"><a href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
+	<ul class="nav-size">
+	  	<li class="left"><a class="text-white" href="principalUsuario.html">Principal</a></li>
+	  	<li class="right"><a class="text-white" href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
 	</ul>
-
 
 	<div class="content col-lg-4">
 		<div class="text-form col-lg-12">Registro de Alumno</div>
-		<form class="form" enctype="multipart/form-data" method="post" action="../PHP/registroAlumno.php" onsubmit="return validar();">
+		<form class="form" enctype="multipart/form-data" method="post" action="../PHP/registroAlumno.php" onsubmit="return validarRegistro();">
 			<div class="div-style">
 				<input class="campo col-lg-12" type="text" id="curp" name="curp" placeholder="CURP">
 			</div>
@@ -96,7 +95,9 @@
 			<!--multipart/form-data -> Para mostrar la ventana de seleccion de archivo-->
 			<input  type="hidden" name="MAX_FILE_SIZE" value="200000" >
 			<input  class="div-style" name="uploadedfile" type="file" style="font-size: 15px;">
-			<input class="boton" type="submit" name="btnRegistro">
+			<div class="div-btn">
+				<input class="boton col-lg-4" type="submit" name="btnRegistro">
+			</div>
 		</form>
 	</div>
 

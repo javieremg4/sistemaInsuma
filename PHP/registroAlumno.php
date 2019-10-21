@@ -28,7 +28,11 @@
 	$apemat = $_POST['apemat'];
 	include("conexion.php");
 	//Aqui se revisa si el alumno ya estaba registrado
-	$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datospersonales WHERE curp='$curp' OR (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat')");
+	if($curp == ""){
+		$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datospersonales WHERE nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat'");
+	}else{
+		$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datospersonales WHERE curp='$curp' OR (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat')");
+	}
 	if(mysqli_num_rows($consultaAlumno)>0){
 		echo "<h3 style='color: red;'>El Alumno ya Existe</h3>";
 		echo "<a href='../HTML/registroAlumno.html'>Volver al registro</a>";
@@ -75,11 +79,19 @@
 			if($buscarAlumno){
 				$grado = $_POST['grado'];
 				$finscrip = $_POST['finscrip'];
+				$turno = $_POST['turno'];
+				$grupo = $_POST['grupo'];
+				switch($grupo){
+					case 0: $grupo='A'; break;
+					case 1: $grupo='B'; break;
+					case 2: $grupo='C'; break;
+					case 3: $grupo='D'; break;
+				}
 				$info = mysqli_fetch_array($buscarAlumno);
 				$clave = $info['clave'];
-				$darDeAlta = mysqli_query($conexion,"INSERT INTO altas (clave,finscrip,grado) VALUES ('$clave','$finscrip','$grado')");
+				$darDeAlta = mysqli_query($conexion,"INSERT INTO altas (clave,finscrip,grado,grupo,turno) VALUES ('$clave','$finscrip','$grado','$grupo','$turno')");
 				if(!$darDeAlta){
-					echo "<h3>Favor de subir el Grado y la fecha de Inscripcion en el Apartado de Actualización de Datos</h3>";
+					echo "<h3>Favor de subir el Grado, Grupo, Turno y Fecha de Inscripcion en el Apartado de Actualización de Datos</h3>";
 				}
 			}else{
 				echo "<h3>Favor de subir el Grado y la Fecha de Inscripcion en el Apartado de Actualización de Datos</h3>";

@@ -1,3 +1,12 @@
+.nav-size{
+  min-width: 1366px;
+  max-height: 50px;
+}
+
+.text-white{
+  color: white;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -6,23 +15,15 @@ ul {
   background-color: #333;
 }
 
-li.left {
-  float: left;
-}
-
-li.right {
-  float: right;
-}
-
 li a, .dropbtn {
   display: inline-block;
   color: white;
   text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
-li a:hover, .dropdown:hover .dropbtn {
+li a:hover, .dropdown:hover .dropbtn { 
   background-color: red;
 }
 
@@ -52,4 +53,3 @@ li.dropdown {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-

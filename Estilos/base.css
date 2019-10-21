@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 body{
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif !important;
     margin: 0; 
 }
 .content{
@@ -9,7 +9,7 @@ body{
     margin-top: 5%;
     margin: auto;
 }
-div.content.col-lg-4, div.content.col-lg-3{
+div.content.col-lg-4, div.content.col-lg-3, div.content.col-lg-6{
     padding: 0;
 }
 .text-form{
@@ -19,7 +19,6 @@ div.content.col-lg-4, div.content.col-lg-3{
     color: white;
     font-size: 20px;
     text-align: center;
-    margin-bottom: 10px;
     padding: 10px;
 }
 .form{
@@ -28,7 +27,6 @@ div.content.col-lg-4, div.content.col-lg-3{
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     padding: 15px;
-    padding-top: 0;
 }
 .div-style{
     box-sizing: border-box;
@@ -59,6 +57,10 @@ div.col-lg-6.ap1{
 div.col-lg-6.ap2{
     padding-left: 3px;
 }
+.div-btn{
+    display: flex;
+    justify-content: center;
+}
 .boton{
     color: white;
     font-family: 'Open Sans', sans-serif; 
@@ -69,12 +71,14 @@ div.col-lg-6.ap2{
     background-color: #333;
     border-radius: 5px;
     border: none;
-    width: 50%;
-    margin-left: 25%;
+    width: 30%;
 }
 input.col-lg-5{
     padding: 0;
     text-align: center;
+}
+input.col-lg-4{
+    box-sizing: border-box;
 }
 .mensaje{
     background: #333;
@@ -87,6 +91,10 @@ input.col-lg-5{
     padding-bottom: 10px;
     padding-top: 10px;
     text-align: center;
-    width: 30%;
+}
+.text-page{
+    font-size: 14px;
+    margin: auto;
+    margin-bottom: 15px;
 }
 

@@ -1,4 +1,4 @@
-function validar(){
+function validarRegistro(){
 	var curp = document.getElementById('curp').value;
 	if(!(curp.length===18 || curp==="")){
 		alert("Error: Revise la CURP");
@@ -13,7 +13,7 @@ function validar(){
 	var apemat = document.getElementById('apemat').value;
 	var nombre = document.getElementById('nombre').value;
 	var expLetras = /^[(á,é,í,ó,ú,Á,É,Í,Ó,Ú)a-zA-Z\s]*$/;
-	if(apepat.search(expLetras) || apemat.search(expLetras) || nombre.search(expLetras) || nombre===""){
+	if(apepat.search(expLetras) || apemat.search(expLetras) || nombre.search(expLetras) || nombre==="" || (apepat==="" && apemat==="")){
 		alert("Error: Revise el Nombre Completo");
 		return false;
 	}

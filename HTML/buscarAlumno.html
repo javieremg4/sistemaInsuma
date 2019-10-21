@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Buscar Alumnos</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Estilos-->
+    <link rel="shortcut icon" href="../Imagenes/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
+	<link rel="stylesheet" type="text/css" href="../Estilos/menu.css">
+
+    <!--Javascript-->
+	<script type="text/javascript" src="../Javascript/validarBusqueda.js"></script>    
+    
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <ul class="nav-size">
+        <li class="left"><a class="text-white" href="principalUsuario.html">Principal</a></li>
+        <li class="right"><a class="text-white" href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
+    </ul>
+
+    <p class="text-page col-lg-6">Ingrese los datos por los cuales quiere buscar:</p>
+    <div class="content col-lg-6">
+        <form class="form" method="POST" action="../PHP/buscarAlumno.php" onsubmit="return validarBusqueda();">
+            <div class="row div-style">
+                <div class="col-lg-4">
+                    <input class="campo col-lg-12" type="text" id="apepat" name="apepat" placeholder="Apellido paterno">
+                </div>
+                <div class="col-lg-4">
+                    <input class="campo col-lg-12" type="text" id="apemat" name="apemat" placeholder="Apellido materno">   
+                </div>
+                <div class="col-lg-4">
+                    <input class="campo col-lg-12" type="text" id="nombre" name="nombre" placeholder="Nombre">    
+                </div>
+            </div>
+            <div class="div-btn">
+                <input class="boton col-lg-2" type="submit" value="Buscar">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
