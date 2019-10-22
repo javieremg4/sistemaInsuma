@@ -12,8 +12,9 @@ function validarRegistro(){
 	var apepat = document.getElementById('apepat').value;
 	var apemat = document.getElementById('apemat').value;
 	var nombre = document.getElementById('nombre').value;
-	var expLetras = /^[(á,é,í,ó,ú,Á,É,Í,Ó,Ú)a-zA-Z\s]*$/;
-	if(apepat.search(expLetras) || apemat.search(expLetras) || nombre.search(expLetras) || nombre==="" || (apepat==="" && apemat==="")){
+	var expLetras = /^[(á,é,í,ó,ú,Á,É,Í,Ó,Ú,\ñ,\Ñ)a-zA-Z\s]*$/g;
+	var expEsp = /^\s/;
+	if(apepat.search(expLetras) || apemat.search(expLetras) || nombre.search(expLetras) || !apepat.search(expEsp) || !apemat.search(expEsp) || !nombre.search(expEsp) || nombre==="" || (apepat==="" && apemat==="")){
 		alert("Error: Revise el Nombre Completo");
 		return false;
 	}

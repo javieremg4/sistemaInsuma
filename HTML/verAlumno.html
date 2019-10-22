@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <?php
+        $apepat = $_POST["apepat"];
+        $apemat = $_POST["apemat"];
+        $nombre = $_POST["nombre"];
+        include("../PHP/conexion.php");
+        //Valoración de los parámetros para realizar la búsqueda
+        if($apepat==""){
+            if($apemat==""){
+                //echo "Búsqueda por Nombre";
+                $consulta = "SELECT * FROM datospersonales WHERE nombre='$nombre'";
+            }else{
+                if($nombre==""){
+                    //echo "Búsqueda por Apellido Materno";
+                    $consulta = "SELECT * FROM datospersonales WHERE apemat='$apemat'";
+                }else{
+                    //echo "Búsqueda por Nombre y Apellido Materno";
+                    $consulta = "SELECT * FROM datospersonales WHERE nombre='$nombre' AND apemat='$apemat'";
+                }
+            }
+        }else{
+            if($apemat==""){
+                if($nombre==""){
+                    //echo "Búsqueda por Apellido Paterno";
+                    $consulta = "SELECT * FROM datospersonales WHERE apepat='$apepat'";
+                }else{
+                    //echo "Búsqueda por Nombre y Apellido Paterno";
+                    $consulta = "SELECT * FROM datospersonales WHERE nombre='$nombre' AND apepat='$apepat'";
+                }
+            }else{
+                if($nombre==""){
+                    //echo "Búsqueda por Apellido Paterno y Apellido Materno";
+                    $consulta = "SELECT * FROM datospersonales WHERE apemat='$apemat' AND apepat='$apepat'";
+                }else{
+                    //echo "Búsqueda por Nombre, Apellido Paterno y Apellido Materno";
+                    $consulta = "SELECT * FROM datospersonales WHERE nombre='$nombre' AND apemat='$apemat' AND apepat='$apepat'";
+                    
+                }
+            }
+        }
+        $buscarAlumnos = mysqli_query($conexion,$consulta);
+        echo "<hr>";
+        if(mysqli_num_rows($buscarAlumnos)>0){
+            echo "Se encontraron ".mysqli_num_rows($buscarAlumnos)." resultados<br>";
+            while($info=mysqli_fetch_array($buscarAlumnos)){
+                echo "Clave:".$info['clave']." ".$info['nombre']." ".$info['apepat']." ".$info['apemat']." Foto:".$info['foto']."<br>";
+            }
+        }else{
+            echo "No se encontró nada";
+        }
+    ?>
+</body>
+</html>
+
