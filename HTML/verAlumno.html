@@ -1,7 +1,24 @@
+<?php
+    session_start();
+    if(!(isset($_SESSION['usuario']))){
+        header("location:../HTML/inicioUsuario.html");
+    }
+    if(!(isset($_POST['apemat'],$_POST['apemat'],$_POST['nombre']))){
+        header("location:../HTML/buscarAlumno.html");
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Ver Alumnos</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Estilos-->
+    <link rel="shortcut icon" href="../Imagenes/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../Estilos/datos.css">
+
 </head>
 <body>
     <?php
@@ -44,16 +61,54 @@
             }
         }
         $buscarAlumnos = mysqli_query($conexion,$consulta);
-        echo "<hr>";
         if(mysqli_num_rows($buscarAlumnos)>0){
-            echo "Se encontraron ".mysqli_num_rows($buscarAlumnos)." resultados<br>";
-            while($info=mysqli_fetch_array($buscarAlumnos)){
-                echo "Clave:".$info['clave']." ".$info['nombre']." ".$info['apepat']." ".$info['apemat']." Foto:".$info['foto']."<br>";
+            echo "Se encontraron ".mysqli_num_rows($buscarAlumnos)." resultados<hr>";
+        while($info=mysqli_fetch_array($buscarAlumnos)){
+            ?>
+    <div class="div-datos">
+            <?php
+
+    
+
+            if($info['foto']==null || $info['foto']==""){
+                echo "<img class='foto' src='../Imagenes/sinFoto.jpg' />";
+            }else{
+                $foto = $info['foto'];
+                echo "<img class='foto' src='".$foto."' />";
             }
+    ?>
+        <div class="datos">
+    <?php
+            echo "<b>NÚMERO DE CONTROL: </b>".$info['clave']."<br>";
+            echo "<b>CURP: </b>".$info['curp']."<br>";
+            echo "<b>Género: </b>".$info['genero']."<br>";
+            echo "<b>Nombre Completo: </b>".$info['apepat']." ".$info['apemat']." ".$info['nombre']."<br>";                 
+            echo "<b>Fec. Nacimiento: </b>".$info['fnac']."<br>";
+    ?>
+        </div>
+        <div class="datos">
+    <?php
+            echo "<b>Dirección: </b>".$info['direccion']."<br>";
+            echo "<b>Tel. Alumno: </b>".$info['telalumno']."<br>";
+            echo "<b>Tel. Casa: </b>".$info['telcasa']."<br>";
+    ?>
+        </div>
+        <div class="div-links">
+            <div class="btnAl adp"><a class="link" href="#" onclick="sesionId('adp',<?php echo $info['clave']; ?>)">Actualizar Datos Personales</a></div>
+            <div class="btnAl ade"><a class="link" href="#" onclick="sesionId('ade',<?php echo $info['clave']; ?>)">Actualizar Datos Escolares</a></div>
+            <div class="btnAl baja"><a class="link" href="#" onclick="sesionId('ddb',<?php echo $info['clave']; ?>)">Dar de Baja</a></div>
+        </div>
+    </div>
+    <?php
+        }
         }else{
-            echo "No se encontró nada";
+            echo "No se encontró nada <hr>";
         }
     ?>
+    <script type="text/javascript">
+        function sesionId(op,id){
+            window.location.href="../PHP/testId.php?"+op+"="+id;
+        }
+    </script>
 </body>
 </html>
-

@@ -12,13 +12,10 @@
 	        $_SESSION['usuario'] = $info['usuario'];
 	        $_SESSION['error']=0;
 	        $_SESSION['reg']=0;
-	        //$_SESSION['prank'] = true;
 	        header("location:../HTML/principalUsuario.html");
 		}else{
 			echo "<link rel='shortcut icon' href='../Imagenes/favicon.ico'>";
 			echo "<script type='text/javascript'>alert('Error: No se pudo iniciar sesión'); window.location.href='../HTML/inicioUsuario.html';</script>";
-				//echo "<a href='../HTML/inicioUsuario.html'>Regresar</a>";
 		}
 	}
 ?>
-

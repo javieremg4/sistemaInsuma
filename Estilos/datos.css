@@ -1,0 +1,54 @@
+.div-datos{
+	display: flex;
+	border: solid 1px #333;
+	box-sizing: border-box;
+	height: 180px;
+	margin: 10px 15% 10px;
+	overflow: hidden;
+	padding: 15px;	
+	width: 70%;
+}
+.foto{
+	float: left;
+	height: 150px;
+	padding-right: 0;
+	padding-right: 15px;
+	width: 18%;
+}
+.datos{
+	box-sizing: border-box;
+	display: inline-block;
+	height: 150px;
+	padding: 0;
+	padding-right: 15px;
+	width: 30%;
+}
+.div-links{
+	display: inline-block;
+	justify-content: center;
+	width: 22%;
+}
+.btnAl{
+	align-items: center;
+	box-sizing: border-box;
+	display: flex;
+	height: 40px;
+	justify-content: center;
+	margin: 0 10% 10px;
+	text-align: center;
+	width: 80%;
+}
+.adp{
+	background: #04B404;
+}
+.ade{
+	background: #2E2EFE;
+}
+.baja{
+	background:#FE2E2E;
+}
+.link{
+	color: white;
+	font-size: 17px;
+	text-decoration: none;
+}

@@ -1,5 +1,8 @@
 <?php
 	session_start();
+    if(!isset($_SESSION['usuario'])){
+		header("location:inicioUsuario.html");
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +28,7 @@
 
 	<div class="content col-lg-4">
 		<div class="text-form col-lg-12">Registro de Alumno</div>
-		<form class="form" enctype="multipart/form-data" method="post" action="../PHP/registroAlumno.php" onsubmit="return validarRegistro();">
+		<form class="form" enctype="multipart/form-data" method="POST" action="../PHP/registroAlumno.php" onsubmit="return validarRegistro();">
 			<div class="div-style">
 				<input class="campo col-lg-12" type="text" id="curp" name="curp" placeholder="CURP">
 			</div>
@@ -94,7 +97,7 @@
 			</div>
 			<!--multipart/form-data -> Para mostrar la ventana de seleccion de archivo-->
 			<input  type="hidden" name="MAX_FILE_SIZE" value="200000" >
-			<input  class="div-style" name="uploadedfile" type="file" style="font-size: 15px;">
+			<input  class="div-style" name="foto" type="file" style="font-size: 15px;">
 			<div class="div-btn">
 				<input class="boton col-lg-4" type="submit" name="btnRegistro">
 			</div>
