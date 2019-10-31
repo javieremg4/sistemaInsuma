@@ -1,15 +1,28 @@
 <?php
     if(isset($_GET['adp']) || isset($_GET['ade']) || isset($_GET['ddb'])){
-        $id=$_GET['del'];
+        echo "Si funciona";
         session_start();
-        $_SESSION['idAlumno']=$id;
-        if(isset($_GET['adp'])){ header("location:../HTML/actDatosPer.html"); }else{
-            if(isset($_GET['ade'])){ header("location:../HTML/actDatosEsc.html"); }else{
-                if(isset($_GET['ddb'])){ header("location:../HTML/darDeBaja.html"); }else{
+        if(isset($_GET['adp'])){ 
+            $id=$_GET['adp'];
+            $_SESSION['idAlumno']=$id;
+            header("location:../HTML/actDatosPer.html"); 
+        }else{
+            if(isset($_GET['ade'])){ 
+                $id=$_GET['ade'];
+                $_SESSION['idAlumno']=$id;
+                header("location:../HTML/actDatosEsc.html"); 
+            }else{
+                if(isset($_GET['ddb'])){ 
+                    $id=$_GET['ddb'];
+                    $_SESSION['idAlumno']=$id;
+                    header("location:../HTML/darDeBaja.html"); 
+                }else{
                     header("location:../HTML/error.html");
                 }
             }
         }
+        echo "Id Alumno".$_SESSION['idAlumno'];
+    }else{
+        header("location:../HTML/error.html");
     }
-    header("location:../HTML/error.html");
 ?>

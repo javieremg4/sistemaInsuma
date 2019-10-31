@@ -22,10 +22,10 @@
 </head>
 <body>
     <?php
+        include("../PHP/conexion.php");
         $apepat = $_POST["apepat"];
         $apemat = $_POST["apemat"];
         $nombre = $_POST["nombre"];
-        include("../PHP/conexion.php");
         //Valoración de los parámetros para realizar la búsqueda
         if($apepat==""){
             if($apemat==""){
@@ -67,15 +67,12 @@
             ?>
     <div class="div-datos">
             <?php
-
-    
-
-            if($info['foto']==null || $info['foto']==""){
-                echo "<img class='foto' src='../Imagenes/sinFoto.jpg' />";
-            }else{
-                $foto = $info['foto'];
-                echo "<img class='foto' src='".$foto."' />";
-            }
+                if($info['foto']==null || $info['foto']==""){
+                    echo "<img class='foto' src='../Imagenes/sinFoto.jpg' />";
+                }else{
+                    $foto = $info['foto'];
+                    echo "<img class='foto' src='".$foto."' />";
+                }
     ?>
         <div class="datos">
     <?php
@@ -94,9 +91,9 @@
     ?>
         </div>
         <div class="div-links">
-            <div class="btnAl adp"><a class="link" href="#" onclick="sesionId('adp',<?php echo $info['clave']; ?>)">Actualizar Datos Personales</a></div>
-            <div class="btnAl ade"><a class="link" href="#" onclick="sesionId('ade',<?php echo $info['clave']; ?>)">Actualizar Datos Escolares</a></div>
-            <div class="btnAl baja"><a class="link" href="#" onclick="sesionId('ddb',<?php echo $info['clave']; ?>)">Dar de Baja</a></div>
+            <div class="btnAl adp" onclick="sesionId('adp',<?php echo $info['clave']; ?>)">Actualizar Datos Personales</div>
+            <div class="btnAl ade" onclick="sesionId('ade',<?php echo $info['clave']; ?>)">Actualizar Datos Escolares</div>
+            <div class="btnAl baja" onclick="sesionId('ddb',<?php echo $info['clave']; ?>)">Dar de Baja</div>
         </div>
     </div>
     <?php

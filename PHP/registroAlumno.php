@@ -22,7 +22,7 @@
 		echo "<h3 style='color: red;'>No agrego foto</h3>";
 	//Fin
 	}else{
-		//Aquí se valida que la imagen/foto tenga las caracteristicas correspondientes (fomato: jpg o png, peso<=200KB)
+		//Aquí se valida que la imagen/foto tenga las caracteristicas correspondientes (fomato: jpg y peso<=200KB)
 		$msg="";
 		if ($_FILES['foto']['size']>200000){
 			$msg="El archivo es mayor que 200KB <br>";
@@ -39,13 +39,12 @@
 		}
 		//Fin
 	}
-	//Fin
 	if($regAlumno){
-		$curp = $_POST['curp'];
-		$nombre = $_POST['nombre'];
-		$apepat = $_POST['apepat'];
-		$apemat = $_POST['apemat'];
 		include("conexion.php");
+		$curp = trim($_POST['curp']);
+		$nombre = trim($_POST['nombre']);
+		$apepat = trim($_POST['apepat']);
+		$apemat = trim($_POST['apemat']);
 		//Aqui se revisa si el alumno ya estaba registrado
 		if($curp == ""){
 			$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datospersonales WHERE nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat'");
@@ -60,9 +59,9 @@
 			//Aquí se insertan los datos personales del alumno
 			$genero = $_POST['genero'];
 			$fnac = $_POST['fnac'];
-			$direccion = $_POST['direccion'];
-			$telalumno = $_POST['telcel'];
-			$telcasa = $_POST['telcasa'];
+			$direccion = trim($_POST['direccion']);
+			$telalumno = trim($_POST['telcel']);
+			$telcasa = trim($_POST['telcasa']);
 			$msg="";
 			($genero==0 ? $genero="M" : $genero="F");
 			if($telalumno==""){ $telalumno="S/N"; }

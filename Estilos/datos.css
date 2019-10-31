@@ -31,12 +31,16 @@
 .btnAl{
 	align-items: center;
 	box-sizing: border-box;
+	color: white;
 	display: flex;
 	height: 40px;
 	justify-content: center;
 	margin: 0 10% 10px;
 	text-align: center;
 	width: 80%;
+}
+.btnAl:hover{
+	cursor: pointer;
 }
 .adp{
 	background: #04B404;
@@ -46,9 +50,4 @@
 }
 .baja{
 	background:#FE2E2E;
-}
-.link{
-	color: white;
-	font-size: 17px;
-	text-decoration: none;
 }

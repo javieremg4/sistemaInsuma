@@ -1,0 +1,124 @@
+<?php
+	include("../PHP/conexion.php");
+	session_start();
+	$idAlumno=$_SESSION['idAlumno'];
+	$conAlumno = mysqli_query($conexion,"SELECT * FROM datospersonales WHERE clave='$idAlumno'");
+	if($conAlumno){
+		$info=mysqli_fetch_array($conAlumno);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Actualizar Datos Personales</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+
+    <!--Estilos-->
+	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
+
+	<!--Javascript-->
+	<script type="text/javascript" src="../Javascript/valDatosPer.js"></script>
+	<script type="text/javascript" src="../Javascript/validarFecha.js"></script>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="content col-lg-4">
+		<div class="text-form col-lg-12">Datos Personales</div>
+		<form class="form" enctype="multipart/form-data" method="POST" action="../PHP/actDatosPer.php" onsubmit="return valDatosPer();">
+			<div class="row div-style">
+				<?php 
+					if($info['foto']==null || $info['foto']==""){
+						echo "<img class='col-lg-3' src='../Imagenes/sinFoto.jpg' />";
+					}else{
+						$foto = $info['foto'];
+						echo "<img class='col-lg-3' src='".$foto."' />";
+					}
+				?>
+				<div class="div-style col-lg-9" style="display: flex; align-items: center;">
+					<!--multipart/form-data -> Para mostrar la ventana de seleccion de archivo-->
+					<input  type="hidden" name="MAX_FILE_SIZE" value="200000" >
+					<input class="col-lg-12" style="padding-left: 0;" name="foto" type="file">
+				</div>
+			</div>
+			<div class="div-style">
+				<?php if($info['curp']==""){ ?>
+					<input class='campo col-lg-12' type='text' id='curp' name='curp' placeholder='Sin Curp'>
+				<?php }else{ ?>
+					<input class='campo col-lg-12' type='text' id='curp' name='curp' value="<?php echo $info['curp']; ?>">
+				<?php } ?>
+			</div>
+			<div class="row div-style">
+				<div class="col-lg-4">
+					Género 
+					<select class="campo right" name="genero">
+						<?php
+							echo ($info['genero']=='M') ? "<option selected value='0'>M</option> <option value='1'>F</option>" : "<option value='0'>M</option> <option selected value='1'>F</option>";
+						?>
+					</select>
+				</div>
+				<div class="col-lg-8 right">
+					Fec. Nac. 					
+					<input class="campo right col-lg-8" type="date" id="fnac" name="fnac" value="<?php echo $info['fnac']; ?>">
+				</div>
+			</div>
+			<div class="row div-style">
+				<div class="col-lg-6 ap1">
+					<?php if($info['apepat']==null){ ?>
+						<input class='campo col-lg-12' type='text' id='apepat' name='apepat' placeholder='Apellido Paterno'>
+					<?php }else{ ?>
+						<input class='campo col-lg-12' type='text' id='apepat' name='apepat' value="<?php echo $info['apepat']; ?>">
+					<?php } ?>
+				</div>
+				<div class="col-lg-6 ap2">
+					<?php if($info['apemat']==null){ ?>
+						<input class='campo col-lg-12' type='text' id='apemat' name='apemat' placeholder='Apellido Materno'>
+					<?php }else{ ?>
+						<input class='campo col-lg-12' type='text' id='apemat' name='apemat' value="<?php echo $info['apemat']; ?>">
+					<?php } ?>
+				</div>
+			</div>
+			<div class="div-style">
+				<?php if($info['nombre']==null){ ?>
+					<input class='campo col-lg-12' type='text' id='nombre' name='nombre' placeholder='Nombre'>
+				<?php }else{ ?>
+					<input class='campo col-lg-12' type='text' id='nombre' name='nombre' value="<?php echo $info['nombre']; ?>">
+				<?php } ?>
+			</div>
+			<div class="div-style">
+				<input class="campo col-lg-12" type="text" id="direccion" name="direccion" value="<?php echo $info['direccion']; ?>">
+			</div>
+			<div class="row div-style">
+				<div class="col-lg-6 ap1">
+					<?php if($info['telalumno']=='S/N'){ ?>
+						<input class='campo col-lg-12' type='text' id='telalumno' name='telalumno' placeholder='Sin teléfono celular'>
+					<?php }else{ ?>
+						<input class='campo col-lg-12' type='text' id='telalumno' name='telalumno' value="<?php echo $info['telalumno']; ?>">
+					<?php } ?>
+				</div>
+				<div class="col-lg-6 ap2">
+					<?php if($info['telcasa']=='S/N'){ ?>
+						<input class='campo col-lg-12' type='text' id='telcasa' name='telcasa' placeholder='Sin teléfono de casa'>
+					<?php }else{ ?>
+						<input class='campo col-lg-12' type='text' id='telcasa' name='telcasa' value="<?php echo $info['telcasa']; ?>">
+					<?php } ?>
+				</div>
+			</div>
+			<div class="div-btn">
+				<input class="boton col-lg-4" type="submit" name="btnRegistro" value="Actualizar">
+			</div>
+		</form>
+	</div>
+	<?php
+	}else{
+		echo "<h3 style='color: red;'>No se pueden actualizar los datos</h3><br>
+			  <a href='principalUsuario.html'>Volver a principal</a>";	
+	}
+	?>
+</body>
+</html>
