@@ -26,6 +26,7 @@ div.content.col-lg-4, div.content.col-lg-3, div.content.col-lg-6{
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
+    margin: 0;
     padding: 15px;
 }
 .div-style{

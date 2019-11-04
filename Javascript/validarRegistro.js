@@ -9,7 +9,7 @@ function validarRegistro(){
 	}
 	var grado = document.getElementById('grado').value;
 	if(grado<1 || grado>6){
-		alert("Error: Grado incorrecto");
+		alert("Error: Grado Incorrecto");
 		return false;
 	}
 	var apepat = document.getElementById('apepat').value;

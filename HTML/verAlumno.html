@@ -67,6 +67,11 @@
             ?>
     <div class="div-datos">
             <?php
+                if(($info['foto']!=null || $info['foto']!="") && !file_exists($info['foto'])){
+                    $idAl=$info['clave'];
+                    mysqli_query($conexion,"UPDATE datospersonales SET foto=null WHERE clave='$idAl'");
+                    $info['foto']=null;
+                }
                 if($info['foto']==null || $info['foto']==""){
                     echo "<img class='foto' src='../Imagenes/sinFoto.jpg' />";
                 }else{

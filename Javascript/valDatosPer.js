@@ -39,5 +39,7 @@ function valDatosPer(){
 		alert("Error: Revise los telefonos");
 		return false;
 	}
-    return true;
+	var msg = "¿Está seguro que desea Actulizar los Datos?\nNo se podrán recuperar los datos anteriores";
+	msg = confirm(msg);
+	if(msg){ return true; }else{ return false; }
 }

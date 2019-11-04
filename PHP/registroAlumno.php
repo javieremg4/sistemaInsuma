@@ -4,6 +4,7 @@
 		header("location:../HTML/inicioUsuario.html");
 	}
 	if(!isset($_POST['genero'],$_POST['fnac'],$_POST['nombre'],$_POST['direccion'],$_POST['grado'],$_POST['grupo'],$_POST['turno'],$_POST['finscrip'])){
+		$_SESSION['error']=1;
 		header("location:../HTML/registroAlumno.html");
 	}
 	$regAlumno = true;

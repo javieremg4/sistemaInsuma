@@ -1,6 +1,10 @@
 <?php
 	include("../PHP/conexion.php");
 	session_start();
+	if($_SESSION['error']==1){
+		echo "<script type='text/javascript'>alert('Error: El Archivo es Muy Pesado');</script>";
+		$_SESSION['error']=0;
+	}
 	$idAlumno=$_SESSION['idAlumno'];
 	$conAlumno = mysqli_query($conexion,"SELECT * FROM datospersonales WHERE clave='$idAlumno'");
 	if($conAlumno){
@@ -33,6 +37,10 @@
 		<form class="form" enctype="multipart/form-data" method="POST" action="../PHP/actDatosPer.php" onsubmit="return valDatosPer();">
 			<div class="row div-style">
 				<?php 
+					if(($info['foto']!=null || $info['foto']!="") && !file_exists($info['foto'])){
+						mysqli_query($conexion,"UPDATE datospersonales SET foto=null WHERE clave='$idAlumno'");
+						$info['foto']=null;
+					}
 					if($info['foto']==null || $info['foto']==""){
 						echo "<img class='col-lg-3' src='../Imagenes/sinFoto.jpg' />";
 					}else{

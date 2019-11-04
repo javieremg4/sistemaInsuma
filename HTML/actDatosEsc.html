@@ -1,18 +1,124 @@
 <?php
-    session_start();
-    echo "Id alumno".$_SESSION['idAlumno'];
+	include("../PHP/conexion.php");
+	session_start();
+	$idAlumno=$_SESSION['idAlumno'];
+	$conAlumno = mysqli_query($conexion,"SELECT * FROM altas WHERE clave='$idAlumno'");
+	if($conAlumno){
+		$info=mysqli_fetch_array($conAlumno);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>Actualizar Datos Escolares</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
+
+    <!--Estilos-->
+	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
+	
+	<!--Javascript-->
+	<script type="text/javascript" src="../Javascript/valDatosEsc.js"></script>
+	<script type="text/javascript" src="../Javascript/validarFecha.js"></script>
+    
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    
+    <div class="content col-lg-4">
+		<div class="text-form col-lg-12">Datos Escolares</div>
+        <form class="form" enctype="multipart/form-data" method="POST" action="../PHP/actDatosEsc.php" onsubmit="return valDatosEsc();">
+            <div class="row div-style"> 
+				<?php
+					if($info['numControl']!=null || $info['numControl']!=""){
+				?>
+				<div class="col-lg-6">
+					No.Control
+					<input class="campo col-lg-7" type="text" name="numcontrol" id="nocontrol" value="<?php echo $info['numControl']; ?>"> 
+				</div>
+				<?php
+					}else{
+				?>
+				<div class="col-lg-6">
+					No.Control
+					<input class="campo col-lg-7" type="text" name="nocontrol" id="nocontrol"> 
+				</div>
+				<div class="col-lg-6" style="color:red;"><?php echo "Sin Número de Control"; ?></div>
+				<?php
+					}
+				?>
+			</div>
+			<div class="row div-style">
+				<div class="col-lg-3">
+					Grado 
+					<input class="campo col-lg-5" type="number" id="grado" name="grado" value="<?php echo $info['grado']; ?>">
+				</div>
+				<div class="col-lg-4">
+					<div class="col-lg-12" style="margin: 0 auto;">
+						Grupo 					
+						<select name="grupo">
+							<?php 
+								switch($info['grupo']){
+									case 'A': 
+										echo "<option selected value='0'>A</option>
+										<option value='1'>B</option>
+										<option value='2'>C</option>
+										<option value='3'>D</option>";
+									break;
+									case 'B':
+										echo "<option value='0'>A</option>
+										<option selected value='1'>B</option>
+										<option value='2'>C</option>
+										<option value='3'>D</option>";
+									break;
+									case 'C':
+										echo "<option value='0'>A</option>
+										<option value='1'>B</option>
+										<option selected value='2'>C</option>
+										<option value='3'>D</option>";
+									break;
+									case 'D':
+										echo "<option value='0'>A</option>
+										<option value='1'>B</option>
+										<option value='2'>C</option>
+										<option selected value='3'>D</option>";
+									break;
+								}
+							?>
+						</select>
+					</div>
+				</div>
+				<div class="col-lg-5">	
+					<div class="left">Turno</div> 						
+					<select class="campo right" name="turno">
+						<?php
+							if($info['turno']==0){
+								echo "<option selected value='0'>Matutino</option>
+								<option value='1'>Mixto</option>";
+							}else{
+								echo "<option value='0'>Matutino</option>
+								<option selected value='1'>Mixto</option>";
+							}
+						?>	
+					</select>					
+				</div>
+			</div>
+			<div class="div-style">					
+				Fecha de inscripción 
+				<input class="campo" type="date" id="finscrip" name="finscrip" value="<?php echo $info['finscrip']; ?>">
+			</div>
+			<div class="div-btn">
+				<input class="boton col-lg-4" type="submit" name="btnRegistro" value="Actualizar">
+			</div>
+		</form>
+	</div>
+	<?php
+		}else{
+			echo "<h3 style='color: red;'>No se pueden actualizar los datos</h3><br>
+				<a href='principalUsuario.html'>Volver a principal</a>";	
+		}
+	?>
 </body>
 </html>

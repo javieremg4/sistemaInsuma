@@ -3,6 +3,10 @@
     if(!isset($_SESSION['usuario'])){
 		header("location:inicioUsuario.html");
 	}
+	if($_SESSION['error']==1){
+		echo "<script type='text/javascript'>alert('Error: El Archivo es Muy Pesado');</script>";
+		$_SESSION['error']=0;
+	}
 ?>
 <!DOCTYPE html>
 <html>
