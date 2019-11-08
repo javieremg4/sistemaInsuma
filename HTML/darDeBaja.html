@@ -1,18 +1,74 @@
-<?php
-    session_start();
-    echo "Id alumno".$_SESSION['idAlumno'];
-?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>Dar de Baja</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
+
+     <!--Estilos-->
+    <link rel="stylesheet" type="text/css" href="../Estilos/base.css">
+
+    <!--Javascript-->
+    <script type="text/javascript" src="../Javascript/valBaja.js"></script>
+    <script type="text/javascript" src="../Javascript/validarFecha.js"></script>
+    <script type="text/javascript" src="../AJAX/delBaja.js"></script>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+<?php
+    session_start();
+    $idAlumno=$_SESSION['idAlumno'];
+    include("../PHP/conexion.php");
+    $checkBaja=mysqli_query($conexion,"SELECT * FROM bajas WHERE clave='$idAlumno'");
+    if($checkBaja){
+        if(mysqli_num_rows($checkBaja)>0){
+            $info=mysqli_fetch_array($checkBaja);
+            ?>
+            <form >
+
+            </form>
+            <div class="msg-baja" id="msgBaja">
+                <span class="red">Este Alumno ya está dado de Baja</span>
+                <span class="red"> <?php echo ($info['tipo']==='0') ?  "Baja temporal" : "Baja definitiva"; ?> </span>
+                <span> <?php echo "Fecha: ".$info['fbaja']; ?></span>
+                <span> <?php echo ($info['causa']==null || $info['causa']=="") ? "Causa: Sin descripción" : "Causa: ".$info['causa']; ?></span>
+                <div class="del-baja" onclick="eliminarBaja(<?php echo $idAlumno; ?>)">Eliminar esta Baja</div>
+            </div>
+            <?php
+        }else{
+?>
 <body>
-    
+    <div class="content col-lg-4">
+		<div class="text-form col-lg-12">Baja</div>
+        <form class="form" enctype="multipart/form-data" method="POST" action="../PHP/darDeBaja.php" onsubmit="return valBaja();">
+            <div class="div-style">
+                Tipo de Baja: 
+                <input type="radio" name="tipo" id="tipo1" value="temp">Temporal
+                <input type="radio" name="tipo" id="tipo2" value="def">Definitiva
+            </div>
+            <div class="div-style">					
+                Fecha de baja
+                <input class="campo" type="date" id="fbaja" name="fbaja" value="<?php echo date('Y-m-d');?>">
+            </div>
+            <div class="div-style">
+                Describa la causa (opcional). <b style="font-size: 12px;">Max. 50 caracteres</b>
+                <textarea style="width: 100%;" maxlength="50" name="causa"></textarea>
+            </div>
+            <div class="div-btn">
+                <input class="boton col-lg-4" type="submit" name="btnRegistro" value="Dar de Baja">
+            </div>
+		</form>
+	</div>
 </body>
 </html>
+<?php
+    }
+    }else{
+        echo "<h3 style='color: red;'>No se puede Dar de Baja al Alumno</h3><br>
+		<a href='principalUsuario.html'>Volver a principal</a>";	
+    }
+?>

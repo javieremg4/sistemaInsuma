@@ -29,14 +29,14 @@
 <body>
     <div class="content col-lg-4">
 		<div class="text-form col-lg-12">Datos Escolares</div>
-        <form class="form" enctype="multipart/form-data" method="POST" action="../PHP/actDatosEsc.php" onsubmit="return valDatosEsc();">
+        <form class="form" enctype="multipart/form-data" method="POST" action="../PHP/actDatosEsc.php" onsubmit="return valDatosEsc('<?php echo $info['numControl']; ?>');">
             <div class="row div-style"> 
 				<?php
 					if($info['numControl']!=null || $info['numControl']!=""){
 				?>
 				<div class="col-lg-6">
 					No.Control
-					<input class="campo col-lg-7" type="text" name="numcontrol" id="nocontrol" value="<?php echo $info['numControl']; ?>"> 
+					<input class="campo col-lg-7" type="text" name="nocontrol" id="nocontrol" value="<?php echo $info['numControl']; ?>"> 
 				</div>
 				<?php
 					}else{
@@ -117,7 +117,7 @@
 	<?php
 		}else{
 			echo "<h3 style='color: red;'>No se pueden actualizar los datos</h3><br>
-				<a href='principalUsuario.html'>Volver a principal</a>";	
+			<a href='principalUsuario.html'>Volver a principal</a>";	
 		}
 	?>
 </body>

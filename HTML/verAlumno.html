@@ -81,7 +81,17 @@
     ?>
         <div class="datos">
     <?php
-            echo "<b>NÚMERO DE CONTROL: </b>".$info['clave']."<br>";
+            echo "<b>No. Control: </b>";
+            $conClave = $info['clave'];
+            $conClave = mysqli_query($conexion,"SELECT numControl FROM altas WHERE clave='$conClave'");
+            if(mysqli_num_rows($conClave)){
+                $conClave = mysqli_fetch_array($conClave);
+                if($conClave['numControl']!=NULL &&  $conClave['numControl']!=""){
+                    echo $conClave['numControl']."<br>";
+                }else{
+                    echo "S/N<br>";  
+                }
+            }
             echo "<b>CURP: </b>".$info['curp']."<br>";
             echo "<b>Género: </b>".$info['genero']."<br>";
             echo "<b>Nombre Completo: </b>".$info['apepat']." ".$info['apemat']." ".$info['nombre']."<br>";                 
@@ -89,17 +99,30 @@
     ?>
         </div>
         <div class="datos">
-    <?php
-            echo "<b>Dirección: </b>".$info['direccion']."<br>";
-            echo "<b>Tel. Alumno: </b>".$info['telalumno']."<br>";
-            echo "<b>Tel. Casa: </b>".$info['telcasa']."<br>";
-    ?>
+            <div class="h100">
+        <?php
+                echo "<b>Dirección: </b>".$info['direccion']."<br>";
+                echo "<b>Tel. Alumno: </b>".$info['telalumno']."<br>";
+                echo "<b>Tel. Casa: </b>".$info['telcasa']."<br>";
+        ?>
+            </div>
+            <div class="h50" style=" display: flex; padding: 0; align-items: center;">
+            <?php
+                $conBaja = $info['clave'];
+                $conBaja = mysqli_query($conexion,"SELECT clave FROM bajas WHERE clave='$conBaja'");
+                if(mysqli_num_rows($conBaja)){
+                    echo "<img src='../Imagenes/alert.jpg' style='height: 24px; margin-right: 7.5px;'>";
+                    echo "<span style='font-size: 20px; color: red;'><b>Baja</b></span>";
+                }
+            ?>
+            </div>
         </div>
         <div class="div-links">
             <div class="btnAl adp" onclick="sesionId('adp',<?php echo $info['clave']; ?>)">Actualizar Datos Personales</div>
             <div class="btnAl ade" onclick="sesionId('ade',<?php echo $info['clave']; ?>)">Actualizar Datos Escolares</div>
-            <div class="btnAl baja" onclick="sesionId('ddb',<?php echo $info['clave']; ?>)">Dar de Baja</div>
+            <div class="btnAl baja" onclick="sesionId('ddb',<?php echo $info['clave']; ?>)">Dar de Baja o Eliminar Baja</div>
         </div>
+
     </div>
     <?php
         }

@@ -1,4 +1,4 @@
-function valDatosEsc(){
+function valDatosEsc(nctrl){
     var expNoControl = /^\d{8}$/;
     var noControl = document.getElementById('nocontrol').value;
     if(noControl!=""){
@@ -17,6 +17,16 @@ function valDatosEsc(){
 	if(!validarFormatoFecha(finscrip) || !existeFecha(finscrip) || !validarFechaMenorActual(finscrip)){
 		alert("Error: Revise la Fecha de Inscripcion");
 		return false;
-	}
+    }
+    //Aquí se elige el mensaje que irá en el confirm
+    var msg="¿Está seguro de Actualizar los Datos?\nNo se podrán recuperar los datos anteriores";
+    if(nctrl!="" && noControl!=nctrl){
+        var msg= "¿Está seguro de cambiar el No. Control "+nctrl+" por "+noControl+"?\nNo se podrán recuperar los datos anteriores";
+    }
+    msg=confirm(msg);
+    if(!msg){ 
+        document.getElementById('nocontrol').value=nctrl;
+        return false; 
+    }
     return true;
 }

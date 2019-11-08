@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="ejecutarAJAX()">Hazme Click</button>
+    <div id="info"></div>
+    <script type="text/javascript">
+        function ejecutarAJAX(){
+            var delBaja;
+            if(window.XMLHttpRequest){
+                delBaja = new XMLHttpRequest();
+            }else{
+                delBaja =  new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            delBaja.onreadystatechange = function(){
+                if(delBaja.readyState == 4 && delBaja.status == 200){
+                    document.getElementById("info").innerHTML = delBaja.responseText;
+                }
+            }
+            delBaja.open("GET","documento.txt",true);
+            delBaja.send();
+        }
+    </script>
+
+</body>
+</html>

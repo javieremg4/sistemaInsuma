@@ -49,6 +49,7 @@ if(!isset($_FILES['foto']['name'])){
 		$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datospersonales WHERE curp='$curp' OR (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat')");
 		session_start();
 		$idAlumno=$_SESSION['idAlumno'];
+		$msg = true;
 		if($consultaAlumno){
 			if(mysqli_num_rows($consultaAlumno)>0){
 				while($info=mysqli_fetch_array($consultaAlumno)){
@@ -60,7 +61,9 @@ if(!isset($_FILES['foto']['name'])){
 			}
 		}else{
 			$actAlumno = false;
+			$msg = false;
 			echo "<h3 style='color: red;'>No se pudieron actualizar los datos. Inténtelo de nuevo.</h3>";
+			echo "<a href='../HTML/actDatosPer.html'>Volver a los Datos del Alumno</a>";
 		}
 		if($actAlumno){
 			$consultaAlumno=mysqli_query($conexion,"SELECT apepat,apemat,nombre,foto FROM datospersonales WHERE clave='$idAlumno'");
@@ -142,8 +145,10 @@ if(!isset($_FILES['foto']['name'])){
 				echo "<a href='../HTML/actDatosPer.html'>Volver a los Datos del Alumno</a>";
 			}
 		}else{
-			echo "<h3 style='color: red;'>Ya existe un Alumno con esa CURP y/o Nombre</h3>";
-			echo "<a href='../HTML/actDatosPer.html'>Volver a los Datos del Alumno</a>";
+			if($msg){
+				echo "<h3 style='color: red;'>Ya existe un Alumno con esa CURP y/o Nombre</h3>";
+				echo "<a href='../HTML/actDatosPer.html'>Volver a los Datos del Alumno</a>";
+			}
 		}
 	}
 }

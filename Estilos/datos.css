@@ -50,4 +50,11 @@
 }
 .baja{
 	background:#FE2E2E;
+	padding: 10px;
+}
+.h100{
+	height: 100px;
+}
+.h50{
+	height: 50px;
 }
