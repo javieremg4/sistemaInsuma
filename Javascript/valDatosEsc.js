@@ -13,11 +13,15 @@ function valDatosEsc(nctrl){
         alert("Error: Grado Incorrecto");
         return false;
     }
-    var finscrip = document.getElementById('finscrip').value;
+	var finscrip = document.getElementById('finscrip').value;
+	if(finscrip==="" || finscrip===null){
+		alert("Seleccione la Fecha de Inscripción");
+		return false;
+	}
 	if(!validarFormatoFecha(finscrip) || !existeFecha(finscrip) || !validarFechaMenorActual(finscrip)){
 		alert("Error: Revise la Fecha de Inscripcion");
 		return false;
-    }
+	}
     //Aquí se elige el mensaje que irá en el confirm
     var msg="¿Está seguro de Actualizar los Datos?\nNo se podrán recuperar los datos anteriores";
     if(nctrl!="" && noControl!=nctrl){

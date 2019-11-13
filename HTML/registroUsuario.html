@@ -24,30 +24,53 @@
 	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
 	<link rel="stylesheet" type="text/css" href="../Estilos/menu.css">
 
+	<!--Javascript-->
+	<script type="text/javascript" src="../Javascript/valUsuario.js"></script>
+
 	<!--Bootstrap-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+	<!--Iconos-->
+    <script src="https://kit.fontawesome.com/afad62edac.js" crossorigin="anonymous"></script>
 </head>
-<body> 
+<body onload="initShow()"> 
 	<ul class="nav-size">
 	  	<li class="left"><a class="text-white" href="principalUsuario.html">Principal</a></li>
 	  	<li class="right"><a class="text-white" href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
 	</ul>
-
 	<div class="content col-lg-3">
 		<div class="text-form col-lg-12">Registro de Usuario</div>
-		<form class="form" method="post" action="../PHP/registroUsuario.php">
-			<div class="div-style">
-				Usuario: 
-				<input class="campo col-lg-8 right" type="text" name="usuario" required>
+		<form class="form" method="post" action="../PHP/registroUsuario.php"  onsubmit="return valUsuario()">
+			<div class="row div-style">
+				<div class="col-lg-4">Usuario</div>
+				<div class="col-lg-8" style="padding-left: 0;">
+					<input class="campo col-lg-12 right" type="text" name="usuario"  id="username">
+				</div>
 			</div>
-			<div class="div-style">
-				Contraseña:
-				<input class="campo col-lg-8 right" type="password" name="clave" required>
+			<div class="row div-style mb0">
+				<div class="col-lg-4">Contraseña</div>
+				<div class="row div-style col-lg-8 pr0">
+					<input class="campo col-lg-9" type="password" name="clave" id="pass">
+					<div id="msgPass" class="div-icon col-lg-3" onclick="showHide()">
+						<i class='fas fa-eye-slash'></i>
+					</div>
+				</div>
 			</div>
 			<div class="div-btn">
-				<input class="boton" type="submit" name="btnRegistro" value="Registrar" required>	
+				<input class="boton" type="submit" name="btnRegistro" value="Registrar">	
 			</div>
 		</form>
+		</div>
+	</div>
+	<div class="div-int col-lg-4" style="background: white; font-size: 13px; margin: 20px 40% 0 35%; padding: 0;">
+		<b>Indicaciones:</b>
+		<ul class="ul-int">
+			<li> - No se admiten caracteres especiales</li>
+			<li> - El usuario y la contraseña pueden incluir letras, números y guiones bajos</li>
+			<li> - El usuario y la contraseña deben ser max. 20 caracteres</li>
+			<li> - La contraseña debe ser min. 6 caracteres</li>
+			<li> - La contraseña no admite espacios en blanco</li>
+		</ul>
 	</div>
 </body>
 </html>

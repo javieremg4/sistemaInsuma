@@ -69,9 +69,12 @@ if(!isset($_FILES['foto']['name'])){
 			$consultaAlumno=mysqli_query($conexion,"SELECT apepat,apemat,nombre,foto FROM datospersonales WHERE clave='$idAlumno'");
 			if(mysqli_num_rows($consultaAlumno)){
 				$info=mysqli_fetch_array($consultaAlumno);
-				$nombreBD=$info['apepat'].$info['apemat'].$info['nombre'];
-				$nombreAct=$apepat.$apemat.$nombre;
-				(strcmp($nombreBD,$nombreAct)==0) ? $nomIgual=true : $nomIgual=false;
+				if(strcmp($info['apepat'],$apepat)===0 && strcmp($info['apemat'],$apemat)===0 && strcmp($info['nombre'],$nombre)===0){
+					$nomIgual=true;
+				}else{
+					$nomIgual=false;
+				}
+
 				if($_FILES['foto']['error']<=0){
 						if($uploadedfileload){
 							//Aquí se pone la extensión en el nombre de la Foto

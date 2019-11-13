@@ -13,26 +13,38 @@
 	<!--Estilos-->
 	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
 
+	<!--Javascript-->
+	<script type="text/javascript" src="../Javascript/valUsuario.js"></script>
+
 	<!--Bootstrap-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<!--Iconos-->
+	<script src="https://kit.fontawesome.com/afad62edac.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div class="content col-lg-3">
 		<div class="text-form col-lg-12">Iniciar Sesión</div>
-		<form class="form" method="post" action="../PHP/inicioUsuario.php">
-			<div class="div-style">
-				Usuario: 
-				<input class="campo col-lg-8 right" type="text" name="usuario" required>
+		<form class="form" method="post" action="../PHP/inicioUsuario.php" onsubmit="return valUsuario()">
+			<div class="row div-style">
+				<div class="col-lg-4">Usuario</div>
+				<div class="col-lg-8" style="padding-left: 0;">
+					<input class="campo col-lg-12 right" type="text" name="usuario"  id="username">
+				</div>
 			</div>
-			<div class="div-style">
-				Contraseña:
-				<input class="campo col-lg-8 right" type="password" name="clave" required>
+			<div class="row div-style mb0">
+				<div class="col-lg-4">Contraseña</div>
+				<div class="row div-style col-lg-8 pr0">
+					<input class="campo col-lg-9" type="password" name="clave" id="pass">
+					<div id="msgPass" class="div-icon col-lg-3" onclick="showHide()">
+						<i class='fas fa-eye-slash'></i>
+					</div>
+				</div>
 			</div>
 			<div class="div-btn">
-				<input class="boton" type="submit" name="btnInicio" value="Entrar" required>			
+				<input class="boton" type="submit" name="btnInicio" value="Entrar">	
 			</div>
 		</form>
 	</div>
 </body>
 </html>
-
