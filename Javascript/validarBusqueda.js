@@ -1,10 +1,10 @@
 function validarBusqueda(){
-    var apepat = document.getElementById('apepat').value;
-    var apemat = document.getElementById('apemat').value;
-    var nombre = document.getElementById('nombre').value;
-    if(apepat==="" && apemat==="" && nombre===""){
-        alert("Debe escribir algo para buscar");
+    var indicio = document.getElementById('indicio').value;
+    var spaceExp = /^\s+$/;
+    if(indicio==="" || indicio===null || indicio.length===0 || !indicio.search(spaceExp)){
+        alert("Debe escribir algo para poder buscar");
         return false;
+    }else{
+        buscarAlumno();
     }
-    return true;
 }

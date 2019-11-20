@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registro de Pago</title>
+
+    <!--Estilos-->
+    <link rel="stylesheet" type="text/css" href="../Estilos/pago.css">
+    <link rel="stylesheet" type="text/css" href="../Estilos/base.css">
+
+</head>
+<body>
+    <div class="monto">Inscripción y Colegiatura</div>
+    <form class="form-style">
+        <div class="div-union div-style">
+            <div class="div-part w50">
+                No. RECIBO <input type="text" name="" id="">
+            </div>
+            <div class="div-part w50">
+                FECHA <input type="date" name="" id="">
+            </div>
+        </div>
+        CONCEPTO
+        <div class="div-union div-style">
+            <div class="div-part op w33">
+                <input type="checkbox" name="" id=""> Inscripción o Reinscripción
+            </div>
+            <div class="div-part op w20">
+                <input type="checkbox" name="" id=""> Colegiatura 
+            </div>
+            <div class="div-part op w47">
+                <div class="div-union">
+                    <div class="div-part w20"><input type="checkbox" name="" id=""> Otro </div>
+                    <div class="div-part w80">Especifique <input class="w60" type="text" name="" id="" max></div>
+                </div>
+            </div>
+        </div>
+        <div class="div-style">
+            PAGO <input type="text" name="" id="">
+        </div>
+        <div class="div-style">
+            Observaciones 
+            <textarea class="w100" maxlength="100" name="obs"></textarea>
+        </div>
+        <!--DEBE <input type="text" name="" id="">
+        TOTAL SALDO <input type="text" name="" id="">-->
+    </form>
+    <input type="submit" value="Regisrar">
+    <div class="info">Historial de pagos del Alumno</div>
+</body>
+</html>

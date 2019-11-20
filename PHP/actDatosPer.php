@@ -46,7 +46,7 @@ if(!isset($_FILES['foto']['name'])){
 		//Aqui se revisa si no existe un alumno registrado con esa curp o ese nombre
 		/*echo "CURP a buscar".":".$curp."<br>";
 		echo "Nombre a buscar".$apepat.$apemat.$nombre."<br>";*/
-		$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datospersonales WHERE curp='$curp' OR (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat')");
+		$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE curp='$curp' OR (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat')");
 		session_start();
 		$idAlumno=$_SESSION['idAlumno'];
 		$msg = true;
@@ -66,7 +66,7 @@ if(!isset($_FILES['foto']['name'])){
 			echo "<a href='../HTML/actDatosPer.html'>Volver a los Datos del Alumno</a>";
 		}
 		if($actAlumno){
-			$consultaAlumno=mysqli_query($conexion,"SELECT apepat,apemat,nombre,foto FROM datospersonales WHERE clave='$idAlumno'");
+			$consultaAlumno=mysqli_query($conexion,"SELECT apepat,apemat,nombre,foto FROM datos WHERE clave='$idAlumno'");
 			if(mysqli_num_rows($consultaAlumno)){
 				$info=mysqli_fetch_array($consultaAlumno);
 				if(strcmp($info['apepat'],$apepat)===0 && strcmp($info['apemat'],$apemat)===0 && strcmp($info['nombre'],$nombre)===0){
@@ -82,7 +82,7 @@ if(!isset($_FILES['foto']['name'])){
 							//Fin
 							$path="./../Fotos/".$file_name;
 							if(move_uploaded_file($_FILES['foto']['tmp_name'], $path)){
-								$subirFoto=mysqli_query($conexion,"UPDATE datospersonales SET foto='$path' WHERE clave='$idAlumno'");
+								$subirFoto=mysqli_query($conexion,"UPDATE datos SET foto='$path' WHERE clave='$idAlumno'");
 								if($subirFoto){
 									if($info['foto']!=null && !$nomIgual){
 										$foto_anterior=$info['apepat']." ".$info['apemat']." ".$info['nombre'].".".$ext;
@@ -110,7 +110,7 @@ if(!isset($_FILES['foto']['name'])){
 					$path="./../Fotos/".$file_name;
 					if(file_exists($info['foto'])){
 						if(rename($info['foto'],"./../Fotos/".$file_name)){
-							$camNomFoto = mysqli_query($conexion,"UPDATE datospersonales SET foto='$path' WHERE clave='$idAlumno'");
+							$camNomFoto = mysqli_query($conexion,"UPDATE datos SET foto='$path' WHERE clave='$idAlumno'");
 							if($camNomFoto){
 								echo "<h3 style='color: green;'>La Foto fue Renombrada con Éxito</h3>";
 							}else{
@@ -137,7 +137,7 @@ if(!isset($_FILES['foto']['name'])){
 			($genero==0 ? $genero="M" : $genero="F");
 			if($telalumno==""){ $telalumno="S/N"; }
 			if($telcasa==""){ $telcasa="S/N"; }
-			$actualizarAlumno = mysqli_query($conexion,"UPDATE datospersonales SET curp='$curp',genero='$genero',fnac='$fnac',
+			$actualizarAlumno = mysqli_query($conexion,"UPDATE datos SET curp='$curp',genero='$genero',fnac='$fnac',
 			apepat='$apepat',apemat='$apemat',nombre='$nombre',direccion='$direccion',telalumno='$telalumno',telcasa='$telcasa' 
 			WHERE clave='$idAlumno'");
 			if($actualizarAlumno){

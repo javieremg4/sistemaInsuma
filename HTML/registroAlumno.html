@@ -72,13 +72,22 @@
 					<input class="campo col-lg-12" type="text" id="telcasa" name="telcasa" placeholder="Tel. Casa">
 				</div>
 			</div>
+			<span class="span-text">Revise que la fecha de hoy sea correcta</span>	
+			<div class="div-style">					
+				Fecha de registro
+				<input class="campo" type="date" id="fregistro" name="fregistro" value="<?php echo date('Y-m-d');?>">
+			</div>
+			<span>Agregar una foto</span>
+			<!--multipart/form-data -> Para mostrar la ventana de seleccion de archivo-->
+			<input  type="hidden" name="MAX_FILE_SIZE" value="200000" >
+			<input  class="div-style" name="foto" type="file" style="font-size: 15px;">
 			<div class="row div-style">
-				<div class="col-lg-3">
+				<div class="grado col-lg-3">
 					Grado 
 					<input class="campo col-lg-5" type="number" id="grado" name="grado">
 				</div>
 				<div class="col-lg-4">
-					<div class="col-lg-12" style="margin: 0 auto;">
+					<div class="grupo col-lg-12">
 						Grupo 					
 						<select name="grupo">
 							<option selected value="0">A</option>
@@ -88,7 +97,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-lg-5">	
+				<div class="turno col-lg-5">	
 					<div class="left">Turno</div> 						
 					<select class="campo right" name="turno">
 						<option selected value="0">Matutino</option>
@@ -96,15 +105,17 @@
 					</select>					
 				</div>
 			</div>
-			<div class="div-style">					
-				Fecha de inscripción 
-				<input class="campo" type="date" id="finscrip" name="finscrip" value="<?php echo date('Y-m-d');?>">
+			<div class="div-style">
+				<span>Montos de pago</span> 
+				<select name="monto" id="monto">
+					<option selected value="0">Eliga los montos de inscripción y colegiatura</option>
+					<option value="1">Inscripción: 1000 y Colegiatura: 800</option>
+					<option value="2">Inscripción: 1100 y Colegiatura: 880</option>
+					<option value="3">Inscripción: 1500 y Colegiatura: 1500</option>
+				</select>
 			</div>
-			<!--multipart/form-data -> Para mostrar la ventana de seleccion de archivo-->
-			<input  type="hidden" name="MAX_FILE_SIZE" value="200000" >
-			<input  class="div-style" name="foto" type="file" style="font-size: 15px;">
 			<div class="div-btn">
-				<input class="boton col-lg-4" type="submit" name="btnRegistro">
+				<button class="boton col-lg-4" name="btnRegistro">Registrar</button>
 			</div>
 		</form>
 	</div>

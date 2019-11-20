@@ -30,32 +30,32 @@
         if($apepat==""){
             if($apemat==""){
                 //echo "Búsqueda por Nombre";
-                $consulta = "SELECT * FROM datospersonales WHERE nombre='$nombre'";
+                $consulta = "SELECT * FROM datos WHERE nombre='$nombre'";
             }else{
                 if($nombre==""){
                     //echo "Búsqueda por Apellido Materno";
-                    $consulta = "SELECT * FROM datospersonales WHERE apemat='$apemat'";
+                    $consulta = "SELECT * FROM datos WHERE apemat='$apemat'";
                 }else{
                     //echo "Búsqueda por Nombre y Apellido Materno";
-                    $consulta = "SELECT * FROM datospersonales WHERE nombre='$nombre' AND apemat='$apemat'";
+                    $consulta = "SELECT * FROM datos WHERE nombre='$nombre' AND apemat='$apemat'";
                 }
             }
         }else{
             if($apemat==""){
                 if($nombre==""){
                     //echo "Búsqueda por Apellido Paterno";
-                    $consulta = "SELECT * FROM datospersonales WHERE apepat='$apepat'";
+                    $consulta = "SELECT * FROM datos WHERE apepat='$apepat'";
                 }else{
                     //echo "Búsqueda por Nombre y Apellido Paterno";
-                    $consulta = "SELECT * FROM datospersonales WHERE nombre='$nombre' AND apepat='$apepat'";
+                    $consulta = "SELECT * FROM datos WHERE nombre='$nombre' AND apepat='$apepat'";
                 }
             }else{
                 if($nombre==""){
                     //echo "Búsqueda por Apellido Paterno y Apellido Materno";
-                    $consulta = "SELECT * FROM datospersonales WHERE apemat='$apemat' AND apepat='$apepat'";
+                    $consulta = "SELECT * FROM datos WHERE apemat='$apemat' AND apepat='$apepat'";
                 }else{
                     //echo "Búsqueda por Nombre, Apellido Paterno y Apellido Materno";
-                    $consulta = "SELECT * FROM datospersonales WHERE nombre='$nombre' AND apemat='$apemat' AND apepat='$apepat'";
+                    $consulta = "SELECT * FROM datos WHERE nombre='$nombre' AND apemat='$apemat' AND apepat='$apepat'";
                     
                 }
             }
@@ -69,7 +69,7 @@
             <?php
                 if(($info['foto']!=null || $info['foto']!="") && !file_exists($info['foto'])){
                     $idAl=$info['clave'];
-                    mysqli_query($conexion,"UPDATE datospersonales SET foto=null WHERE clave='$idAl'");
+                    mysqli_query($conexion,"UPDATE datos SET foto=null WHERE clave='$idAl'");
                     $info['foto']=null;
                 }
                 if($info['foto']==null || $info['foto']==""){

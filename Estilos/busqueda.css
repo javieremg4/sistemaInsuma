@@ -1,0 +1,41 @@
+div.ap1.col-lg-4,div.ap2.col-lg-4{
+    padding-right: 7.5px;
+}
+div.nom.col-lg-4,div.ap2.col-lg-4{
+    padding-left: 7.5px;
+}
+div.col-lg-12{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+div.col-lg-10{
+    padding: 7.5px;
+}
+.btn-buscar{
+    background-color: #333;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-family: 'Open Sans', sans-serif; 
+    margin: 0 auto;
+    padding: 5px;
+    text-align: center;
+}
+.div-style{
+    margin-top: 10px;
+}
+div.row.col-lg-8{
+    margin: 10px auto;
+}
+.div-btn-buscar{
+    display: flex;
+    align-items: center;
+}
+.text-ind{
+    font-weight: bold;
+    margin: 0 auto;
+}
+::placeholder{
+    font-style: italic;
+}

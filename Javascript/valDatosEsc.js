@@ -18,7 +18,7 @@ function valDatosEsc(nctrl){
 		alert("Seleccione la Fecha de Inscripción");
 		return false;
 	}
-	if(!validarFormatoFecha(finscrip) || !existeFecha(finscrip) || !validarFechaMenorActual(finscrip)){
+	if(!validarFormatoFecha(finscrip) || !existeFecha(finscrip)){
 		alert("Error: Revise la Fecha de Inscripcion");
 		return false;
 	}

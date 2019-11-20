@@ -37,9 +37,6 @@
     if(mysqli_num_rows($checkBaja)>0){
         $info=mysqli_fetch_array($checkBaja);
         ?>
-        <form >
-
-        </form>
         <div class="msg-baja" id="msgBaja">
             <span class="red">Este Alumno ya está dado de Baja</span>
             <span class="red"> <?php echo ($info['tipo']==='0') ?  "Baja temporal" : "Baja definitiva"; ?> </span>

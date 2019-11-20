@@ -6,7 +6,7 @@
 		$_SESSION['error']=0;
 	}
 	$idAlumno=$_SESSION['idAlumno'];
-	$conAlumno = mysqli_query($conexion,"SELECT * FROM datospersonales WHERE clave='$idAlumno'");
+	$conAlumno = mysqli_query($conexion,"SELECT * FROM datos WHERE clave='$idAlumno'");
 	if($conAlumno){
 		$info=mysqli_fetch_array($conAlumno);
 ?>
@@ -44,7 +44,7 @@
 			<div class="row div-style">
 				<?php 
 					if(($info['foto']!=null || $info['foto']!="") && !file_exists($info['foto'])){
-						mysqli_query($conexion,"UPDATE datospersonales SET foto=null WHERE clave='$idAlumno'");
+						mysqli_query($conexion,"UPDATE datos SET foto=null WHERE clave='$idAlumno'");
 						$info['foto']=null;
 					}
 					if($info['foto']==null || $info['foto']==""){

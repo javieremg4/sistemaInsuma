@@ -1,60 +1,48 @@
-.div-datos{
+.div-content{
 	display: flex;
-	border: solid 1px #333;
-	box-sizing: border-box;
-	height: 180px;
-	margin: 10px 15% 10px;
 	overflow: hidden;
-	padding: 15px;	
-	width: 70%;
+	width: 100%;
+}
+.div-datos{
+	display: inline-block;
+	border: solid 1px #333;
+	cursor: pointer;
+	height: 180px;
+	margin: 5px;
+	padding: 10px;	
+	width: 49%;
 }
 .foto{
 	float: left;
-	height: 150px;
-	padding-right: 0;
-	padding-right: 15px;
-	width: 18%;
+	height: 160px;
+	padding-right: 10px;
+	width: 25%;
 }
 .datos{
-	box-sizing: border-box;
 	display: inline-block;
-	height: 150px;
+	font-size: 13px;
+	height: 160px;
+	overflow: hidden;
 	padding: 0;
-	padding-right: 15px;
-	width: 30%;
+	width: 75%;
+	word-break: break-all;
+}
+.div-union{
+	overflow: hidden;
+	width: 100%;
+}
+.div-part{
+	display: inline-block;
+	width: 50%;
+}
+.div-datos:hover{
+	border: 3px solid #2E2EFE;
+}
+.div-datos:active{
+	border: 3px solid #FE2E2E;
 }
 .div-links{
 	display: inline-block;
 	justify-content: center;
 	width: 22%;
-}
-.btnAl{
-	align-items: center;
-	box-sizing: border-box;
-	color: white;
-	display: flex;
-	height: 40px;
-	justify-content: center;
-	margin: 0 10% 10px;
-	text-align: center;
-	width: 80%;
-}
-.btnAl:hover{
-	cursor: pointer;
-}
-.adp{
-	background: #04B404;
-}
-.ade{
-	background: #2E2EFE;
-}
-.baja{
-	background:#FE2E2E;
-	padding: 10px;
-}
-.h100{
-	height: 100px;
-}
-.h50{
-	height: 50px;
 }

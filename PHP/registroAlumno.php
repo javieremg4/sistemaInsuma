@@ -3,7 +3,7 @@
 	if(!isset($_SESSION['usuario'])){
 		header("location:../HTML/inicioUsuario.html");
 	}
-	if(!isset($_POST['genero'],$_POST['fnac'],$_POST['nombre'],$_POST['direccion'],$_POST['grado'],$_POST['grupo'],$_POST['turno'],$_POST['finscrip'])){
+	if(!isset($_POST['genero'],$_POST['fnac'],$_POST['nombre'],$_POST['direccion'],$_POST['fregistro'])){
 		$_SESSION['error']=1;
 		header("location:../HTML/registroAlumno.html");
 	}
@@ -48,9 +48,9 @@
 		$apemat = trim($_POST['apemat']);
 		//Aqui se revisa si el alumno ya estaba registrado
 		if($curp == ""){
-			$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datospersonales WHERE nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat'");
+			$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat'");
 		}else{
-			$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datospersonales WHERE curp='$curp' OR (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat')");
+			$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE curp='$curp' OR (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat')");
 		}
 		if(mysqli_num_rows($consultaAlumno)>0){
 			echo "<h3 style='color: red;'>El Alumno ya Existe</h3>";
@@ -67,7 +67,7 @@
 			($genero==0 ? $genero="M" : $genero="F");
 			if($telalumno==""){ $telalumno="S/N"; }
 			if($telcasa==""){ $telcasa="S/N"; }
-			$registroAlumno=mysqli_query($conexion,"INSERT INTO datospersonales (curp,genero,apepat,apemat,nombre,fnac,direccion,telalumno,telcasa) VALUES ('$curp','$genero','$apepat','$apemat','$nombre','$fnac','$direccion','$telalumno','$telcasa')");
+			$registroAlumno=mysqli_query($conexion,"INSERT INTO datos (curp,genero,apepat,apemat,nombre,fnac,direccion,telalumno,telcasa) VALUES ('$curp','$genero','$apepat','$apemat','$nombre','$fnac','$direccion','$telalumno','$telcasa')");
 			//Fin
 			if($registroAlumno){
 				//Aquí se revisa si el directorio de Fotos existe, sí no se crea
@@ -85,7 +85,7 @@
 					$path="./../Fotos/".$file_name;
 					echo "Ruta del archivo:".$path;
 					if(move_uploaded_file ($_FILES['foto']['tmp_name'], $path)){
-						$subirFoto=mysqli_query($conexion,"UPDATE datospersonales SET foto='$path' WHERE (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat')");
+						$subirFoto=mysqli_query($conexion,"UPDATE datos SET foto='$path' WHERE (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat')");
 						if($subirFoto){
 							echo "<h3 style='color: green;'>La Foto se Ha Subido Satisfactoriamente</h3>";
 						}else{
@@ -99,10 +99,11 @@
 				}
 				//Fin
 				//Aquí se busca la clave del alumno para asociarlo al resto de los datos
-				$buscarAlumno=mysqli_query($conexion,"SELECT clave FROM datospersonales WHERE nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat'");
+				$buscarAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat'");
 				if($buscarAlumno){
+					$fregistro = $_POST['fregistro'];
+					$monto = $_POST['monto'];
 					$grado = $_POST['grado'];
-					$finscrip = $_POST['finscrip'];
 					$turno = $_POST['turno'];
 					$grupo = $_POST['grupo'];
 					switch($grupo){
@@ -113,12 +114,13 @@
 					}
 					$info = mysqli_fetch_array($buscarAlumno);
 					$clave = $info['clave'];
-					$darDeAlta = mysqli_query($conexion,"INSERT INTO altas (clave,finscrip,grado,grupo,turno) VALUES ('$clave','$finscrip','$grado','$grupo','$turno')");
+					$darDeAlta = mysqli_query($conexion,"INSERT INTO altas (clave,fregistro,monto,grado,grupo,turno) 
+					VALUES ('$clave','$fregistro','$monto','$grado','$grupo','$turno')");
 					if(!$darDeAlta){
-						echo "<h3>Favor de subir el Grado, Grupo, Turno y Fecha de Inscripcion en el Apartado de Actualización de Datos</h3>";
+						echo "<h3>Favor de Agregar la Fecha de Registro, Grado, Grupo, Turno y Monto de Pago en el Apartado de Actualización de Datos</h3>";
 					}
 				}else{
-					echo "<h3>Favor de subir el Grado y la Fecha de Inscripcion en el Apartado de Actualización de Datos</h3>";
+					echo "<h3>Favor de Agregar la Fecha de Registro y el Monto de Pago en el Apartado de Actualización de Datos</h3>";
 				}
 				//Fin
 				echo "<h3 style='color: green;'>Alumno Registrado con exito</h3>";

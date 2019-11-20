@@ -12,7 +12,7 @@ function validarRegistro(){
 		alert("Seleccione la Fecha de Nacimiento");
 		return false;
 	}
-	if(!validarFormatoFecha(fnac) || !existeFecha(fnac) || !validarFechaMenorActual(fnac)){
+	if(!validarFormatoFecha(fnac) || !existeFecha(fnac)){
 		alert("Error: Revise la Fecha de Nacimiento");
 		return false;
 	}
@@ -48,19 +48,28 @@ function validarRegistro(){
 			return false;
 		}	
 	}
-	var grado = document.getElementById('grado').value;
-	if(grado<1 || grado>6){
-		alert("Error: Grado Incorrecto");
+	var fregistro = document.getElementById('fregistro').value;
+	if(fregistro==="" || fregistro===null){
+		alert("Seleccione la Fecha de Registro");
 		return false;
 	}
-	var finscrip = document.getElementById('finscrip').value;
-	if(finscrip==="" || finscrip===null){
-		alert("Seleccione la Fecha de Inscripción");
+	if(!validarFormatoFecha(fregistro) || !existeFecha(fregistro)){
+		alert("Error: Revise la Fecha de Registro");
 		return false;
 	}
-	if(!validarFormatoFecha(finscrip) || !existeFecha(finscrip) || !validarFechaMenorActual(finscrip)){
-		alert("Error: Revise la Fecha de Inscripcion");
+	var expGrado = /^[1-6]{1}$/;
+    var grado = document.getElementById('grado').value;
+    if(grado.search(expGrado)){
+        alert("Error: Grado Incorrecto");
+        return false;
+    }
+	var monto = document.getElementById('monto').value;
+	if(monto === '0'){
+		alert("Seleccione los Montos de Pago");
 		return false;
 	}
+	msg = "¿Está seguro de que los Datos son Correctos?";
+	msg = confirm(msg);
+	if(!msg){ return false; }
 	return true;
 }

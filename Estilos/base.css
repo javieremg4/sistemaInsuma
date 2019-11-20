@@ -9,7 +9,7 @@ body{
     margin-top: 5%;
     margin: auto;
 }
-div.content.col-lg-4, div.content.col-lg-3, div.content.col-lg-6{
+div.content.col-lg-8, div.content.col-lg-6, div.content.col-lg-4, div.content.col-lg-3{
     padding: 0;
 }
 .text-form{
@@ -26,6 +26,7 @@ div.content.col-lg-4, div.content.col-lg-3, div.content.col-lg-6{
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
+    font-weight: bold;
     margin: 0;
     padding: 15px;
 }
@@ -63,6 +64,7 @@ div.col-lg-6.ap2{
     justify-content: center;
 }
 .boton{
+    box-sizing: border-box;
     color: white;
     font-family: 'Open Sans', sans-serif; 
     font-size: 18px;
@@ -72,7 +74,7 @@ div.col-lg-6.ap2{
     background-color: #333;
     border-radius: 5px;
     border: none;
-    width: 30%;
+    width: 40%;
 }
 input.col-lg-5{
     padding: 0;
@@ -80,18 +82,6 @@ input.col-lg-5{
 }
 input.col-lg-4{
     box-sizing: border-box;
-}
-.mensaje{
-    background: #333;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: white;
-    font-size: 25px;
-    margin: auto; 
-    margin-top: 5%;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    text-align: center;
 }
 .text-page{
     font-size: 14px;
@@ -145,4 +135,50 @@ span{
 }
 .pr0.col-lg-8{
     padding-right: 0;
+}
+.date-msg{
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-weight: bold;
+    margin: 15px 0 0 15px;
+    padding: 5px;
+    text-align: center;
+    width: 30%;
+}
+.big-msg{
+    background: #333;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    margin: auto; 
+    margin-top: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    text-align: center;
+    width: 60%;
+}
+.text-div{
+    font-size: 15px;
+    font-weight: bold;
+    margin: auto;
+    margin-bottom: 15px;
+    padding: 0;
+    width: 50%;
+}
+.span-text{
+    font-size: 12px; 
+}
+div.turno.col-lg-5{
+    padding-left: 0;
+}
+div.grado.col-lg-3{
+    padding-right: 0;
+}
+div.col-lg-12.grupo{
+    display: flex;
+    justify-content: center;
+    padding: 0;
 }
