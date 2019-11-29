@@ -3,11 +3,12 @@ body{
 	font-family: 'Open Sans', sans-serif !important;
     margin: 0; 
 }
-.form-style{
+.box-style{
     box-sizing: border-box;
     border: 1px solid black;
+    border-radius: 5px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 15px;
     width: 50%;
 }
 textarea{
@@ -24,6 +25,17 @@ textarea{
 .op{
     font-size: 14px;
 }
+.boton{
+    max-width: 25%;
+    margin-top: 0 !important;
+}
+.boton:hover{
+    cursor: pointer;
+}
+#esp{
+    display: none;
+    float: right;
+}
 .w100{
     width: 100%;
 }
@@ -39,9 +51,12 @@ textarea{
 .w47{
     width: 47%;
 }
-.w33{
-    width: 33%;
+.w35{
+    width: 35%;
 }
 .w20{
     width: 20%;
+}
+.w18{
+    width: 18%;
 }

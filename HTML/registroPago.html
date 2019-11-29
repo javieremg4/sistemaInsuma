@@ -10,44 +10,54 @@
     <link rel="stylesheet" type="text/css" href="../Estilos/pago.css">
     <link rel="stylesheet" type="text/css" href="../Estilos/base.css">
 
+    <!--Javascript-->
+    <script type="text/javascript" src="../Javascript/valPago.js"></script>
+    <script type="text/javascript" src="../Javascript/validarFecha.js"></script>
 </head>
 <body>
     <div class="monto">Inscripción y Colegiatura</div>
-    <form class="form-style">
+    <div class="box-style">
         <div class="div-union div-style">
             <div class="div-part w50">
-                No. RECIBO <input type="text" name="" id="">
+                No. RECIBO <input type="text" name="" id="noRec">
             </div>
             <div class="div-part w50">
-                FECHA <input type="date" name="" id="">
+                FECHA <input type="date" name="" id="fpago">
             </div>
         </div>
         CONCEPTO
         <div class="div-union div-style">
-            <div class="div-part op w33">
-                <input type="checkbox" name="" id=""> Inscripción o Reinscripción
+            <div class="div-part op w35">
+                <input type="checkbox" name="" id="inscrip"> Inscripción o Reinscripción
             </div>
-            <div class="div-part op w20">
-                <input type="checkbox" name="" id=""> Colegiatura 
+            <div class="div-part op w18">
+                <input type="checkbox" name="" id="coleg"> Colegiatura 
             </div>
             <div class="div-part op w47">
-                <div class="div-union">
-                    <div class="div-part w20"><input type="checkbox" name="" id=""> Otro </div>
-                    <div class="div-part w80">Especifique <input class="w60" type="text" name="" id="" max></div>
-                </div>
+                <div class="w100"><input type="checkbox" name="" id="otro" onclick="showEsp();"> Otro </div>
+                <div class="w100" id="esp">Especifique <input class="w60" type="text" name="" id="text-esp" max></div>
             </div>
         </div>
+        <div class="div-union div-style">
+            <div class="div-part w50">PAGO <input type="text" name="" id="pago"></div>
+            <div class="div-part w50">TOTAL SALDO <input type="text" name="" id="totsaldo"></div>
+        </div>
         <div class="div-style">
-            PAGO <input type="text" name="" id="">
+            
+        </div>
+        <div class="div-style">
+            
         </div>
         <div class="div-style">
             Observaciones 
             <textarea class="w100" maxlength="100" name="obs"></textarea>
         </div>
+        <div class="div-btn"> 
+            <button class="boton" onclick="valPago();">Registrar</button>
+        </div>
         <!--DEBE <input type="text" name="" id="">
         TOTAL SALDO <input type="text" name="" id="">-->
-    </form>
-    <input type="submit" value="Regisrar">
+    </div>
     <div class="info">Historial de pagos del Alumno</div>
 </body>
 </html>
