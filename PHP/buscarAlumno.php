@@ -36,8 +36,8 @@
                     $resultado .= "<div class='div-union'>";
                     $resultado .= "<div class='div-part'>";
                     $resultado .= 'No. Control: ';
-                    if(empty($info['clave'])){
-                        $resultado .= $info['clave'];
+                    if(!empty($info['numControl'])){
+                        $resultado .= $info['numControl'];
                     }else{
                         $resultado .= "S/N";  
                     }
@@ -93,8 +93,8 @@
                     }
                     $resultado .= "<div class='datos'>";
                     $resultado .= 'No. Control: ';
-                    if(empty($info['clave'])){
-                        $resultado .= $info['clave'];
+                    if(!empty($info['numControl'])){
+                        $resultado .= $info['numControl'];
                     }else{
                         $resultado .= "S/N";  
                     }

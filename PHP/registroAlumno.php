@@ -112,10 +112,24 @@
 						case 2: $grupo='C'; break;
 						case 3: $grupo='D'; break;
 					}
+					switch ($monto) {
+						case '1':
+							$saldo=4200;
+							break;
+						case '2':
+							$saldo=4620;
+							break;
+						case '3':
+							$saldo=7500;
+							break;
+						default:
+							$saldo=null;
+							break;
+					}
 					$info = mysqli_fetch_array($buscarAlumno);
 					$clave = $info['clave'];
-					$darDeAlta = mysqli_query($conexion,"INSERT INTO altas (clave,fregistro,monto,grado,grupo,turno) 
-					VALUES ('$clave','$fregistro','$monto','$grado','$grupo','$turno')");
+					$darDeAlta = mysqli_query($conexion,"INSERT INTO altas (clave,fregistro,monto,grado,grupo,turno,saldo) 
+					VALUES ('$clave','$fregistro','$monto','$grado','$grupo','$turno','$saldo')");
 					if(!$darDeAlta){
 						echo "<h3>Favor de Agregar la Fecha de Registro, Grado, Grupo, Turno y Monto de Pago en el Apartado de Actualización de Datos</h3>";
 					}

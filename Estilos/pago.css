@@ -3,11 +3,47 @@ body{
 	font-family: 'Open Sans', sans-serif !important;
     margin: 0; 
 }
+.span-msg{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+}
+.sec-info{
+    margin: 0 35% 8px 35%;
+}
+.div-info{
+    box-sizing: border-box;
+    border-radius: 3px;
+    display: flex;
+    font-weight: bold;
+    height: 42px;
+    padding: 5px;
+    width: 100%;
+}
+.part-info{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.x:hover{
+    cursor: pointer;
+}
+.green{
+    background: #a7ffc1;
+    border: 1px solid #a7ffc1;
+    color: green;
+}
+.red{
+    background: white;
+    border: 1px solid red;
+    color: red;
+}
 .box-style{
     box-sizing: border-box;
     border: 1px solid black;
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
     padding: 15px;
     width: 50%;
 }
@@ -32,9 +68,26 @@ textarea{
 .boton:hover{
     cursor: pointer;
 }
-#esp{
+#esp,#historial{
     display: none;
-    float: right;
+}
+table{
+    border: 1px solid #333;
+    border-collapse: collapse;
+    margin: auto;
+    text-align: center;
+    width: 80%;
+}
+th{
+    background-color: #333;
+    color: white;
+    font-weight: unset;
+    height: 30px;
+}
+td{
+    border: 1px solid #333;
+    font-size: 14px;
+    word-break: break-all;
 }
 .w100{
     width: 100%;
@@ -54,9 +107,21 @@ textarea{
 .w35{
     width: 35%;
 }
+.w33{
+    width: 33.3%;
+}
+.w30{
+    width: 30%;
+}
 .w20{
     width: 20%;
 }
 .w18{
     width: 18%;
+}
+.w10{
+    width: 10%;
+}
+.w5{
+    width: 5%;
 }

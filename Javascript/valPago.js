@@ -1,3 +1,7 @@
+function quitDivInfo(){
+    var divInfo = document.getElementById('info');
+    divInfo.innerHTML = null;
+}
 function valPago(){
     var expNoRec = /^[a-zA-Z\d]*$/;
     var expSpace = /^\s*$/;
@@ -39,32 +43,27 @@ function valPago(){
         alert("Debe especificar una cantidad de pago");
         return false;
     }
-    var expPago = /^\d*$/;
+    var expPago = /^(\d*|\d+\.)\d+$/;
     if(pago.search(expPago)){
         alert("Error: Revise la Cantidad de Pago");
         return false;
     }
-    if(pago.length > 4){
-        var msg = "¿La cantidad de pago es correcta?";
-        msg = confirm(msg);
-        if(!msg){
-            return false; 
-        }
+    if(pago > 99999.99){
+        alert("Error: La Cantidad de Pago es Muy Grande");
+        return false;
     }
     var totsaldo = document.getElementById('totsaldo').value;
     if(totsaldo!=null && totsaldo!="" && totsaldo.length!=0 && totsaldo.search(expSpace)){
-        if(totsaldo.search(expPago)){
+        if(pago.search(expPago)){
             alert("Error: Revise el Saldo");
             return false;
         }
-        if(totsaldo.length > 4){
-            var msg = "¿El Saldo es Correcto?";
-            msg = confirm(msg);
-            if(!msg){
-                return false; 
-            }
+        if(pago > 99999.99){
+            alert("Error: El Saldo es Muy Grande");
+            return false;
         }
     }
+    regPago();
 }
 var show = true;
 function showEsp(){
@@ -79,5 +78,23 @@ function showEsp(){
             document.getElementById('esp').style.display = "none";
             show = true;
         }
+    }
+}
+function valConcepto(){
+    if(document.getElementById('otro').checked && 
+    (document.getElementById('inscrip').checked || document.getElementById('coleg').checked)){
+        alert('No se puede registrar la Inscripción o la Colegiatura junto a otro tipo de pagos');
+        document.getElementById('inscrip').checked=0;
+        document.getElementById('coleg').checked=0;
+    }
+}
+var show1 = true;
+function valInscrip(){
+    if(document.getElementById('inscrip').checked && !document.getElementById('otro').checked && show1){
+        document.getElementById('datos-esc').style.display = "flex";
+        show1 = false;
+    }else{
+        document.getElementById('datos-esc').style.display = "none";
+        show1 = true;
     }
 }
