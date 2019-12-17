@@ -10,10 +10,9 @@ body{
     text-align: center;
 }
 .sec-info{
-    margin: 0 35% 8px 35%;
+    margin: 0 32.5% 8px 32.5%;
 }
 .div-info{
-    box-sizing: border-box;
     border-radius: 3px;
     display: flex;
     font-weight: bold;
@@ -74,7 +73,7 @@ textarea{
 table{
     border: 1px solid #333;
     border-collapse: collapse;
-    margin: auto;
+    margin: 0 auto 20px auto;
     text-align: center;
     width: 80%;
 }

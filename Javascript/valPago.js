@@ -65,19 +65,15 @@ function valPago(){
     }
     regPago();
 }
-var show = true;
 function showEsp(){
     if(document.getElementById('inscrip').checked || document.getElementById('coleg').checked){
         alert('No se puede registrar la Inscripción o la Colegiatura junto a otro tipo de pagos');
         document.getElementById('otro').checked = 0;
+        document.getElementById('esp').style.display = "none";
+    }else if(document.getElementById('otro').checked){
+        document.getElementById('esp').style.display = "block";
     }else{
-        if(show){
-            document.getElementById('esp').style.display = "block";
-            show = false;
-        }else{
-            document.getElementById('esp').style.display = "none";
-            show = true;
-        }
+        document.getElementById('esp').style.display = "none";
     }
 }
 function valConcepto(){
@@ -86,15 +82,6 @@ function valConcepto(){
         alert('No se puede registrar la Inscripción o la Colegiatura junto a otro tipo de pagos');
         document.getElementById('inscrip').checked=0;
         document.getElementById('coleg').checked=0;
-    }
-}
-var show1 = true;
-function valInscrip(){
-    if(document.getElementById('inscrip').checked && !document.getElementById('otro').checked && show1){
-        document.getElementById('datos-esc').style.display = "flex";
-        show1 = false;
-    }else{
-        document.getElementById('datos-esc').style.display = "none";
-        show1 = true;
+        document.getElementById('esp').style.display = "block";
     }
 }

@@ -27,6 +27,7 @@ function regPago(){
         varajax.onreadystatechange = function(){
             if(varajax.readyState===4 && varajax.status===200){
                 document.getElementById('info').innerHTML = varajax.responseText;
+                verSaldo();
                 buscarPagos();
             }
         }
@@ -35,4 +36,3 @@ function regPago(){
         varajax.send(info);
     }
 }
-

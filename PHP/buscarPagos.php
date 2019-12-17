@@ -27,7 +27,7 @@
                 $resultado .= "</tr>";
                 echo $resultado;
             }
-            echo "<table>";
+            echo "</table>";
         }else{
             echo "No hay Recibos Registrados de Este Alumno";
         } 
