@@ -1,3 +1,4 @@
+window.onload = verSaldo();
 function verSaldo(){
     var varajax;
     if(window.XMLHttpRequest){

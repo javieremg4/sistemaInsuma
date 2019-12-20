@@ -17,4 +17,5 @@ function buscarAlumno(){
     varajax.open("POST","../PHP/buscarAlumno.php",true);
     varajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     varajax.send(info);
-} 
+}
+ 

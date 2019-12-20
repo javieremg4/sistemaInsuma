@@ -3,41 +3,6 @@ body{
 	font-family: 'Open Sans', sans-serif !important;
     margin: 0; 
 }
-.span-msg{
-    font-size: 16px;
-    font-weight: bold;
-    margin: 10px 0;
-    text-align: center;
-}
-.sec-info{
-    margin: 0 32.5% 8px 32.5%;
-}
-.div-info{
-    border-radius: 3px;
-    display: flex;
-    font-weight: bold;
-    height: 42px;
-    padding: 5px;
-    width: 100%;
-}
-.part-info{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-.x:hover{
-    cursor: pointer;
-}
-.green{
-    background: #a7ffc1;
-    border: 1px solid #a7ffc1;
-    color: green;
-}
-.red{
-    background: white;
-    border: 1px solid red;
-    color: red;
-}
 .box-style{
     box-sizing: border-box;
     border: 1px solid black;
@@ -91,9 +56,6 @@ td{
 .w100{
     width: 100%;
 }
-.w80{
-    width: 80%;
-}
 .w60{
     width: 60%;
 }
@@ -117,9 +79,6 @@ td{
 }
 .w18{
     width: 18%;
-}
-.w10{
-    width: 10%;
 }
 .w5{
     width: 5%;

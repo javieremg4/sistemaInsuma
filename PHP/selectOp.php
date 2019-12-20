@@ -5,6 +5,9 @@
             case 'upDP':
                 $_SESSION['operacion']="adp";
                 break;
+            case 'upDE':
+                $_SESSION['operacion']="ade";
+                break;
             case 'pay':
                 $_SESSION['operacion']="pago";
                 break;

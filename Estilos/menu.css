@@ -40,7 +40,11 @@ li.dropdown {
   display: block;
   text-align: left;
 }
-.dropdown-content a:hover {background-color: #f1f1f1; text-decoration: none;}
+.dropdown-content a:hover {
+  background-color: #f1f1f1; 
+  cursor: pointer;
+  text-decoration: none;
+}
 .dropdown:hover .dropdown-content {
   display: block;
 }

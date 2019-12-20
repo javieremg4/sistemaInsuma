@@ -101,9 +101,6 @@ input.col-lg-4{
 span{
     display:block;
 }
-.red{
-    color: red;
-}
 .del-baja{
     background: #2E2EFE;
     color: white;
@@ -182,3 +179,57 @@ div.col-lg-12.grupo{
     justify-content: center;
     padding: 0;
 }
+/*****Mensaje en span*****/ 
+.span-msg{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+}
+/*************************/
+/*****basicWarning*****/
+.sec-info{
+    margin: 0 32.5% 8px 32.5%;
+}
+.div-info{
+    border-radius: 3px;
+    display: flex;
+    font-weight: bold;
+    height: 42px;
+    padding: 5px;
+    width: 100%;
+}
+.part-info{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.x:hover{
+    cursor: pointer;
+}
+.green{
+    background: #a7ffc1;
+    border: 1px solid #a7ffc1;
+    color: green;
+}
+.red{
+    background: white;
+    border: 1px solid red;
+    color: red;
+}
+.attention{
+    background: rgb(235, 201, 201);
+    border: 1px solid rgb(102, 42, 55);
+    box-sizing: unset;
+    color: rgb(102, 42, 55); 
+}
+.w80{
+    width: 80%;
+}
+.w10{
+    width: 10%;
+}
+.mt16{
+    margin-top: 16px;
+}
+/**********************/
