@@ -16,6 +16,6 @@
                 break;
         }
     }else{
-        $_SESSION['operacion']='error';
+        header("location:../HTML/error.html");
     }
 ?>

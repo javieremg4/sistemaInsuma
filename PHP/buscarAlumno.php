@@ -1,11 +1,15 @@
 <?php
-    if(isset($_POST['indicio'])){
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        header("location:../HTML/inicioUsuario.html");
+    }else if(!isset($_POST['indicio'])){
+        header("location:../HTML/buscarAlumno.html");
+    }
+    if(isset($_SESSION['operacion'],$_POST['indicio'])){
         include("../PHP/conexion.php");
-        session_start();
         echo  "Operacion actual: ".$_SESSION['operacion']."<hr>";
         //Valoración de los parámetros para realizar la búsqueda
         $indicio = trim($_POST['indicio']);
-        
         if($_SESSION['operacion'] === "adp"){
             $consulta = "SELECT altas.numControl,datos.* FROM datos INNER JOIN altas ON datos.clave = altas.clave WHERE datos.nombre LIKE '%$indicio%' OR datos.apepat LIKE '%$indicio%' OR datos.apemat LIKE '%$indicio%'";
             $buscarAlumnos = mysqli_query($conexion,$consulta);
@@ -66,7 +70,7 @@
                 }
             }
         }else if($_SESSION['operacion'] === "ade"){
-            $consulta = "SELECT datos.apepat, datos.apemat, datos.nombre, datos.foto, altas.* FROM datos INNER JOIN altas WHERE datos.clave=altas.clave";
+            $consulta = "SELECT datos.apepat, datos.apemat, datos.nombre, datos.foto, altas.* FROM datos INNER JOIN altas ON datos.clave = altas.clave WHERE datos.nombre LIKE '%$indicio%' OR datos.apepat LIKE '%$indicio%' OR datos.apemat LIKE '%$indicio%'";
             $buscarAlumnos = mysqli_query($conexion,$consulta);
             if(mysqli_num_rows($buscarAlumnos)<1){
                 echo "No se encontraron resultados<hr>";
@@ -194,6 +198,6 @@
             } 
         }
     }else{
-        echo "No se pudo buscar";
+        echo "No se pudo buscar<hr>";
     }
 ?>

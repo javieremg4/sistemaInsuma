@@ -1,12 +1,12 @@
 <?php
     if(isset($_GET['adp']) || isset($_GET['ade']) || isset($_GET['ddb']) || isset($_GET['pago'])){
-        echo "Si funciona";
         session_start();
         if(isset($_GET['adp'])){ 
             $id=$_GET['adp'];
             $_SESSION['idAlumno']=$id;
             header("location:../HTML/actDatosPer.html"); 
         }elseif(isset($_GET['ade'])){
+            $_SESSION['security']=true;
             $id=$_GET['ade'];
             $_SESSION['idAlumno']=$id;
             header("location:../HTML/actDatosEsc.html"); 
@@ -21,7 +21,6 @@
         }else{
             header("location:../HTML/error.html");
         }
-        echo "Id Alumno".$_SESSION['idAlumno'];
     }else{
         header("location:../HTML/error.html");
     }

@@ -45,7 +45,7 @@ function valDatosEsc(nctrl){
     }else{
         var turno = document.getElementById('turno').value;
         var grupo = document.getElementById('grupo').value;
-        var info = "nocontrol="+noControl+"&fregistro="+fregistro+"&grado="+grado+"&grupo="+grupo+"&turno="+turno+"&monto="+monto;
+        var info ="actAlumno=true"+"&nocontrol="+noControl+"&fregistro="+fregistro+"&grado="+grado+"&grupo="+grupo+"&turno="+turno+"&monto="+monto;
         actDatosEsc(info);
     }
 }

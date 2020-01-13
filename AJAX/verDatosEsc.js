@@ -11,6 +11,6 @@ function verDatosEsc(){
             document.getElementById('datos').innerHTML = varajax.responseText;
         }
     }
-    varajax.open("GET","../PHP/verDatosEsc.php",true);
+    varajax.open("GET","../PHP/verDatosEsc.php?view=1",true);
     varajax.send();
 }

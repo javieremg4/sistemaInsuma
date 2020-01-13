@@ -11,6 +11,6 @@ function verSaldo(){
             document.getElementById('saldo').innerHTML = varajax.responseText;
         }
     }
-    varajax.open("GET","../PHP/verSaldo.php",true);
+    varajax.open("GET","../PHP/verSaldo.php?view=1",true);
     varajax.send();
 }

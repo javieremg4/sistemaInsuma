@@ -1,6 +1,12 @@
 <?php
 	session_start();
-	if(isset($_SESSION['idAlumno'])){
+	if(!isset($_SESSION['security'])){
+		header("location:error.html");
+	}
+	if(!empty($_SESSION['security'])){
+		$_SESSION['security']=null;
+	if(isset($_SESSION['usuario'],$_SESSION['operacion'],$_SESSION['idAlumno'])){
+		if($_SESSION['operacion']==="ade"){			
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +34,6 @@
 <body>
 	<ul class="nav-size">
 		<li class="left"><a class="text-white" href="principalUsuario.html">Principal</a></li>
-		<li class="left"><a class="text-white" href="buscarAlumno.html">Buscar un Alumno</a></li>
 		<li class="right"><a class="text-white" href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
 	</ul>
 	<span class="span-msg" id="saldo"></span>
@@ -38,7 +43,14 @@
 </body>
 </html>
 <?php
+		
+		}else{
+			header("location:error.html");
+		}
 	}else{
-		header("location:../HTML/error.html");
+		header("location:principalUsuario.html");
+	}
+	}else{
+		header("location:error.html");
 	}
 ?>

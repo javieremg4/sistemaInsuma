@@ -23,19 +23,4 @@ var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio",
     } else{ //Cuat. B (Diciembre-Marzo)
         msg.innerHTML = "Cuatrimestre Diciembre-Marzo";
     }
-
-    /*var msg = document.getElementById("miID");
-    var showCuatrimestre;
-    if(window.XMLHttpRequest){
-        var showCuatrimestre = new XMLHttpRequest();
-    }else{
-        var showCuatrimestre =  new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    showCuatrimestre.onreadystatechange = function(){
-        if(showCuatrimestre.readyState == 4 && showCuatrimestre.status == 200){
-            msg.innerHTML = showCuatrimestre.responseText;
-        }
-    }
-    showCuatrimestre.open("GET","../PHP/showCuatrimestre.php",true);
-    showCuatrimestre.send();*/
 }

@@ -2,6 +2,9 @@
 	session_start();
 	if(!isset($_SESSION["usuario"])){
 		header("location:inicioUsuario.html");
+	}else{
+		$_SESSION['operacion']=null;
+		$_SESSION['idAlumno']=null;
 	}
 ?>
 <!DOCTYPE html>
