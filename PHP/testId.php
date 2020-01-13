@@ -6,7 +6,6 @@
             $_SESSION['idAlumno']=$id;
             header("location:../HTML/actDatosPer.html"); 
         }elseif(isset($_GET['ade'])){
-            $_SESSION['security']=true;
             $id=$_GET['ade'];
             $_SESSION['idAlumno']=$id;
             header("location:../HTML/actDatosEsc.html"); 

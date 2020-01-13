@@ -11,7 +11,8 @@
 			$info = mysqli_fetch_array($inicioUsuario);
 	        $_SESSION['usuario'] = $info['usuario'];
 	        $_SESSION['error']=0;
-	        $_SESSION['reg']=0;
+			$_SESSION['reg']=0;
+			$_SESSION['sec']=1;
 	        header("location:../HTML/principalUsuario.html");
 		}else{
 			echo "<link rel='shortcut icon' href='../Imagenes/favicon.ico'>";

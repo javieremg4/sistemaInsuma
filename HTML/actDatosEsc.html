@@ -1,11 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['security'])){
-		header("location:error.html");
-	}
-	if(!empty($_SESSION['security'])){
-		$_SESSION['security']=null;
-	if(isset($_SESSION['usuario'],$_SESSION['operacion'],$_SESSION['idAlumno'])){
+	if(isset($_SESSION['operacion'],$_SESSION['idAlumno'])){
 		if($_SESSION['operacion']==="ade"){			
 ?>
 <!DOCTYPE html>
@@ -49,8 +44,5 @@
 		}
 	}else{
 		header("location:principalUsuario.html");
-	}
-	}else{
-		header("location:error.html");
 	}
 ?>

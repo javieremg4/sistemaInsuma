@@ -7,7 +7,6 @@
     }
     if(isset($_SESSION['operacion'],$_POST['indicio'])){
         include("../PHP/conexion.php");
-        echo  "Operacion actual: ".$_SESSION['operacion']."<hr>";
         //Valoración de los parámetros para realizar la búsqueda
         $indicio = trim($_POST['indicio']);
         if($_SESSION['operacion'] === "adp"){

@@ -1,4 +1,4 @@
-function valDatosEsc(nctrl){
+function valDatosEsc(nctrl,clave){
     var expNoControl = /^\d{8}$/;
     var noControl = document.getElementById('nocontrol').value;
     if(noControl!=""){
@@ -45,7 +45,7 @@ function valDatosEsc(nctrl){
     }else{
         var turno = document.getElementById('turno').value;
         var grupo = document.getElementById('grupo').value;
-        var info ="actAlumno=true"+"&nocontrol="+noControl+"&fregistro="+fregistro+"&grado="+grado+"&grupo="+grupo+"&turno="+turno+"&monto="+monto;
+        var info ="clave="+clave+"&actAlumno=true"+"&nocontrol="+noControl+"&fregistro="+fregistro+"&grado="+grado+"&grupo="+grupo+"&turno="+turno+"&monto="+monto;
         actDatosEsc(info);
     }
 }

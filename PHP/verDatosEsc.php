@@ -124,6 +124,8 @@
                     <div class='div-btn'>
                     <input class='boton col-lg-4' type='submit' name='btnRegistro' value='Actualizar'  onclick='valDatosEsc(\"";
                     $resultado .= $info['numControl'];
+                    $resultado .= "\",\"";
+                    $resultado .= $info['clave'];
                     $resultado .= "\");'>
                     </div>
                     </div>
