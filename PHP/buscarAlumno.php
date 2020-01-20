@@ -9,12 +9,29 @@
         include("../PHP/conexion.php");
         //Valoración de los parámetros para realizar la búsqueda
         $indicio = trim($_POST['indicio']);
+        $resultado = "<div style='font-weight: bold; font-size: 24px; text-align: center;'>";
+        switch ($_SESSION['operacion']){
+            case 'adp':
+                $resultado .= "Actualizar Datos Personales";
+                break;
+            case 'ade':
+                $resultado .= "Actualizar Datos Escolares";
+                break;
+            case 'pago':
+                $resultado .= "Registrar un Pago";
+                break;
+            default:
+                $resultado .= "";
+                break;
+        }
+        $resultado .= "</div>";  
+        echo $resultado;
         if($_SESSION['operacion'] === "adp"){
             $consulta = "SELECT altas.numControl,datos.* FROM datos INNER JOIN altas ON datos.clave = altas.clave WHERE datos.nombre LIKE '%$indicio%' OR datos.apepat LIKE '%$indicio%' OR datos.apemat LIKE '%$indicio%'";
             $buscarAlumnos = mysqli_query($conexion,$consulta);
             if(mysqli_num_rows($buscarAlumnos)<1){
                 echo "No se encontraron resultados<hr>";
-            }else{
+            }else{         
                 $resultado = "Se encontraron ".mysqli_num_rows($buscarAlumnos)." resultados<hr>";
                 echo $resultado;
                 $cont_div = 0;

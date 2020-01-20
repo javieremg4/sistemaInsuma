@@ -2,7 +2,8 @@
     session_start();
     if(!isset($_SESSION['usuario'])){
         header("location:inicioUsuario.html");
-    }else if(!isset($_SESSION['operacion'])){
+    }
+    if(!isset($_SESSION['operacion'])){
         header("location:principalUsuario.html");
     }
 ?>
@@ -33,24 +34,6 @@
         <li class="left"><a class="text-white" href="principalUsuario.html">Principal</a></li>
         <li class="right"><a class="text-white" href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
     </ul>
-    <div style="font-weight: bold; font-size: 24px; text-align: center;">
-        <?php
-            switch ($_SESSION['operacion']){
-                case 'adp':
-                    echo "Actualizar Datos Personales";
-                    break;
-                case 'ade':
-                    echo "Actualizar Datos Escolares";
-                    break;
-                case 'pago':
-                    echo "Registrar un Pago";
-                    break;
-                default:
-                    header("location:error.html");
-                    break;
-            }
-        ?>
-    </div>
     <div class="text-ind col-lg-8">Ingrese los datos para buscar:</div>
     <div class="row content col-lg-8">
         <div class="col-lg-10">

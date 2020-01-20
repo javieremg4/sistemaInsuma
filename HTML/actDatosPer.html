@@ -1,14 +1,16 @@
 <?php
-	include("../PHP/conexion.php");
 	session_start();
-	if($_SESSION['error']==1){
-		echo "<script type='text/javascript'>alert('Error: El Archivo es Muy Pesado');</script>";
-		$_SESSION['error']=0;
-	}
-	$idAlumno=$_SESSION['idAlumno'];
-	$conAlumno = mysqli_query($conexion,"SELECT * FROM datos WHERE clave='$idAlumno'");
-	if($conAlumno){
-		$info=mysqli_fetch_array($conAlumno);
+	if(isset($_SESSION['operacion'],$_SESSION['idAlumno'])){
+		if($_SESSION['operacion']==="adp"){
+			include("../PHP/conexion.php");
+			if($_SESSION['error']==1){
+				echo "<script type='text/javascript'>alert('Ocurrió un Problema. Por Favor, Revise el Archivo e Inténtelo de Nuevo');</script>";
+				$_SESSION['error']=0;
+			}
+			$idAlumno=$_SESSION['idAlumno'];
+			$conAlumno = mysqli_query($conexion,"SELECT * FROM datos WHERE clave='$idAlumno'");
+			if($conAlumno){
+				$info=mysqli_fetch_array($conAlumno);
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,8 +19,6 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Actualizar Datos Personales</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
 
     <!--Estilos-->
 	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
@@ -37,10 +37,10 @@
 		<li class="left"><a class="text-white" href="buscarAlumno.html">Buscar un Alumno</a></li>
 		<li class="right"><a class="text-white" href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
 	</ul>
-
 	<div class="content col-lg-4">
 		<div class="text-form col-lg-12">Datos Personales</div>
 		<form class="form" enctype="multipart/form-data" method="POST" action="../PHP/actDatosPer.php" onsubmit="return valDatosPer();">
+			<input type="text" name="claveAlumno" style="display: none;" value="<?php echo $info['clave']; ?>">
 			<div class="row div-style">
 				<?php 
 					if(($info['foto']!=null || $info['foto']!="") && !file_exists($info['foto'])){
@@ -62,9 +62,9 @@
 			</div>
 			<div class="div-style">
 				<?php if($info['curp']==""){ ?>
-					<input class='campo col-lg-12' type='text' id='curp' name='curp' placeholder='Sin Curp'>
+					<input class='campo col-lg-12' type='text' id='curp' name='curp' placeholder='CURP'>
 				<?php }else{ ?>
-					<input class='campo col-lg-12' type='text' id='curp' name='curp' value="<?php echo $info['curp']; ?>">
+					<input class='campo col-lg-12' type='text' id='curp' name='curp' placeholder='CURP' value="<?php echo $info['curp']; ?>">
 				<?php } ?>
 			</div>
 			<div class="row div-style">
@@ -86,14 +86,14 @@
 					<?php if($info['apepat']==null){ ?>
 						<input class='campo col-lg-12' type='text' id='apepat' name='apepat' placeholder='Apellido Paterno'>
 					<?php }else{ ?>
-						<input class='campo col-lg-12' type='text' id='apepat' name='apepat' value="<?php echo $info['apepat']; ?>">
+						<input class='campo col-lg-12' type='text' id='apepat' name='apepat' placeholder='Apellido Paterno' value="<?php echo $info['apepat']; ?>">
 					<?php } ?>
 				</div>
 				<div class="col-lg-6 ap2">
 					<?php if($info['apemat']==null){ ?>
 						<input class='campo col-lg-12' type='text' id='apemat' name='apemat' placeholder='Apellido Materno'>
 					<?php }else{ ?>
-						<input class='campo col-lg-12' type='text' id='apemat' name='apemat' value="<?php echo $info['apemat']; ?>">
+						<input class='campo col-lg-12' type='text' id='apemat' name='apemat' placeholder='Apellido Materno' value="<?php echo $info['apemat']; ?>">
 					<?php } ?>
 				</div>
 			</div>
@@ -101,38 +101,44 @@
 				<?php if($info['nombre']==null){ ?>
 					<input class='campo col-lg-12' type='text' id='nombre' name='nombre' placeholder='Nombre'>
 				<?php }else{ ?>
-					<input class='campo col-lg-12' type='text' id='nombre' name='nombre' value="<?php echo $info['nombre']; ?>">
+					<input class='campo col-lg-12' type='text' id='nombre' name='nombre' placeholder='Nombre' value="<?php echo $info['nombre']; ?>">
 				<?php } ?>
 			</div>
 			<div class="div-style">
-				<input class="campo col-lg-12" type="text" id="direccion" name="direccion" value="<?php echo $info['direccion']; ?>">
+				<input class="campo col-lg-12" type="text" id="direccion" name="direccion" placeholder="Dirección" value="<?php echo $info['direccion']; ?>">
 			</div>
 			<div class="row div-style">
 				<div class="col-lg-6 ap1">
 					<?php if($info['telalumno']=='S/N'){ ?>
-						<input class='campo col-lg-12' type='text' id='telalumno' name='telalumno' placeholder='Sin teléfono celular'>
+						<input class='campo col-lg-12' type='text' id='telalumno' name='telalumno' placeholder='Teléfono celular'>
 					<?php }else{ ?>
-						<input class='campo col-lg-12' type='text' id='telalumno' name='telalumno' value="<?php echo $info['telalumno']; ?>">
+						<input class='campo col-lg-12' type='text' id='telalumno' name='telalumno' placeholder='Teléfono celular' value="<?php echo $info['telalumno']; ?>">
 					<?php } ?>
 				</div>
 				<div class="col-lg-6 ap2">
 					<?php if($info['telcasa']=='S/N'){ ?>
-						<input class='campo col-lg-12' type='text' id='telcasa' name='telcasa' placeholder='Sin teléfono de casa'>
+						<input class='campo col-lg-12' type='text' id='telcasa' name='telcasa' placeholder='Teléfono de casa'>
 					<?php }else{ ?>
-						<input class='campo col-lg-12' type='text' id='telcasa' name='telcasa' value="<?php echo $info['telcasa']; ?>">
+						<input class='campo col-lg-12' type='text' id='telcasa' name='telcasa' placeholder='Teléfono de casa' value="<?php echo $info['telcasa']; ?>">
 					<?php } ?>
 				</div>
 			</div>
 			<div class="div-btn">
-				<input class="boton col-lg-4" type="submit" name="btnRegistro" value="Actualizar">
+				<input class="boton col-lg-4" type="submit" name="btnRegistro" value="Actualizar" ondblclick="pasarClave();">
 			</div>
 		</form>
 	</div>
-	<?php
-	}else{
-		echo "<h3 style='color: red;'>No se pueden actualizar los datos</h3><br>
-			  <a href='principalUsuario.html'>Volver a principal</a>";	
-	}
-	?>
 </body>
 </html>
+<?php
+			}else{
+				echo "<h3 style='color: red;'>No se pudo Mostrar la Información del Alumno. Inténtelo de Nuevo</h3><br>
+					<a href='principalUsuario.html'>Volver a principal</a>";	
+			}
+		}else{
+			header("location:error.html");
+		}
+	}else{
+		header("location:principalUsuario.html");
+	}
+?>

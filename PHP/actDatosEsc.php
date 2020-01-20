@@ -10,7 +10,7 @@
     if(isset($_SESSION['operacion'],$_SESSION['idAlumno'],$_POST['clave'])){
         if($_SESSION['operacion']==="ade"){
             if($_POST['clave']!=$_SESSION['idAlumno']){
-                warning('error','Cierre las otras ventanas');
+                warning('error','Los Datos no se Actualizaron porque abrió Otra Ventana del Sistema');
             }else{
                 $idAlumno=$_SESSION['idAlumno'];
                 include("conexion.php");
@@ -59,6 +59,8 @@
                     }
                 }
             }
+        }else{
+            header("location:../HTML/error.html");
         }
     }else{
         warning('error','No se pudieron actualizar los datos. Inténtelo de Nuevo');

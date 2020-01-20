@@ -8,6 +8,7 @@ function actDatosEsc(info){
     varajax.onreadystatechange = function(){
         if(varajax.status === 200 && varajax.readyState === 4){
             document.getElementById('info').innerHTML = varajax.responseText;
+            verSaldo();
             verDatosEsc();
         }
     }
