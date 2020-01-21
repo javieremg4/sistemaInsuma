@@ -1,3 +1,8 @@
+<?php
+	session_start();
+	if(isset($_SESSION['operacion'],$_SESSION['idAlumno'])){
+		if($_SESSION['operacion']==="pago"){			
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +18,6 @@
 
     <!--Javascript-->
     <script src="../Javascript/basicWarning.js"></script>
-    <script type="text/javascript" src="../Javascript/valRecargo.js"></script>
     <script type="text/javascript" src="../AJAX/verSaldo.js"></script>
     <script type="text/javascript" src="../AJAX/buscarPagos.js"></script>
     <script type="text/javascript" src="../AJAX/regPago.js"></script>
@@ -26,31 +30,8 @@
         <li class="left"><a class="text-white" href="buscarAlumno.html">Buscar un Alumno</a></li>
         <li class="right"><a class="text-white" href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
     </ul>
-    <span class="span-msg">
-        <?php
-            include("../PHP/conexion.php");
-            session_start();
-            $idAlumno = $_SESSION['idAlumno'];
-            $conAlumno = mysqli_query($conexion,"SELECT monto FROM altas WHERE clave='$idAlumno'");
-            $info = mysqli_fetch_array($conAlumno);
-            switch ($info['monto']){
-                case '1':
-                    echo "Montos de pago: Inscripción: 1000 y Colegiatura: 800";
-                    break;
-                case '2':
-                    echo "Montos de pago: Inscripción: 1100 y Colegiatura: 880";
-                    break;
-                case '3':
-                    echo "Montos de pago: Inscripción: 1500 y Colegiatura: 1500";
-                    break;
-                default:
-                    echo "Es Necesario Asignar un Monto de pago en el Apartado de Actualización de Datos Escolares";
-                    break;
-            }
-        ?>
-    </span>
+    <span class="datos-saldo" id="saldo"></span>
     <span class="span-msg" id="recargo"></span>
-    <span class="span-msg" id="saldo"></span>
     <hr>
     <section class="sec-info" id="info"></section>
     <div class="box-style">
@@ -75,41 +56,6 @@
                 <div class="w100" id="esp">Especifique <input class="w60" type="text" id="text-esp" max></div>
             </div>
         </div>
-        <!--Pendiente
-        <?php
-            $id=$_SESSION['idAlumno'];
-            include("../PHP/conexion.php");
-            $conAlumno = mysqli_query($conexion,"SELECT grado FROM altas WHERE clave='$id'");
-            if(mysqli_num_rows($conAlumno)===1){
-                $info = mysqli_fetch_array($conAlumno);
-                if($info['grado']>1){
-        ?>
-        <div class="div-union div-style" id="datos-esc">
-            <div class="div-part w33">
-                Grado 
-                <input class="campo w20" type="number" id="grado">
-            </div>
-            <div class="div-part w33">
-                Grupo 					
-                <select class="campo" name="grupo">
-                    <option selected value="0">A</option>
-                    <option value="1">B</option>
-                    <option value="2">C</option>
-                    <option value="3">D</option>
-                </select>
-            </div>
-            <div class="div-part w33">	
-                Turno						
-                <select class="campo" name="turno">
-                    <option selected value="0">Matutino</option>
-                    <option value="1">Mixto</option>
-                </select>					
-            </div>
-        </div>
-        <?php
-                }
-            }
-        ?>-->
         <div class="div-union div-style">
             <div class="div-part w50">PAGO <input type="text" id="pago"></div>
             <div class="div-part w50">TOTAL SALDO <input type="text" id="totsaldo"></div>
@@ -119,7 +65,7 @@
             <textarea class="w100" maxlength="100" name="obs" id="obs"></textarea>
         </div>
         <div class="div-btn"> 
-            <button class="boton" onclick="valPago();">Registrar</button>
+            <button class="boton" onclick="valPago('<?php echo $_SESSION['idAlumno']; ?>');">Registrar</button>
         </div>
     </div>
     <div class="div-btn">
@@ -128,4 +74,14 @@
     <div id="info"></div>
     <div id="historial"></div>
 </body>
+    <!--Javascript-->
+    <script type="text/javascript" src="../Javascript/valRecargo.js"></script>
 </html>
+<?php
+		}else{
+			header("location:error.html");
+		}
+	}else{
+		header("location:principalUsuario.html");
+	}
+?>

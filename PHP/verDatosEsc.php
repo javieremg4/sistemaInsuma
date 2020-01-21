@@ -9,9 +9,8 @@
             if($_SESSION['operacion']==="ade"){
                 $idAlumno=$_SESSION['idAlumno'];
                 require 'conexion.php';
-                $conAlumno = mysqli_query($conexion,"SELECT datos.apepat,datos.apemat,datos.nombre,altas.* FROM datos INNER JOIN altas ON datos.clave = altas.clave WHERE datos.clave='$idAlumno'");
+                $conAlumno = mysqli_query($conexion,"SELECT * FROM altas WHERE clave='$idAlumno'");
                 if($info=mysqli_fetch_array($conAlumno)){
-                    echo "Nombre del Alumno: ".$info['nombre']." ".$info['apepat']." ".$info['apemat'];
                     $resultado = "";
                     $resultado .= "<div class='content col-lg-4'>
                     <div class='text-form col-lg-12'>Datos Escolares</div>

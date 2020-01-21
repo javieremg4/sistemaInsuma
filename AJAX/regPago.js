@@ -1,4 +1,4 @@
-function regPago(){
+function regPago(idAlumno){
     var varajax;
     var num = document.getElementById('noRec').value;
     var fpago = document.getElementById('fpago').value;
@@ -23,7 +23,7 @@ function regPago(){
         }else{
             varajax = new ActiveXObject("Microsoft.XMLHTTP");
         }
-        var info = "num="+num+"&fpago="+fpago+"&concepto="+concepto+"&pago="+pago+"&debe="+debe+"&obs="+obs;
+        var info = "idAlumno="+idAlumno+"&num="+num+"&fpago="+fpago+"&concepto="+concepto+"&pago="+pago+"&debe="+debe+"&obs="+obs;
         varajax.onreadystatechange = function(){
             if(varajax.readyState===4 && varajax.status===200){
                 document.getElementById('info').innerHTML = varajax.responseText;

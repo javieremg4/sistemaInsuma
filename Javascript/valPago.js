@@ -1,4 +1,4 @@
-function valPago(){
+function valPago(idAlumno){
     var expNoRec = /^[a-zA-Z\d]*$/;
     var expSpace = /^\s*$/;
     var noRec = document.getElementById('noRec').value;
@@ -59,7 +59,7 @@ function valPago(){
             return false;
         }
     }
-    regPago();
+    regPago(idAlumno);
 }
 function showEsp(){
     if(document.getElementById('inscrip').checked || document.getElementById('coleg').checked){

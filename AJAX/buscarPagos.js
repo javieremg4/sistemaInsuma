@@ -10,7 +10,7 @@ function buscarPagos(){
             document.getElementById('historial').innerHTML = varajax.responseText; 
         }
     }
-    varajax.open("GET","../PHP/buscarPagos.php",true);
+    varajax.open("GET","../PHP/buscarPagos.php?view=1",true);
     varajax.send();
 }
 var show=true;

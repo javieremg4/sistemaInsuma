@@ -18,7 +18,6 @@
 					exit;
 				}
 				$idAlumno=$_SESSION['idAlumno'];
-				echo "Id mostrado".$_POST['claveAlumno']."/Id sesion: ".$_SESSION['idAlumno'];
 				$actAlumno = true;
 				$uploadedfileload=true;
 				//Aquí se obtiene la extensión del archivo

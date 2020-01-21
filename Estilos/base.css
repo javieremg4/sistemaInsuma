@@ -186,6 +186,10 @@ div.col-lg-12.grupo{
     margin: 10px 0;
     text-align: center;
 }
+.datos-saldo{
+    margin: 0px auto 0 auto;
+    width: 40%;
+}
 /*************************/
 /*****basicWarning*****/
 .sec-info{

@@ -2,7 +2,7 @@ window.onload = verSaldo();
 function verSaldo(){
     var varajax;
     if(window.XMLHttpRequest){
-        varajax = new XMLHttpRequest()
+        varajax = new XMLHttpRequest();
     }else{
         varajax = new ActiveXObject("Microsoft.XMLHTTP");
     }

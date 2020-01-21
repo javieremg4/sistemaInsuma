@@ -1,9 +1,9 @@
-window.onload = function valRecargo(){
+window.onload = valRecargo();
+function valRecargo(){
 	var f = new Date();
 	if(f.getDate()>10){
-        var rec = document.getElementById('recargo');
-		var hoy =f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear()
-		rec.innerHTML = "Aplica Recargo: "+hoy;
+		var hoy =f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+		document.getElementById('recargo').innerHTML = "Aplica Recargo: "+hoy;
 	}
 	verSaldo();
 }

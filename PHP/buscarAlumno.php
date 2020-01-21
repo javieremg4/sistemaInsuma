@@ -152,7 +152,7 @@
                 }
             }
         }else if($_SESSION['operacion'] === "pago"){
-            $consulta = "SELECT datos.clave,datos.foto,altas.numControl,datos.apepat,datos.apemat,datos.nombre,altas.grado,altas.grupo,altas.turno,altas.monto FROM datos INNER JOIN altas ON datos.clave=altas.clave";
+            $consulta = "SELECT datos.clave,datos.foto,altas.numControl,datos.apepat,datos.apemat,datos.nombre,altas.grado,altas.grupo,altas.turno,altas.monto,altas.saldo FROM datos INNER JOIN altas ON datos.clave=altas.clave WHERE datos.nombre LIKE '%$indicio%' OR datos.apepat LIKE '%$indicio%' OR datos.apemat LIKE '%$indicio%'";
             $buscarAlumnos = mysqli_query($conexion,$consulta);
             if(mysqli_num_rows($buscarAlumnos)<1){
                 echo "No se encontraron resultados<hr>";
@@ -201,6 +201,8 @@
                             $resultado .= "Es Necesario Asignar un Monto";
                             break;
                     }
+                    $resultado .= "<br>";
+                    $resultado .= "Saldo del Cuatrimestre: $".$info['saldo']."<br>";
                     $resultado .= "</div>";
                     $resultado .= "</div>";
                     if($cont_div != 0){

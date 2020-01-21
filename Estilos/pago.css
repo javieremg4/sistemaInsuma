@@ -7,6 +7,7 @@ body{
     box-sizing: border-box;
     border: 1px solid black;
     border-radius: 5px;
+    font-weight: bold;
     margin: 0 auto 10px auto;
     padding: 15px;
     width: 50%;
@@ -52,6 +53,15 @@ td{
     border: 1px solid #333;
     font-size: 14px;
     word-break: break-all;
+}
+hr{
+    margin: 16px 0;
+}
+ul{
+    margin-bottom: 16px !important;
+}
+.datos-saldo{
+    margin: 16px auto 0 auto;
 }
 .w100{
     width: 100%;
