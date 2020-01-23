@@ -18,11 +18,9 @@
 				}else{
 					$_SESSION['error']=1;
 				}
-				header("location:../HTML/registroUsuario.html");
 			}
-    	}else{
-    		header("location:../HTML/principalUsuario.html");
-    	}
+		}
+		header("location:../HTML/registroUsuario.html");
 	}
 ?>
 

@@ -1,5 +1,4 @@
-function valBaja(){
-    var tipo = document.getElementById("tipo");
+function valBaja(clave){
     if(!document.getElementById("tipo1").checked && !document.getElementById("tipo2").checked){
         alert("Error: Debe seleccionar un tipo de baja");
         return false;
@@ -16,7 +15,15 @@ function valBaja(){
     msg = "¿Está seguro que desea dar de Baja al Alumno?"
     msg = confirm(msg);
     if(!msg){
-        return false;
+        return false;""
     }
-    return true;
+    var tipo = null;
+    if(document.getElementById('tipo1').checked){
+        tipo = 0;
+    }else{
+        tipo = 1;
+    }
+    var causa = document.getElementById('causa').value;
+    var info = "idAlumno="+clave+"&tipo="+tipo+"&fbaja="+fnac+"&causa="+causa;
+    darDeBaja(info);
 }

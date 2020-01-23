@@ -11,6 +11,9 @@
             case 'pay':
                 $_SESSION['operacion']="pago";
                 break;
+            case 'dDB':
+                $_SESSION['operacion']="ddb";
+                break;
             default:
                 $_SESSION['operacion']='error';
                 break;

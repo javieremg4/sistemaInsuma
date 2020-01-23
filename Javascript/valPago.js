@@ -50,11 +50,11 @@ function valPago(idAlumno){
     }
     var totsaldo = document.getElementById('totsaldo').value;
     if(totsaldo!=null && totsaldo!="" && totsaldo.length!=0 && totsaldo.search(expSpace)){
-        if(pago.search(expPago)){
+        if(totsaldo.search(expPago)){
             alert("Error: Revise el Saldo");
             return false;
         }
-        if(pago > 99999.99){
+        if(totsaldo > 99999.99){
             alert("Error: El Saldo es Muy Grande");
             return false;
         }

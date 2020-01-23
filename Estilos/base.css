@@ -179,6 +179,9 @@ div.col-lg-12.grupo{
     justify-content: center;
     padding: 0;
 }
+.text-red{
+    color: red;
+}
 /*****Mensaje en span*****/ 
 .span-msg{
     font-size: 16px;

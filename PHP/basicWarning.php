@@ -16,10 +16,11 @@
                         </div>";
                 break;
             case 'alert':
-                echo "<div class='div-info red'>
+                echo "<div class='div-info attention'>
                         <div class='w10 part-info'><img src='../Imagenes/warning.png'></div>
                         <div class='w80 part-info'>".$msg."</div>
-                        </div>";
+                        <div class='w10 part-info x' onclick='quitDivInfo();'>&times;</div>
+                    </div>";
                 break;
             default:
                 # No se muestra nada

@@ -130,11 +130,11 @@
                     </div>
                     </div>";
                     $resultado .= "<section class='sec-info mt16'>
-                    <div class='div-info attention'>
-                    <div class='w10 part-info'><img src='../Imagenes/warning.png'></div>
-                    <div class='w80 part-info'>Para actualizar los Montos de Pago el Saldo del Cuatrimestre del Alumno debe ser $0.00</div>
-                    </div>
-                    </section>";
+                        <div class='div-info attention'>
+                        <div class='w10 part-info'><img src='../Imagenes/warning.png'></div>
+                        <div class='w80 part-info'>Para actualizar los Montos de Pago el Saldo del Cuatrimestre del Alumno debe ser $0.00</div>
+                        </div>
+                        </section>";
                     echo $resultado;
                 }else{
                    warning('error',"Hubo un Error al Intentar Mostrar los Datos");

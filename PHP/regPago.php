@@ -9,7 +9,7 @@
     require 'basicWarning.php';
     if(isset($_SESSION['operacion'],$_SESSION['idAlumno'])){
         if($_SESSION['operacion']==="pago"){
-            if (isset($_SESSION['idAlumno'],$_POST['num'],$_POST['fpago'],$_POST['concepto'],$_POST['pago'],$_POST['debe'],$_POST['obs'])) {
+            if(isset($_SESSION['idAlumno'],$_POST['num'],$_POST['fpago'],$_POST['concepto'],$_POST['pago'],$_POST['debe'],$_POST['obs'])) {
                 if($_POST['idAlumno']!=$_SESSION['idAlumno']){
                     warning('error','El Pago no se Registró porque abrió Otra Ventana del Sistema.');
                     exit;
@@ -75,6 +75,6 @@
             header("location:../HTML/error.html");
         }
     }else{
-        warning('error','No se pudo registrar el recibo. Inténtelo de Nuevo');
+        warning('error','No se pudo registrar el recibo. Vuelva a Principal e Inténtelo de Nuevo');
     }
 ?>

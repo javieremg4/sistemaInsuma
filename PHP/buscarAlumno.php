@@ -20,6 +20,9 @@
             case 'pago':
                 $resultado .= "Registrar un Pago";
                 break;
+            case 'ddb':
+                $resultado .= "Dar de Baja un Alumno";
+                break;
             default:
                 $resultado .= "";
                 break;
@@ -140,6 +143,75 @@
                     }
                     $resultado .= "<br>";
                     $resultado .= "Saldo del Cuatrimestre: $".$info['saldo']."<br>";
+                    $resultado .= "</div>";
+                    $resultado .= "</div>";
+                    if($cont_div != 0){
+                        if($cont_div%2 != 0){
+                            $resultado .= "</div>";
+                        }
+                    }
+                    $cont_div += 1;
+                    echo $resultado;
+                }
+            }
+        }else if($_SESSION['operacion'] === "ddb"){
+            $consulta = "SELECT datos.clave,datos.nombre,datos.apepat,datos.apemat,datos.foto,altas.numControl,altas.monto,altas.saldo,bajas.fbaja,bajas.tipo,bajas.causa FROM datos INNER JOIN altas ON datos.clave=altas.clave INNER JOIN bajas ON datos.clave=bajas.clave";
+            $consulta = "SELECT datos.clave,datos.apepat,datos.apemat,datos.nombre,datos.foto,altas.numControl,altas.monto,altas.saldo FROM datos INNER JOIN altas ON datos.clave = altas.clave WHERE datos.nombre LIKE '%$indicio%' OR datos.apepat LIKE '%$indicio%' OR datos.apemat LIKE '%$indicio%'";
+            $buscarAlumnos = mysqli_query($conexion,$consulta);
+            if(mysqli_num_rows($buscarAlumnos)<1){
+                echo "No se encontraron resultados<hr>";
+            }else{
+                $resultado = "Se encontraron ".mysqli_num_rows($buscarAlumnos)." resultados<hr>";
+                echo $resultado;
+                $cont_div = 0;
+                while($info = mysqli_fetch_array($buscarAlumnos)){
+                    $idAl=$info['clave'];
+                    $consulta = "SELECT bajas.fbaja,bajas.tipo,bajas.causa FROM bajas WHERE clave='$idAl'";
+                    $buscarBaja = mysqli_query($conexion,$consulta);
+                    $resultado = "";
+                    if($cont_div === 0 || $cont_div%2 === 0){
+                        $resultado .= "<div class='div-content'>";
+                    }
+                     $resultado .= "<div class='div-datos' onclick='sesionId("."\"ddb\"".",".$info['clave'].")'>";
+                    if(!empty($info['foto']) && !file_exists($info['foto'])){
+                        $idAl=$info['clave'];
+                        mysqli_query($conexion,"UPDATE datos SET foto=null WHERE clave='$idAl'");
+                        $info['foto']=null;
+                    }
+                    if(empty($info['foto'])){
+                        $resultado .= "<img class='foto' src='../Imagenes/sinFoto.jpg'>";
+                    }else{
+                        $foto = $info['foto'];
+                        $resultado .= "<img class='foto' src='".$foto."'>";
+                    }
+                    $resultado .= "<div class='datos'>";
+                    if($baja=mysqli_fetch_array($buscarBaja)){
+                        $resultado .= "<span style='color:red; font-weight:bold; font-size:20px;'>BAJA</span>";
+                    }
+                    $resultado .= 'No. Control: ';
+                    if(!empty($info['numControl'])){
+                        $resultado .= $info['numControl'];
+                    }else{
+                        $resultado .= "S/N";  
+                    }
+                    $resultado .= "<br>";
+                    $resultado .= "Nombre: ".$info['apepat']." ".$info['apemat']." ".$info['nombre']."<br>";
+                    switch ($info['monto']) {
+                        case '1':
+                            $resultado .= "Inscripción: 1000 y Colegiatura: 800";
+                            break;
+                        case '2':
+                            $resultado .= "Inscripción: 1100 y Colegiatura: 880";
+                            break;
+                        case '3':
+                            $resultado .= "Inscripción: 1500 y Colegiatura: 1500";
+                            break;
+                        default:
+                            $resultado .= "Es Necesario Asignar un Monto";
+                            break;
+                    }
+                    $resultado .= "<br>";
+                    $resultado .= "Saldo: $".$info['saldo']."<br>";
                     $resultado .= "</div>";
                     $resultado .= "</div>";
                     if($cont_div != 0){
