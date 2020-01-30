@@ -10,7 +10,7 @@
             $query = mysqli_query($conexion,"SELECT * FROM pagos WHERE clave='$idAlumno' ORDER BY fpago DESC");
             if(mysqli_num_rows($query)>0){
                 echo "<span class='span-msg'>HISTORIAL DE PAGOS DEL ALUMNO</span><hr>";
-                echo "<table>";
+                echo "<table class='w80'>";
                 echo "<tr>
                         <th class='w10'>No. RECIBO</th>
                         <th class='w10'>FECHA</th>

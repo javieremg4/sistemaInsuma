@@ -14,10 +14,6 @@
 	$ext = pathinfo($path, PATHINFO_EXTENSION); 
 	//Fin
 	//Aquí se valida si se subio una foto
-	if ($_FILES['foto']["error"] > 0){
-		//echo "<h3 style='color:red;'>Error: " . $_FILES['foto']['error']."<h3>";
-		$uploadedfileload=false;
-	}
 	if($ext==""){
 		$uploadedfileload=false;
 		echo "<h3 style='color: red;'>No agrego foto</h3>";
