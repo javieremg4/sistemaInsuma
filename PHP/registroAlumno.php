@@ -99,6 +99,7 @@
 				if($buscarAlumno){
 					$fregistro = $_POST['fregistro'];
 					$monto = $_POST['monto'];
+					
 					$grado = $_POST['grado'];
 					$turno = $_POST['turno'];
 					$grupo = $_POST['grupo'];

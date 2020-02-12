@@ -6,8 +6,10 @@ body{
 .content{
     border: 1px solid #333;
     border-radius: 5px;
-    margin-top: 5%;
     margin: auto;
+}
+.init-content{
+    margin-top: 5%;
 }
 div.content.col-lg-8, div.content.col-lg-6, div.content.col-lg-4, div.content.col-lg-3{
     padding: 0;
@@ -115,14 +117,12 @@ input.col-lg-4{
 }
 .div-icon{
     align-items: center; 
-    background: white;   
-    color:#333;
     cursor: pointer; 
     display: flex; 
-    font-size: 20px;
-    height: 25px;
     justify-content: center; 
-    padding: 0; 
+}
+.img-eye{
+    max-height: 22.125px;
 }
 .mb0{
     margin-bottom: 0;

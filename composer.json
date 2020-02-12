@@ -1,0 +1,16 @@
+{
+    "name": "javieremg4/sistema-insuma",
+    "description": "insuma system",
+    "type": "project",
+    "require": {
+        "phpoffice/phpspreadsheet": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "javieremg4",
+            "email": "javieremg4@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

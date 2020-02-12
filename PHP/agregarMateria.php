@@ -10,7 +10,7 @@
     require "basicWarning.php";
     $materia = trim($_POST['materia']);
     $grado = trim($_POST['grado']);
-    $buscarMateria  = mysqli_query($conexion,"SELECT clave FROM materias WHERE grado='$grado' AND materia LIKE '%$materia%'");
+    $buscarMateria  = mysqli_query($conexion,"SELECT idMateria FROM materias WHERE grado='$grado' AND materia LIKE '%$materia%'");
     if($buscarMateria){
         if(mysqli_num_rows($buscarMateria) > 0){
             warning('error','No se pudo Agregar la Materia porque Ya Existe');

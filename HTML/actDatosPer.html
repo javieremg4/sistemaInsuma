@@ -78,7 +78,8 @@
 				</div>
 				<div class="col-lg-8 right">
 					Fec. Nac. 					
-					<input class="campo right col-lg-8" type="date" id="fnac" name="fnac" value="<?php echo $info['fnac']; ?>">
+					<input class="campo right col-lg-8" type="date" id="fnac" name="fnac" value="<?php date_default_timezone_set ('America/Chihuahua');
+					echo $info['fnac']; ?>">
 				</div>
 			</div>
 			<div class="row div-style">

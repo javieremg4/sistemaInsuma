@@ -75,7 +75,7 @@
 			<span class="span-text">Revise que la fecha de hoy sea correcta</span>	
 			<div class="div-style">					
 				Fecha de registro
-				<input class="campo" type="date" id="fregistro" name="fregistro" value="<?php echo date('Y-m-d');?>">
+				<input class="campo" type="date" id="fregistro" name="fregistro" value="<?php date_default_timezone_set ('America/Chihuahua'); echo date('Y-m-d');?>">
 			</div>
 			<span>Agregar una foto</span>
 			<!--multipart/form-data -> Para mostrar la ventana de seleccion de archivo-->

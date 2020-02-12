@@ -35,11 +35,11 @@ function showHide(){
     var inputPass = document.getElementById("pass");
     if(show){
         inputPass.type = "password";
-        document.getElementById("msgPass").innerHTML="<i class='fas fa-eye-slash'></i>";
+        document.getElementById("msgPass").innerHTML="<img class='img-eye' src='../Imagenes/eye-slash-solid.svg'>";
         show=false;
     }else{
         inputPass.type ="text";
-        document.getElementById("msgPass").innerHTML="<i class='fas fa-eye'></i>";
+        document.getElementById("msgPass").innerHTML="<img class='img-eye' src='../Imagenes/eye-solid.svg'>";
         show=true;
     }
 }

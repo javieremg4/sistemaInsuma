@@ -18,12 +18,9 @@
 
 	<!--Bootstrap-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-	<!--Iconos-->
-	<script src="https://kit.fontawesome.com/afad62edac.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="content col-lg-3">
+	<div class="init-content content col-lg-3">
 		<div class="text-form col-lg-12">Iniciar Sesión</div>
 		<form class="form" method="post" action="../PHP/inicioUsuario.php" onsubmit="return valUsuario()">
 			<div class="row div-style">
@@ -37,7 +34,7 @@
 				<div class="row div-style col-lg-8 pr0">
 					<input class="campo col-lg-9" type="password" name="clave" id="pass">
 					<div id="msgPass" class="div-icon col-lg-3" onclick="showHide()">
-						<i class='fas fa-eye-slash'></i>
+						<img class="img-eye" src="../Imagenes/eye-slash-solid.svg">
 					</div>
 				</div>
 			</div>
