@@ -35,7 +35,7 @@
 		<div class="text-form col-lg-12">Registro de Alumno</div>
 		<form class="form" enctype="multipart/form-data" method="POST" action="../PHP/registroAlumno.php" onsubmit="return validarRegistro();">
 			<div class="div-style">
-				<input class="campo col-lg-12" type="text" id="curp" name="curp" placeholder="CURP">
+				<input class="mayus campo col-lg-12" type="text" id="curp" name="curp" placeholder="CURP">
 			</div>
 			<div class="row div-style">
 				<div class="col-lg-4">
@@ -52,14 +52,14 @@
 			</div>
 			<div class="row div-style">
 				<div class="col-lg-6 ap1">
-					<input class="campo col-lg-12" type="text" id="apepat" name="apepat" placeholder="Apellido Paterno" >
+					<input class="mayus campo col-lg-12" type="text" id="apepat" name="apepat" placeholder="Apellido Paterno" >
 				</div>
 				<div class="col-lg-6 ap2">
-					<input class="campo col-lg-12" type="text" id="apemat" name="apemat" placeholder="Apellido Materno" >
+					<input class="mayus campo col-lg-12" type="text" id="apemat" name="apemat" placeholder="Apellido Materno" >
 				</div>
 			</div>
 			<div class="div-style">
-				<input class="campo col-lg-12" type="text" id="nombre" name="nombre" placeholder="Nombre" >
+				<input class="mayus campo col-lg-12" type="text" id="nombre" name="nombre" placeholder="Nombre" >
 			</div>
 			<div class="div-style">
 				<input class="campo col-lg-12" type="text" id="direccion" name="direccion" placeholder="Dirección" >
@@ -80,7 +80,7 @@
 			<span>Agregar una foto</span>
 			<!--multipart/form-data -> Para mostrar la ventana de seleccion de archivo-->
 			<input  type="hidden" name="MAX_FILE_SIZE" value="200000" >
-			<input  class="div-style" name="foto" type="file" style="font-size: 15px;">
+			<input  class="div-style" name="foto" type="file">
 			<div class="row div-style">
 				<div class="grado col-lg-3">
 					Grado 

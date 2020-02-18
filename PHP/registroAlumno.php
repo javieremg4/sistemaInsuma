@@ -38,10 +38,19 @@
 	}
 	if($regAlumno){
 		include("conexion.php");
-		$curp = trim($_POST['curp']);
-		$nombre = trim($_POST['nombre']);
-		$apepat = trim($_POST['apepat']);
-		$apemat = trim($_POST['apemat']);
+		$curp = strtoupper(trim($_POST['curp']));
+		$nombre = strtoupper(trim($_POST['nombre']));
+		if(strpos($nombre,'ñ')){
+			$nombre = str_replace('ñ','Ñ',$nombre);
+		}
+		$apepat = strtoupper(trim($_POST['apepat']));
+		if(strpos($apepat,'ñ')){
+			$apepat = str_replace('ñ','Ñ',$apepat);
+		}
+		$apemat = strtoupper(trim($_POST['apemat']));
+		if(strpos($apemat,'ñ')){
+			$apemat = str_replace('ñ','Ñ',$apemat);
+		}
 		//Aqui se revisa si el alumno ya estaba registrado
 		if($curp == ""){
 			$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat'");

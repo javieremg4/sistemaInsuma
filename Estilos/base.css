@@ -245,3 +245,12 @@ div.col-lg-12.grupo{
     text-transform: uppercase;
 }
 /**********************/
+/***subirCalif.html****/
+.box{
+    border: 1px solid black; 
+    margin: 15px auto;
+}
+.font15{
+    font-size: 15px;
+}
+/**********************/

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Subir calificaciones</title>
+
+    <!--Estilos-->
+    <link rel="stylesheet" href="../Estilos/pago.css">
+	<link rel="stylesheet" type="text/css" href="../Estilos/menu.css">
+    <link rel="stylesheet" type="text/css" href="../Estilos/base.css">
+</head>
+<body>
+    <ul class="nav-size">
+        <li class="left"><a class="text-white" href="principalUsuario.html">Principal</a></li>
+        <li class="right"><a class="text-white" href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
+    </ul>
+    <section class="w100 div-union">
+        <div class="w60 div-part">
+            <form class="form box w50" id="formajax" enctype="multipart/form-data" action="../PHP/prueba.php" method="post">
+                <div class="div-style">
+                    Seleccione el excel y especifique el no. de alumnos
+                </div>
+                <input class="div-style" type="file" name="archivo" id="archivo">
+                <div class="div-style campo">
+                    No. de Alumnos <input type="number" id="nalumnos">
+                </div>
+                <div class="div-btn">
+                    <input class="font15" type="submit" value="Ver información">
+                </div>
+            </form>
+        </div>
+        <div class="w40 div-part">
+            <div class="form box w80">
+                <div class="div-style">
+                    Seleccione los datos para ver a los Alumnos registrado y poder Subir las Calificaciones
+                </div>
+                <div class="div-style">
+                    <select class="campo" id="grado" onchange="gradoMateria();">
+                        <option value="0" selected>--Grado--</option>
+                        <option value="1">1°</option>
+                        <option value="2">2°</option>
+                        <option value="3">3°</option>
+                        <option value="4">4°</option>
+                        <option value="5">5°</option>
+                        <option value="6">6°</option>
+                    </select>	
+                    <select class="campo" id="grupo">
+                        <option selected value="0">--Grupo--</option>
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                        <option value="3">C</option>
+                        <option value="4">D</option>
+                    </select>
+                    <select class="campo" id="turno">
+                        <option selected value="0">--Turno--</option>
+                        <option value="1">Matutino</option>
+                        <option value="2">Mixto</option>
+                    </select>
+                </div>
+
+                <div class="div-style">
+                    <select class="campo" style="width: 90%; " id="materia">
+                        <option value="0" selected>--Materia--</option>
+                    </select>
+                </div>
+                <div class="div-btn">
+                    <button class="font15" onclick="return consultarAlumnos();">Consultar</button>	
+                </div>		
+            </div>
+        </div>	
+    </section>
+    <section class="w100 div-union">
+        <div id="verExcel" class="w60 div-part"></div>
+        <div id="verAlumnos" class="w40 div-part"></div>
+    </section>
+    
+    <script src="../jquery-3.4.1.min.js"></script>
+    <script>
+            $(function(){
+        $("#formajax").on("submit", function(e){
+            if(!validarExcel()){
+                return false;
+            }
+            e.preventDefault();
+            var f = $(this);
+            var formData = new FormData(document.getElementById("formajax"));
+            formData.append("nalumnos", document.getElementById('nalumnos').value);
+            $.ajax({
+                url: "../PHP/verExcel.php",
+                type: "post",
+                dataType: "html",
+                data: formData,
+                cache: false,
+                contentType: false,
+	            processData: false
+            })
+            .done(function(res){
+                $("#verExcel").html(res);
+            });
+        });
+    });
+    </script>
+</body>
+<script src="../AJAX/gradoMateria.js"></script>
+<script src="../AJAX/subirCalif.js"></script>
+<script src="../AJAX//consultarAlumnos.js"></script>
+<script src="../Javascript/subirCalif.js"></script>
+<script src="../Javascript/consultarAlumnos.js"></script>
+</html>
