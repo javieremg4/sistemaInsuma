@@ -179,6 +179,9 @@ div.col-lg-12.grupo{
 .text-red{
     color: red;
 }
+.text-green{
+    color: green;
+}
 /*****Mensaje en span*****/ 
 .span-msg{
     display: block;
@@ -252,5 +255,8 @@ div.col-lg-12.grupo{
 }
 .font15{
     font-size: 15px;
+}
+h3,h4{
+    margin-top: 0;
 }
 /**********************/

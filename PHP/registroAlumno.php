@@ -52,10 +52,10 @@
 			$apemat = str_replace('ñ','Ñ',$apemat);
 		}
 		//Aqui se revisa si el alumno ya estaba registrado
-		if($curp == ""){
-			$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat'");
+		if(empty($curp)){
+			$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat') OR (nombre='$nombre' AND apepat='$apemat' AND apemat='$apepat')");
 		}else{
-			$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE curp='$curp' OR (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat')");
+			$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE curp='$curp' OR (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat') OR (nombre='$nombre' AND apepat='$apemat' AND apemat='$apepat')");
 		}
 		if(mysqli_num_rows($consultaAlumno)>0){
 			echo "<h3 style='color: red;'>El Alumno ya Existe</h3>";

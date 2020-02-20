@@ -69,7 +69,12 @@
 					//Aqui se revisa si no existe un alumno registrado con esa curp o ese nombre
 					/*echo "CURP a buscar".":".$curp."<br>";
 					echo "Nombre a buscar".$apepat.$apemat.$nombre."<br>";*/
-					$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE curp='$curp' OR (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat')");					$msg = true;
+					if(empty($curp)){
+						$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat') OR (nombre='$nombre' AND apepat='$apemat' AND apemat='$apepat')");						
+					}else{
+						$consultaAlumno=mysqli_query($conexion,"SELECT clave FROM datos WHERE curp='$curp' OR (nombre='$nombre' AND apepat='$apepat' AND apemat='$apemat') OR (nombre='$nombre' AND apepat='$apemat' AND apemat='$apepat')");					
+					}
+					$msg = true;
 					if($consultaAlumno){
 						if(mysqli_num_rows($consultaAlumno)>0){
 							while($info=mysqli_fetch_array($consultaAlumno)){
@@ -94,7 +99,6 @@
 							}else{
 								$nomIgual=false;
 							}
-		
 							if($_FILES['foto']['error']<=0){
 									if($uploadedfileload){
 										//Aquí se pone la extensión en el nombre de la Foto

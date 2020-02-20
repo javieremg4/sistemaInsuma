@@ -46,6 +46,6 @@
         } 
         echo "</table>";
     }else{
-        echo "No se encontró ningún alumno";
+        echo "<span style='text-align: center; width: 100%;'><h4>No se encontró ningún alumno</span>";
     }
 ?>

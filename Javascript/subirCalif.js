@@ -1,25 +1,32 @@
 function subirCalif(){
     var grado = document.getElementById('grado').value;
-    var grupo = document.getElementById('grupo').value;
-    var turno = document.getElementById('turno').value;
-    var materia = document.getElementById('materia').value;
+    var grupo = document.getElementById('grupo');
+    var turno = document.getElementById('turno');
+    var materia = document.getElementById('materia');
     if(grado==='0'){
         alert("Seleccione un grado");
         return false;
     }
-    if(grupo==='0'){
+    if(grupo.value==='0'){
         alert("Seleccione un grupo");
         return false;
     }
-    if(turno==='0'){
+    if(turno.value==='0'){
         alert("Seleccione un turno");
         return false;
     }
-    if(materia==='0'){
+    if(materia.value==='0'){
         alert("Seleccione una materia");
         return false;
     }
-    subirCalifAjax();
+    var msg = "Está a punto de Registrar las Calificaciones de "+materia.children[materia.selectedIndex].text+" a los Alumnos de "+grado+"°"+grupo.children[grupo.selectedIndex].text+
+    " turno "+turno.children[turno.selectedIndex].text+"\n¿Desea continuar?";
+    msg = confirm(msg);
+    if(!msg){
+        return false;
+    }
+    var info = "grado="+grado+"&grupo="+grupo.value+"&turno="+turno.value+"&materia="+materia.value;
+    subirCalifAjax(info);
 }
 function validarExcel(){
     if(document.getElementById('archivo').files.length === 0){
