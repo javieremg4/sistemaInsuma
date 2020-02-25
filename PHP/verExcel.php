@@ -1,6 +1,6 @@
 <?php
     if(empty($_FILES['archivo']['tmp_name']) || empty($_POST['nalumnos'])){
-        echo "<h4 style='color: red;'>Hubo un error al consultar el archivo. Inténtelo de nuevo</h4>";
+        echo "<h4 class='text-red' style='style='text-align: center;'>Hubo un error al consultar el archivo. Inténtelo de nuevo</h4>";
         exit;
     }
     
@@ -8,12 +8,12 @@
     $ext = pathinfo($path, PATHINFO_EXTENSION);
 
     if($ext!='xlsx' && $ext!='xls'){
-        echo "<h4 style='color: red;'>El archivo no es excel: xlsx ó xls</h4>";
+        echo "<h4 class='text-red' style='text-align: center;'>El archivo no es excel: xlsx ó xls</h4>";
         exit;
     }
 
     if($_FILES['archivo']['size']/1024>2048){
-        echo "<h4 style='color: red;'>Solo se permiten archivos de hasta 2MB</h4>";
+        echo "<h4 class='text-red' style='text-align: center;'>Solo se permiten archivos de hasta 2MB</h4>";
         exit;
     }
 
@@ -24,7 +24,7 @@
     if(!empty($_POST['nalumnos'])){
         $limit = $_POST['nalumnos']+7;
     }else{
-        echo "<h4 style='color: red;'>Hubo un error al consultar el archivo. Inténtelo de nuevo</h4>";
+        echo "<h4 class='text-red' style='style='text-align: center;''>Hubo un error al consultar el archivo. Inténtelo de nuevo</h4>";
         exit;
     }
     
@@ -72,7 +72,7 @@
             }
             echo "</table>";
             echo "<div class='div-btn'>
-                    <button class='font15' margin-bottom: 20px;' onclick='subirCalif();'>Subir calificaciones</button>
+                    <button class='font15 mb15' onclick='subirCalif();'>Subir calificaciones</button>
                  </div>";
         }else{
             echo "<h4 style='color: red;'>Error: El Archivo No Tiene el Formato Adecuado</h4>";

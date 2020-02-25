@@ -44,3 +44,26 @@ function validarExcel(){
     }
     return true;
 }
+function limpiarForms(){
+    document.getElementById('archivo').value = "";
+    document.getElementById('nalumnos').value = "";
+    document.getElementById('grado').selectedIndex = 0;
+    document.getElementById('grupo').selectedIndex = 0;
+    document.getElementById('turno').selectedIndex = 0;
+    cleanSubjects();
+    document.getElementById('display').innerHTML = "<div id='verExcel' class='w60 div-part'></div><div id='verAlumnos' class='w40 div-part'></div>";
+}
+function cleanSubjects(){
+    var option = document.createElement('option');
+    option.value='0';
+    option.textContent = '--Materia--';
+    option.selected = true;
+    var list = document.getElementById('materia');
+    removeChilds(list);
+    list.appendChild(option);
+}
+function removeChilds(list){
+    while(list.hasChildNodes()){
+        list.removeChild(list.firstChild);
+    }
+}

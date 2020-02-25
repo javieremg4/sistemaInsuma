@@ -63,7 +63,7 @@
     echo ($turno===0) ? "Matutino":"Mixto";
     $query = "SELECT materia FROM materias WHERE idMateria='$materia'";
     $result = mysqli_query($conexion,$query);
-    echo "<h4>Materia: ";
+    echo "<h4 class='mb15'>Materia: ";
     echo ($info = mysqli_fetch_array($result)) ? $info['materia'] : $materia;
     echo "</h4></span>";
     $studentsArray = json_decode($_POST['students'],true);

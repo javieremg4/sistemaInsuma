@@ -30,14 +30,17 @@
                     <input class="font15" type="submit" value="Ver información">
                 </div>
             </form>
+            <div class="div-btn">
+                <button class="font15 mb15" onclick="limpiarForms()">Limpiar Todo</button>
+            </div>
         </div>
         <div class="w40 div-part">
             <div class="form box w80">
                 <div class="div-style">
-                    Seleccione los datos para ver a los Alumnos registrado y poder Subir las Calificaciones
+                    Seleccione los datos para ver a los Alumnos registrados y poder Subir las Calificaciones
                 </div>
                 <div class="div-style">
-                    <select class="campo" id="grado" onchange="gradoMateria();">
+                    <select class="campo" id="grado" onclick="gradoMateria();">
                         <option value="0" selected>--Grado--</option>
                         <option value="1">1°</option>
                         <option value="2">2°</option>
@@ -61,7 +64,7 @@
                 </div>
 
                 <div class="div-style">
-                    <select class="campo" style="width: 90%; " id="materia">
+                    <select class="campo" style="width: 90%;" id="materia">
                         <option value="0" selected>--Materia--</option>
                     </select>
                 </div>
@@ -71,7 +74,7 @@
             </div>
         </div>	
     </section>
-    <section class="w100 div-union">
+    <section class="w100 div-union" id="display">
         <div id="verExcel" class="w60 div-part"></div>
         <div id="verAlumnos" class="w40 div-part"></div>
     </section>

@@ -18,7 +18,7 @@
         }
         $calif = trim($_POST['calif']);
         $calif = ($calif === "num") ? '0' : '1';
-        $addMateria = mysqli_query($conexion,"INSERT INTO materias (materia,grado,calif) VALUES ('$materia','$grado','$calif')");
+        $addMateria = mysqli_query($conexion,"INSERT INTO materias (materia,grado,calif,status) VALUES ('$materia','$grado','$calif','1')");
         if($addMateria){
             warning('ok','La Materia se Agrego con Éxito');
         }else{
@@ -26,5 +26,5 @@
         }
     }else{
         warning('error','Ocurrió un Error. Favor de intentarlo De Nuevo.');
-    } 
+    }
 ?>

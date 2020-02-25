@@ -5,7 +5,7 @@
     }
     require_once 'conexion.php';
     $grade = trim($_POST['grade']);
-    $query = "SELECT idMateria,materia FROM materias WHERE grado='$grade'";
+    $query = "SELECT idMateria,materia FROM materias WHERE grado='$grade' AND status='1'";
     $result = mysqli_query($conexion,$query);
     if(mysqli_num_rows($result)>0){
         echo "<select id='materia'>";

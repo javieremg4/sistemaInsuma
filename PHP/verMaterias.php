@@ -20,7 +20,11 @@
         $resultado .= "<td class='tdleft'>".$info['materia'];
         $resultado .= "<td>".$info['grado'];
         $resultado .= ($info['calif']==='0') ? "<td>0-10" : "<td>A/NA";
-        $resultado .= "<td><button onclick='delMateria(".$info['idMateria'].");'>Eliminar</button>";
+        if($info['status']==='0'){
+            $resultado .= "<td><button onclick='actMateria(".$info['idMateria'].");'>Activar</button>";
+        }else{
+            $resultado .= "<td><button onclick='delMateria(".$info['idMateria'].");'>Inactivar</button>";
+        }
         $resultado .= "</tr>";
     }
     $resultado .= "<tr><td colspan='4'><button id='btnAdd' onclick='addMateria();'>Agregar una materia</button></td></tr>";

@@ -17,19 +17,3 @@ function gradoMateria(){
     ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     ajax.send(grade);
 }
-
-function cleanSubjects(){
-    var option = document.createElement('option');
-    option.value='0';
-    option.textContent = '--Materias--';
-    option.selected = true;
-    var list = document.getElementById('subject-list');
-    removeChilds(list);
-    list.appendChild(option);
-}
-
-function removeChilds(list){
-    while(list.hasChildNodes()){
-        list.removeChild(list.firstChild);
-    }
-}

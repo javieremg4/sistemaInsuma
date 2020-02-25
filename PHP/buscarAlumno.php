@@ -29,7 +29,7 @@
         }
         $resultado .= "</div>";  
         echo $resultado;
-        if(strpos($indicio,'ñ')){
+        if(stripos($indicio,'ñ') !== false){
             $indicio = str_replace('ñ','Ñ',$indicio);
         }
         if($_SESSION['operacion'] === "adp"){
@@ -158,7 +158,7 @@
                 }
             }
         }else if($_SESSION['operacion'] === "ddb"){
-            $consulta = "SELECT datos.clave,datos.nombre,datos.apepat,datos.apemat,datos.foto,altas.numControl,altas.monto,altas.saldo,bajas.fbaja,bajas.tipo,bajas.causa FROM datos INNER JOIN altas ON datos.clave=altas.clave INNER JOIN bajas ON datos.clave=bajas.clave";
+            //$consulta = "SELECT datos.clave,datos.nombre,datos.apepat,datos.apemat,datos.foto,altas.numControl,altas.monto,altas.saldo,bajas.fbaja,bajas.tipo,bajas.causa FROM datos INNER JOIN altas ON datos.clave=altas.clave INNER JOIN bajas ON datos.clave=bajas.clave";
             $consulta = "SELECT datos.clave,datos.apepat,datos.apemat,datos.nombre,datos.foto,altas.numControl,altas.monto,altas.saldo FROM datos INNER JOIN altas ON datos.clave = altas.clave WHERE datos.nombre LIKE '%$indicio%' OR datos.apepat LIKE '%$indicio%' OR datos.apemat LIKE '%$indicio%'";
             $buscarAlumnos = mysqli_query($conexion,$consulta);
             if(mysqli_num_rows($buscarAlumnos)<1){
@@ -189,7 +189,7 @@
                     }
                     $resultado .= "<div class='datos'>";
                     if($baja=mysqli_fetch_array($buscarBaja)){
-                        $resultado .= "<span style='color:red; font-weight:bold; font-size:20px;'>BAJA</span>";
+                        $resultado .= "<span style='color:red; display: block; font-weight:bold; font-size:20px;'>BAJA</span>";
                     }
                     $resultado .= 'No. Control: ';
                     if(!empty($info['numControl'])){

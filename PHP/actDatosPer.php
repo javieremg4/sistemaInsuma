@@ -54,16 +54,16 @@
 					include("conexion.php");
 					//La funcion trim quita el carácter especificado del inicio y del final de la cadena
 					$curp = strtoupper(trim($_POST['curp']));
-					$nombre = strtoupper(trim($_POST['nombre']));
-					if(strpos($nombre,'ñ')){
+					$nombre = trim($_POST['nombre']);
+					if(stripos($nombre,'ñ') !== false){
 						$nombre = str_replace('ñ','Ñ',$nombre);
 					}
 					$apepat = strtoupper(trim($_POST['apepat']));
-					if(strpos($apepat,'ñ')){
+					if(stripos($apepat,'ñ') !== false){
 						$apepat = str_replace('ñ','Ñ',$apepat);
 					}
-					$apemat = strtoupper(trim($_POST['apemat']));
-					if(strpos($apemat,'ñ')){
+					$apemat = trim($_POST['apemat']);
+					if(stripos($apemat,'ñ') !== false){
 						$apemat = str_replace('ñ','Ñ',$apemat);
 					}
 					//Aqui se revisa si no existe un alumno registrado con esa curp o ese nombre
@@ -79,6 +79,7 @@
 						if(mysqli_num_rows($consultaAlumno)>0){
 							while($info=mysqli_fetch_array($consultaAlumno)){
 								if($idAlumno!=$info['clave']){
+
 									$actAlumno=false;
 									break;
 								}
