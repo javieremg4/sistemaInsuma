@@ -1,17 +1,19 @@
-function buscarPagos(){
+function buscarPagos(idAlumno){
     var varajax;
     if(window.XMLHttpRequest){
         varajax = new XMLHttpRequest();
     }else{
         varajax = new ActiveXObject("Microsoft.XMLHTTP");
     }
+    var info = "view=1&idAlumno="+idAlumno;
     varajax.onreadystatechange = function(){
         if(varajax.readyState===4 && varajax.status===200){
             document.getElementById('historial').innerHTML = varajax.responseText; 
         }
     }
-    varajax.open("GET","../PHP/buscarPagos.php?view=1",true);
-    varajax.send();
+    varajax.open("POST","../PHP/buscarPagos.php",true);
+    varajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    varajax.send(info);
 }
 var show=true;
 function showHistorial(){

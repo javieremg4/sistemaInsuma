@@ -9,6 +9,9 @@
     require "conexion.php";
     require "basicWarning.php";
     $materia = trim($_POST['materia']);
+    if(stripos($materia,'ñ') !== false){
+        $materia = str_replace('ñ','Ñ',$materia);
+    }
     $grado = trim($_POST['grado']);
     $buscarMateria  = mysqli_query($conexion,"SELECT idMateria FROM materias WHERE grado='$grado' AND materia LIKE '%$materia%'");
     if($buscarMateria){

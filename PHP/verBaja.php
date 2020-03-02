@@ -26,6 +26,7 @@
                             <div class='del-baja' onclick='delBaja(".$idAlumno.")'>Eliminar esta Baja</div>
                             </div>";
                     }else{
+                        date_default_timezone_set ("America/Chihuahua");
                         echo "<div class='content col-lg-4'>
                                 <div class='text-form col-lg-12'>Baja</div>
                                 <div class='form'>

@@ -68,13 +68,18 @@ function canMat(){
 function valMat(){
     var nuevo = document.getElementsByClassName('nuevo');
     var expEsp = /^\s+$/;
-    var materia = nuevo[0].value;
+    var expLetras = /^[\ÑA-Z\s]*$/g;
+    var materia = nuevo[0].value.toUpperCase();
 	if(!materia.search(expEsp) || materia==="" || materia===null || materia.length===0){
 		alert("Agregue el Nombre de la Materia");
 		return false;
     }
     if(materia.length>50){
         alert("Error: El Nombre de la Materia es Muy Grande");
+        return false;
+    }
+    if(materia.search(expLetras)){
+        alert("Error: Revise el Nombre de la Materia");
         return false;
     }
     var expGrado = /^[1-6]{1}$/;

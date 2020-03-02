@@ -1,5 +1,5 @@
 <?php
-    if(isset($_GET['adp']) || isset($_GET['ade']) || isset($_GET['ddb']) || isset($_GET['pago'])){
+    if(isset($_GET['adp']) || isset($_GET['ade']) || isset($_GET['ddb']) || isset($_GET['pago']) || isset($_GET['cal'])){
         session_start();
         if(isset($_GET['adp'])){ 
             $id=$_GET['adp'];
@@ -17,6 +17,10 @@
             $id=$_GET['pago'];
             $_SESSION['idAlumno']=$id;
             header("location:../HTML/registroPago.html");
+        }elseif(isset($_GET['cal'])){
+            $id=$_GET['cal'];
+            $_SESSION['idAlumno']=$id;
+            header("location:../HTML/adminCalif.html");
         }else{
             header("location:../HTML/error.html");
         }

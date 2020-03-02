@@ -15,14 +15,6 @@
     <link rel="stylesheet" type="text/css" href="../Estilos/pago.css">
     <link rel="stylesheet" type="text/css" href="../Estilos/base.css">
     <link rel="stylesheet" href="../Estilos/menu.css">
-
-    <!--Javascript-->
-    <script src="../Javascript/basicWarning.js"></script>
-    <script type="text/javascript" src="../AJAX/verSaldo.js"></script>
-    <script type="text/javascript" src="../AJAX/buscarPagos.js"></script>
-    <script type="text/javascript" src="../AJAX/regPago.js"></script>
-    <script type="text/javascript" src="../Javascript/valPago.js"></script>
-    <script type="text/javascript" src="../Javascript/validarFecha.js"></script>
 </head>
 <body>
     <ul class="nav-size">
@@ -37,10 +29,10 @@
     <div class="box-style">
         <div class="div-union div-style">
             <div class="div-part w50">
-                No. RECIBO <input type="text" name="" id="noRec">
+                No. RECIBO <input type="text" id="noRec">
             </div>
             <div class="div-part w50">
-                FECHA <input type="date" name="" id="fpago" value="<?php date_default_timezone_set ('America/Chihuahua'); echo date('Y-m-d');?>">
+                FECHA <input type="date" id="fpago" value="<?php date_default_timezone_set ('America/Chihuahua'); echo date('Y-m-d');?>">
             </div>
         </div>
         CONCEPTO
@@ -53,7 +45,7 @@
             </div>
             <div class="div-part op w47">
                 <div class="w100"><input type="checkbox" name="otro" id="otro" onclick="showEsp();"> Otro </div>
-                <div class="w100" id="esp">Especifique <input class="w60" type="text" id="text-esp" max></div>
+                <div class="w100" id="esp">Especifique <input class="w60" type="text" id="text-esp"></div>
             </div>
         </div>
         <div class="div-union div-style">
@@ -69,12 +61,20 @@
         </div>
     </div>
     <div class="div-btn">
-        <button id="ver-historial" onclick="buscarPagos(); showHistorial();">Ver Historial de Pagos</button>
+        <button class="font15" id="ver-historial" onclick="buscarPagos('<?php echo $_SESSION['idAlumno']; ?>'); showHistorial();">Ver Historial de Pagos</button>
+        <button class="font15 ml15" onclick="limpiarTodo()">Limpiar Todo</button>
     </div>
     <div id="info"></div>
     <div id="historial"></div>
 </body>
     <!--Javascript-->
+    <script type="text/javascript" src="../Javascript/basicWarning.js"></script>
+    <script type="text/javascript" src="../AJAX/verSaldo.js"></script>
+    <script type="text/javascript" src="../AJAX/buscarPagos.js"></script>
+    <script type="text/javascript" src="../AJAX/regPago.js"></script>
+    <script type="text/javascript" src="../AJAX/delRecibo.js"></script>
+    <script type="text/javascript" src="../Javascript/valPago.js"></script>
+    <script type="text/javascript" src="../Javascript/validarFecha.js"></script>
     <script type="text/javascript" src="../Javascript/valRecargo.js"></script>
 </html>
 <?php

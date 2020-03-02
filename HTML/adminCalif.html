@@ -1,0 +1,51 @@
+<?php
+	session_start();
+	if(isset($_SESSION['operacion'],$_SESSION['idAlumno'])){
+		if($_SESSION['operacion']==="cal"){	
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Administrar Calificaciones</title>
+
+	<!--Estilos-->
+	<link rel="stylesheet" type="text/css" href="../Estilos/base.css">
+	<link rel="stylesheet" type="text/css" href="../Estilos/menu.css">
+	<link rel="stylesheet" type="text/css" href="../Estilos/pago.css">
+	<style>
+		input[type="text"]{
+			width: 95%;
+			text-align: center;
+		}
+		.tdleft{
+			padding-left: 5px;
+		}
+	</style>
+</head>
+<body>
+	<ul class="nav-size">
+        <li class="left"><a class="text-white" href="principalUsuario.html">Principal</a></li>
+        <li class="left"><a class="text-white" href="buscarAlumno.html">Buscar un Alumno</a></li>
+        <li class="right"><a class="text-white" href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
+    </ul>
+	<span class="datos-saldo w50" id="datos"></span>
+	<hr>
+	<sec class="sec-info" id="info"></sec>
+	<div id="calif"></div>
+</body>
+<script src="../AJAX/modCalif.js"></script>
+<script src="../AJAX/verCalif.js"></script>
+<script src="../AJAX/verInfo.js"></script>
+<script src="../Javascript/valCalif.js"></script>
+<script src="../Javascript/basicWarning.js"></script>
+</html>
+<?php
+		}else{
+			header("location:error.html");
+		}
+	}else{
+		header("location:principalUsuario.html");
+	}
+?>

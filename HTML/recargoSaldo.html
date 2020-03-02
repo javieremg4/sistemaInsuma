@@ -3,33 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recargar Saldo</title>
+    <title>Actualizar Saldo</title>
+
+    <!--Estilos-->
+    <link rel="stylesheet" href="../Estilos/pago.css">
+    <link rel="stylesheet" type="text/css" href="../Estilos/menu.css">
+    <link rel="stylesheet" type="text/css" href="../Estilos/base.css">
 </head>
 <body>
-    <select id="grado">
-        <option value="0" selected>--Grado--</option>
-        <option value="1">1°</option>
-        <option value="2">2°</option>
-        <option value="3">3°</option>
-        <option value="4">4°</option>
-        <option value="5">5°</option>
-        <option value="6">6°</option>
-    </select>	
-    <br>
-    <span>Montos de pago</span> 
-    <select id="monto">
-        <option selected value="0">Eliga los montos de inscripción y colegiatura</option>
-        <option value="1">Inscripción: 1000 y Colegiatura: 800</option>
-        <option value="2">Inscripción: 1100 y Colegiatura: 880</option>
-        <option value="3">Inscripción: 1500 y Colegiatura: 1500</option>
-    </select>
-    <br>
-    <input type="radio" name="saldo" id="algo">Debe algo
-    <input type="radio" name="saldo" id="nada">No debe nada
-    <br>
-    <button onclick="consultaRecargo()">Consultar</button>
+    <ul class="nav-size">
+        <li class="left"><a class="text-white" href="principalUsuario.html">Principal</a></li>
+        <li class="right"><a class="text-white" href="../PHP/cerrarSesion.php">Cerrar Sesión</a></li>
+    </ul>
+    <sec class="sec-info" id="info"></sec>
+    <div class="form box w40">
+        <div class="div-style">
+            Seleccione uno o más datos para consultar el Saldo de los Alumnos
+        </div>
+        <div class="div-style">
+            Grado: 
+            <select class="campo" id="grado">
+                <option value="0" selected>--Grado--</option>
+                <option value="1">1°</option>
+                <option value="2">2°</option>
+                <option value="3">3°</option>
+                <option value="4">4°</option>
+                <option value="5">5°</option>
+                <option value="6">6°</option>
+            </select>
+        </div>
+        <div class="div-style">
+            Montos de pago: 
+            <select class="campo" id="monto">
+                <option selected value="0">Eliga los montos de inscripción y colegiatura</option>
+                <option value="1">Inscripción: 1000 y Colegiatura: 800</option>
+                <option value="2">Inscripción: 1100 y Colegiatura: 880</option>
+                <option value="3">Inscripción: 1500 y Colegiatura: 1500</option>
+            </select>
+        </div>
+        <div class="div-style">
+            Saldo: 
+            <input type="radio" name="saldo" id="algo">Debe algo
+            <input type="radio" name="saldo" id="nada">No debe nada
+        </div>
+        ¿Mostrar Bajas?
+        <div class="div-style">
+            <input type="radio" name="bajas" id="si" checked> Sí
+            <input type="radio" name="bajas" id="no"> No        
+        </div>
+        <div class="div-btn">
+            <button class="font15" onclick="consultaRecargo()">Consultar</button>
+            <button class="font15 ml15" onclick="limpiarTodo()">Limpiar Todo</button>
+        </div>
+    </div>
     <div id="alumnos"></div>
+    <section class="sec-info mt16">
+        <div class="div-info attention">
+            <div class="w10 part-info">
+                <img src="../Imagenes/warning.png">
+            </div>
+            <div class="w80 part-info">
+                Para actualizar los Datos el Saldo del Cuatrimestre del Alumno debe ser $0.00
+            </div>
+        </div>
+    </section>
 </body>
 <script src="../Javascript/consultaRecargo.js"></script>
 <script src="../AJAX/consultaRecargo.js"></script>
+<script src="../AJAX/recSaldo.js"></script>
+<script type="text/javascript" src="../Javascript/basicWarning.js"></script>
 </html>

@@ -14,6 +14,9 @@
             case 'dDB':
                 $_SESSION['operacion']="ddb";
                 break;
+            case 'cal':
+                $_SESSION['operacion']="cal";
+                break;
             default:
                 $_SESSION['operacion']='error';
                 break;

@@ -1,5 +1,5 @@
 <?php
-    if(!isset($_POST['grado']) && !isset($_POST['monto']) && !isset($_POST['debe'])){
+    if(!isset($_POST['grado']) && !isset($_POST['monto']) && !isset($_POST['debe']) && !isset($_POST['bajas'])){
         echo "error";
         exit;
     }
@@ -28,149 +28,197 @@
             $query .= " a.saldo>=0";
         }
     }
+    $query .= " ORDER BY d.apepat ASC";
     //echo $query;
+    $bajas = $_POST['bajas'];
+    $arrayBajas = null;
+    $index = 0;
+    $queryBajas = "SELECT clave FROM bajas";
+    $queryBajas = mysqli_query($conexion,$queryBajas);
+    if(mysqli_num_rows($queryBajas)>0){
+        while($info = mysqli_fetch_array($queryBajas)){
+            $arrayBajas[$index] = $info['clave'];
+            $index += 1;
+        }
+    }
     $result = mysqli_query($conexion,$query);
+    $tabla = "";
     if($result){
         if(mysqli_num_rows($result)>0){
-            echo "<table border='1'>
-                    <tr><th>Nombre<th>Grado<th>Monto<th>Saldo<th>Opciones";
+            $tot = mysqli_num_rows($result);
+            $tabla .= "<table class='w80'>
+                <tr><th>Nombre<th>Grado<th>Monto<th>Saldo<th>Situación<th>Opciones";
             while($info = mysqli_fetch_array($result)){
-                echo "<tr>";
-                $clave = $info['clave'];
-                $baja = mysqli_query($conexion,"SELECT clave FROM bajas WHERE clave='$clave'");
-                if($baja){
-                    //if(mysqli_num_rows($baja)===0){
-                        echo "<td>".$info['apepat']." ".$info['apemat']." ".$info['nombre'];
-                        echo "<td>";
-                        if($info['saldo']>0){
-                            echo "<select disabled>";
+                if($bajas === 'false'){
+                    if(!empty($arrayBajas)){
+                        if(!in_array($info['clave'],$arrayBajas)){
+                           $tabla .= generateRow($info,$arrayBajas);
                         }else{
-                            echo "<select>";
+                            $tot -= 1;
                         }
-                        switch ($info['grado']) {
-                            case '1':
-                                echo "
-                                        <option value='0'>--Grado--</option>
-                                        <option value='1' selected>1°</option>
-                                        <option value='2'>2°</option>
-                                        <option value='3'>3°</option>
-                                        <option value='4'>4°</option>
-                                        <option value='5'>5°</option>
-                                        <option value='6'>6°</option>
-                                    ";	
-                                break;
-                            case '2':
-                                echo "
-                                        <option value='0'>--Grado--</option>
-                                        <option value='1'>1°</option>
-                                        <option value='2' selected>2°</option>
-                                        <option value='3'>3°</option>
-                                        <option value='4'>4°</option>
-                                        <option value='5'>5°</option>
-                                        <option value='6'>6°</option>
-                                    ";	
-                                break;
-                            case '3':
-                                echo "
-                                        <option value='0'>--Grado--</option>
-                                        <option value='1'>1°</option>
-                                        <option value='2'>2°</option>
-                                        <option value='3' selected>3°</option>
-                                        <option value='4'>4°</option>
-                                        <option value='5'>5°</option>
-                                        <option value='6'>6°</option>
-                                    ";	
-                                break;
-                            case '4':
-                                echo "
-                                        <option value='0'>--Grado--</option>
-                                        <option value='1'>1°</option>
-                                        <option value='2'>2°</option>
-                                        <option value='3'>3°</option>
-                                        <option value='4' selected>4°</option>
-                                        <option value='5'>5°</option>
-                                        <option value='6'>6°</option>
-                                    ";	
-                                break;
-                            case '5':
-                                echo "
-                                        <option value='0'>--Grado--</option>
-                                        <option value='1'>1°</option>
-                                        <option value='2'>2°</option>
-                                        <option value='3'>3°</option>
-                                        <option value='4'>4°</option>
-                                        <option value='5' selected>5°</option>
-                                        <option value='6'>6°</option>
-                                    ";	
-                                break;
-                            case '6':
-                                echo "
-                                        <option value='0'>--Grado--</option>
-                                        <option value='1'>1°</option>
-                                        <option value='2'>2°</option>
-                                        <option value='3'>3°</option>
-                                        <option value='4'>4°</option>
-                                        <option value='5'>5°</option>
-                                        <option value='6' selected>6°</option>
-                                    ";	
-                                break;
-                            default:
-                                echo "--";
-                                break;
-                        }
-                        echo "</select>";
-                        echo "<td>";
-                        if($info['saldo']>0){
-                            echo "<select disabled>";
-                        }else{
-                            echo "<select>";
-                        }
-                        switch ($info['monto']) {
-                            case '1':
-                                echo "<option value='0'>Eliga los montos de inscripción y colegiatura</option>
-                                <option selected value='1'>Inscripción: 1000 y Colegiatura: 800</option>
-                                <option value='2'>Inscripción: 1100 y Colegiatura: 880</option>
-                                <option value='3'>Inscripción: 1500 y Colegiatura: 1500</option>";
-                                break;
-                            case '2':
-                                echo "<option value='0'>Eliga los montos de inscripción y colegiatura</option>
-                                <option value='1'>Inscripción: 1000 y Colegiatura: 800</option>
-                                <option selected value='2'>Inscripción: 1100 y Colegiatura: 880</option>
-                                <option value='3'>Inscripción: 1500 y Colegiatura: 1500</option>";
-                                break;
-                            case '3':
-                                echo "<option value='0'>Eliga los montos de inscripción y colegiatura</option>
-                                <option value='1'>Inscripción: 1000 y Colegiatura: 800</option>
-                                <option value='2'>Inscripción: 1100 y Colegiatura: 880</option>
-                                <option selected value='3'>Inscripción: 1500 y Colegiatura: 1500</option>";
-                                break;
-                            default:
-                                echo "<option selected value='0'>Eliga los montos de inscripción y colegiatura</option>
-                                <option value='1'>Inscripción: 1000 y Colegiatura: 800</option>
-                                <option value='2'>Inscripción: 1100 y Colegiatura: 880</option>
-                                <option value='3'>Inscripción: 1500 y Colegiatura: 1500</option>";
-                                break;
-                        }
-                        echo "</select>";
-                        echo "<td>$".$info['saldo'];
-                        echo "<td>";
-                        if($info['saldo']>0){
-                            echo "N/A";
-                        }else{
-                            echo "<button onclick='recSaldo(".$info['clave'].");'>Guardar y Actualizar Saldo</button>";
-                        }
-                    //}
+                    }else{
+                        $tabla .= generateRow($info,$arrayBajas);
+                    }
                 }else{
-                    echo "<td>".$info['apepat']." ".$info['apemat']." ".$info['nombre'];
-                    echo "<td colspan='4'>Error: No se pudieron mostrar los datos";
+                    $tabla .= generateRow($info,$arrayBajas);
                 }
             }
-            echo "</table>";
+            $tabla .= "</table>";
+            if($tot > 0){
+                echo $tabla;
+            }else{
+                echo "<span style='text-align: center; width: 100%;'><h4>No se encontró ningún alumno</span>";    
+            } 
         }else{
-            echo "No se encontró Ningún Alumno";
+            echo "<span style='text-align: center; width: 100%;'><h4>No se encontró ningún alumno</span>";
         }
     }else{
-        echo "Hubo un error al Consultar los Alumnos. Inténtelo de Nuevo.";
+        echo "<span class='text-red w100' style='text-align: center;'>
+                Hubo un error al Consultar los Alumnos. Inténtelo de Nuevo
+            </span>";
     }
-    
+
+    function generateRow($info,$arrayBajas){
+        $tabla = "";
+        $tabla .= "<tr class='trhov' id='al-".$info['clave']."'>";
+        $tabla .= "<td class='tdleft'>".$info['apepat']." ".$info['apemat']." ".$info['nombre'];
+        $tabla .= "<td>";
+        if(!empty($arrayBajas)){
+            if(in_array($info['clave'],$arrayBajas)){
+                $tabla .= "<select disabled>";
+            }else{
+                if($info['saldo']>0){
+                    $tabla .= "<select disabled>";
+                }else{
+                    $tabla .= "<select>";
+                }
+            }
+        }else{
+            if($info['saldo']>0){
+                $tabla .= "<select disabled>";
+            }else{
+                $tabla .= "<select>";
+            }
+        }
+        switch ($info['grado']) {
+            case '1':
+                $tabla .= "<option value='1' selected>1°</option>
+                    <option value='2'>2°</option>
+                    <option value='3'>3°</option>
+                    <option value='4'>4°</option>
+                    <option value='5'>5°</option>
+                    <option value='6'>6°</option>";	
+                break;
+            case '2':
+                $tabla .= "<option value='1'>1°</option>
+                    <option value='2' selected>2°</option>
+                    <option value='3'>3°</option>
+                    <option value='4'>4°</option>
+                    <option value='5'>5°</option>
+                    <option value='6'>6°</option>";	
+                break;
+            case '3':
+                $tabla .= "<option value='1'>1°</option>
+                    <option value='2'>2°</option>
+                    <option value='3' selected>3°</option>
+                    <option value='4'>4°</option>
+                    <option value='5'>5°</option>
+                    <option value='6'>6°</option>";	
+                break;
+            case '4':
+                $tabla .= "<option value='1'>1°</option>
+                    <option value='2'>2°</option>
+                    <option value='3'>3°</option>
+                    <option value='4' selected>4°</option>
+                    <option value='5'>5°</option>
+                    <option value='6'>6°</option>";	
+                break;
+            case '5':
+                $tabla .= "<option value='1'>1°</option>
+                    <option value='2'>2°</option>
+                    <option value='3'>3°</option>
+                    <option value='4'>4°</option>
+                    <option value='5' selected>5°</option>
+                    <option value='6'>6°</option>";	
+                break;
+            case '6':
+                $tabla .= "<option value='1'>1°</option>
+                    <option value='2'>2°</option>
+                    <option value='3'>3°</option>
+                    <option value='4'>4°</option>
+                    <option value='5'>5°</option>
+                    <option value='6' selected>6°</option>";	
+                break;
+            default:
+                $tabla .= "--";
+                break;
+        }
+        $tabla .= "</select>";
+        $tabla .= "<td>";
+        if(!empty($arrayBajas)){
+            if(in_array($info['clave'],$arrayBajas)){
+                $tabla .= "<select disabled>";
+            }else{
+                if($info['saldo']>0){
+                    $tabla .= "<select disabled>";
+                }else{
+                    $tabla .= "<select>";
+                }
+            }
+        }else{
+            if($info['saldo']>0){
+                $tabla .= "<select disabled>";
+            }else{
+                $tabla .= "<select>";
+            }
+        }
+        switch ($info['monto']) {
+            case '1':
+                $tabla .= "<option selected value='1'>Inscripción: 1000 y Colegiatura: 800</option>
+                <option value='2'>Inscripción: 1100 y Colegiatura: 880</option>
+                <option value='3'>Inscripción: 1500 y Colegiatura: 1500</option>";
+                break;
+            case '2':
+                $tabla .= "<option value='1'>Inscripción: 1000 y Colegiatura: 800</option>
+                <option selected value='2'>Inscripción: 1100 y Colegiatura: 880</option>
+                <option value='3'>Inscripción: 1500 y Colegiatura: 1500</option>";
+                break;
+            case '3':
+                $tabla .= " <option value='1'>Inscripción: 1000 y Colegiatura: 800</option>
+                <option value='2'>Inscripción: 1100 y Colegiatura: 880</option>
+                <option selected value='3'>Inscripción: 1500 y Colegiatura: 1500</option>";
+                break;
+            default:
+                $tabla .= "<option value='1'>Inscripción: 1000 y Colegiatura: 800</option>
+                <option value='2'>Inscripción: 1100 y Colegiatura: 880</option>
+                <option value='3'>Inscripción: 1500 y Colegiatura: 1500</option>";
+                break;
+        }
+        $tabla .= "</select>";
+        $tabla .= "<td>$".$info['saldo'];
+        $tabla .= "<td>";
+        if(!empty($arrayBajas)){
+            if(in_array($info['clave'],$arrayBajas)){
+                $tabla .= "<span style='color:red; font-weight:bold;'>BAJA</span>";;
+                $tabla .= "<td>N/A";
+            }else{
+                $tabla .= "Registrado";
+                $tabla .= "<td>";
+                if($info['saldo']>0){
+                    $tabla .= "N/A";
+                }else{
+                    $tabla .= "<button onclick='recSaldo(".$info['clave'].");'>Guardar y Actualizar Saldo</button>";
+                }
+            }
+        }else{
+            $tabla .= "Registrado";
+            $tabla .= "<td>";
+            if($info['saldo']>0){
+                $tabla .= "N/A";
+            }else{
+                $tabla .= "<button onclick='recSaldo(".$info['clave'].");'>Guardar y Actualizar Saldo</button>";
+            }
+        }
+        return $tabla;
+    }
 ?>

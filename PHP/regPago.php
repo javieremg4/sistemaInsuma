@@ -9,7 +9,7 @@
     require 'basicWarning.php';
     if(isset($_SESSION['operacion'],$_SESSION['idAlumno'])){
         if($_SESSION['operacion']==="pago"){
-            if(isset($_SESSION['idAlumno'],$_POST['num'],$_POST['fpago'],$_POST['concepto'],$_POST['pago'],$_POST['debe'],$_POST['obs'])) {
+            if(isset($_SESSION['idAlumno'],$_POST['num'],$_POST['fpago'],$_POST['concepto'],$_POST['pago'],$_POST['debe'],$_POST['obs'],$_POST['tipo'])) {
                 if($_POST['idAlumno']!=$_SESSION['idAlumno']){
                     warning('error','El Pago no se Registró porque abrió Otra Ventana del Sistema.');
                     exit;
@@ -25,15 +25,16 @@
                     $debe=trim($_POST['debe']);
                     $fpago=trim($_POST['fpago']);     
                     $obs=trim($_POST['obs']);
+                    $tipo=trim($_POST['tipo']);
                     $continue = true;
-                    if($concepto==="Inscripción" || $concepto==="Colegiatura" || $concepto==="Inscripción y Colegiatura"){
+                    if($tipo === "1"){
                         if($saldo>0){
                             if($pago>$saldo || $debe>$saldo){
                                 warning('error','Las Cantidades del Recibo no Deben ser Mayores al Saldo del Cuatrimeste');
                                 $continue = false;
                             }
                         }else{
-                            warning('error','El Alumno no Debe Nada. Si es Necesario, Actualize el Saldo del Cuatrimestre');
+                            warning('error','El Alumno no Debe Nada. Si es Necesario, Actualice el Saldo del Cuatrimestre');
                             $continue = false;
                         }
                     }
@@ -43,11 +44,11 @@
                             if(mysqli_num_rows($query)!=0){
                                 warning('error','Ya Existe un Recibo con ese Número');
                             }else{
-                                $query = mysqli_query($conexion,"INSERT INTO pagos (num,clave,fpago,concepto,pago,debe,obs) VALUES ('$num','$clave','$fpago','$concepto','$pago','$debe','$obs')");
+                                $query = mysqli_query($conexion,"INSERT INTO pagos (num,clave,fpago,concepto,pago,debe,obs,tipo) VALUES ('$num','$clave','$fpago','$concepto','$pago','$debe','$obs','$tipo')");
                                 if(!$query){
                                     warning('error','Hubo un Error al Registrar el Recibo. Inténtelo de nuevo');
                                 }else{
-                                    if($concepto==="Inscripción" || $concepto==="Colegiatura" || $concepto==="Inscripción y Colegiatura"){
+                                    if($tipo === "1"){
                                         $saldo -= $pago;
                                         $query = mysqli_query($conexion,"UPDATE altas SET saldo='$saldo' WHERE clave='$clave'");
                                         if($query){

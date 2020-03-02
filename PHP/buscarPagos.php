@@ -3,7 +3,11 @@
     if(!isset($_SESSION['usuario'])){
         header("location:../HTML/inicioUsuario.html");
     }
-    if(isset($_GET['view'])){
+    if(isset($_POST['view'],$_POST['idAlumno'])){
+        /*if($_POST['idAlumno']!=$_SESSION['idAlumno']){
+            echo "No se Mostró el Historial de Pagos porque abrió Otra Ventana del Sistema.";
+            exit;
+        }*/
         if(isset($_SESSION['idAlumno'])){
             require "conexion.php";
             $idAlumno = $_SESSION['idAlumno'];
@@ -17,7 +21,8 @@
                         <th class='w30'>CONCEPTO</th>
                         <th class='w10'>DEBE</th>
                         <th class='w10'>PAGO</th>
-                        <th class='w30'>OBSERVACIONES</th>
+                        <th class='w10'>OBSERVACIONES</th>
+                        <th class='w20'>OPCIONES</th>
                     </tr>";
                 while($info=mysqli_fetch_array($query)){
                     $resultado = "";
@@ -27,7 +32,10 @@
                                 ."<td class='w30'>".$info['concepto']."</td>"
                                 ."<td class='w10'>".$info['debe']."</td>"
                                 ."<td class='w10'>".$info['pago']."</td>"
-                                ."<td class='w30'>".$info['obs']."</td>";
+                                ."<td class='w10'>".$info['obs']."</td>";
+                    $resultado .= "<td class='w20'><button onclick='delRecibo(".$idAlumno.",".$info['tipo'].",\"".$info['num']."\",".$info['pago'].")'>";
+                    $resultado .= ($info['tipo']==="0") ? "Eliminar" : "Eliminar y Actualizar Saldo";
+                    $resultado .= "</button></td";
                     $resultado .= "</tr>";
                     echo $resultado;
                 }

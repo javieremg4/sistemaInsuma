@@ -3,6 +3,7 @@ function regPago(idAlumno){
     var num = document.getElementById('noRec').value;
     var fpago = document.getElementById('fpago').value;
     var concepto = "";
+    var tipo = "1";
     if(document.getElementById('inscrip').checked && !document.getElementById('coleg').checked){
         concepto = "Inscripción";
     }else if(!document.getElementById('inscrip').checked && document.getElementById('coleg').checked){
@@ -11,6 +12,7 @@ function regPago(idAlumno){
         concepto = "Inscripción y Colegiatura";
     }else if(document.getElementById('otro')){
         concepto = document.getElementById('text-esp').value;
+        tipo = "0";
     }else{
         alert('Hubo un error al Registrar el Pago. Inténtelo de Nuevo');
     }
@@ -23,7 +25,7 @@ function regPago(idAlumno){
         }else{
             varajax = new ActiveXObject("Microsoft.XMLHTTP");
         }
-        var info = "idAlumno="+idAlumno+"&num="+num+"&fpago="+fpago+"&concepto="+concepto+"&pago="+pago+"&debe="+debe+"&obs="+obs;
+        var info = "idAlumno="+idAlumno+"&num="+num+"&fpago="+fpago+"&concepto="+concepto+"&pago="+pago+"&debe="+debe+"&obs="+obs+"&tipo="+tipo;
         varajax.onreadystatechange = function(){
             if(varajax.readyState===4 && varajax.status===200){
                 document.getElementById('info').innerHTML = varajax.responseText;

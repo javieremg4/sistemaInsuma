@@ -52,7 +52,7 @@
             $index++;
         }
     }else{
-        echo "<span class='text-red' style='text-align: center'>
+        echo "<span class='text-red' style='text-align: center;'>
             <h3>No se registró nada
             <h4>No se encontró ningún alumno 
             </span>";

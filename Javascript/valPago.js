@@ -81,3 +81,13 @@ function valConcepto(){
         document.getElementById('esp').style.display = "block";
     }
 }
+function limpiarTodo(){
+    document.getElementById('noRec').value = "";
+    document.getElementById('text-esp').value = "";
+    document.getElementById('pago').value = "";
+    document.getElementById('totsaldo').value = "";
+    document.getElementById('obs').value = "";
+    document.getElementById('inscrip').checked = false;
+    document.getElementById('coleg').checked = false;
+    document.getElementById('otro').checked = false;
+}

@@ -182,6 +182,9 @@ div.col-lg-12.grupo{
 .text-green{
     color: green;
 }
+.text-blue{
+    color: #006699;
+}
 /*****Mensaje en span*****/ 
 .span-msg{
     display: block;
@@ -262,4 +265,15 @@ h3,h4{
 .mb15{
     margin-bottom: 15px;
 }
+.ml15{
+    margin-left: 15px;
+}
 /**********************/
+.num{
+    font-weight: bolder;
+    margin: 10px;
+}
+.num:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
