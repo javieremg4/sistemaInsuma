@@ -25,7 +25,13 @@
     $query = "UPDATE altas SET grado='$grado',monto='$monto',saldo='$saldo' WHERE clave='$clave'";
     $result = mysqli_query($conexion,$query);
     if($result){
-        warning('ok','Los Datos se Actualizaron Correctamente');
+        $query = "UPDATE pagos SET tipo='2' WHERE clave='$clave' AND tipo!='2'";
+        $result = mysqli_query($conexion,$query);
+        if($result){
+            warning('ok','Los Datos se Actualizaron Correctamente');
+        }else{
+            warning('warning','El Saldo se Actualizó pero los Pagos aún se pueden Eliminar.');
+        }
     }else{
         warning('error','No se Actualizaron los Datos. Inténtelo de Nuevo');
     }

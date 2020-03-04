@@ -18,7 +18,8 @@
                 echo "<tr>
                         <th class='w10'>No. RECIBO</th>
                         <th class='w10'>FECHA</th>
-                        <th class='w30'>CONCEPTO</th>
+                        <th class='w10'>GRADO</th>
+                        <th class='w20'>CONCEPTO</th>
                         <th class='w10'>DEBE</th>
                         <th class='w10'>PAGO</th>
                         <th class='w10'>OBSERVACIONES</th>
@@ -29,13 +30,26 @@
                     $resultado .= "<tr>";
                     $resultado .= "<td class='w10'>".$info['num']."</td>"
                                 ."<td class='w10'>".$info['fpago']."</td>"
-                                ."<td class='w30'>".$info['concepto']."</td>"
+                                ."<td class='w10'>".$info['cuatri']."</td>"
+                                ."<td class='w20'>".$info['concepto']."</td>"
                                 ."<td class='w10'>".$info['debe']."</td>"
                                 ."<td class='w10'>".$info['pago']."</td>"
                                 ."<td class='w10'>".$info['obs']."</td>";
-                    $resultado .= "<td class='w20'><button onclick='delRecibo(".$idAlumno.",".$info['tipo'].",\"".$info['num']."\",".$info['pago'].")'>";
-                    $resultado .= ($info['tipo']==="0") ? "Eliminar" : "Eliminar y Actualizar Saldo";
-                    $resultado .= "</button></td";
+                    $resultado .= "<td class='w20'>";
+                    switch($info['tipo']){
+                        case '0':
+                            $resultado .= "<button onclick='delRecibo(".$idAlumno.",".$info['tipo'].",\"".$info['num']."\",".$info['pago'].")'>"
+                                        ."Eliminar"
+                                        ."</button>";
+                            break;
+                        case '1':
+                            $resultado .= "<button onclick='delRecibo(".$idAlumno.",".$info['tipo'].",\"".$info['num']."\",".$info['pago'].")'>"
+                                        ."Eliminar y Actualizar Saldo"
+                                        ."</button>";
+                            break;
+                        default:
+                            $resultado .= "N/A";
+                    }
                     $resultado .= "</tr>";
                     echo $resultado;
                 }
@@ -43,9 +57,6 @@
             }else{
                 echo "No hay Recibos Registrados de Este Alumno";
             } 
-        
-        
-        
         }
     }else{
         header("location:../HTML/error.html");

@@ -7,10 +7,14 @@
         if(isset($_SESSION['idAlumno'])){
             require 'conexion.php';
             $idAlumno = $_SESSION['idAlumno'];
-            $query = mysqli_query($conexion,"SELECT datos.nombre,datos.apepat,datos.apemat,altas.monto,altas.saldo FROM datos INNER JOIN altas ON datos.clave=altas.clave WHERE datos.clave='$idAlumno'");
+            $query = mysqli_query($conexion,"SELECT datos.nombre,datos.apepat,datos.apemat,altas.grado,altas.grupo,altas.turno,altas.monto,altas.saldo FROM datos INNER JOIN altas ON datos.clave=altas.clave WHERE datos.clave='$idAlumno'");
             if($query){
                 $info = mysqli_fetch_array($query);
-                echo "<b>Nombre del Alumno:</b> ".$info['nombre']." ".$info['apepat']." ".$info['apemat']."<br>";
+                echo "<b>Nombre del Alumno:</b> ".$info['nombre']." ".$info['apepat']." ".$info['apemat'];
+                echo "<br><b>Grado: </b>".$info['grado']."  <b>Grupo: </b>".$info['grupo'];
+                echo "<br><b>Turno: </b>";
+                echo ($info['turno']==='0') ? "Matutino" : "Mixto";
+                echo "<br>";
                 switch ($info['monto']){
                     case '1':
                         echo "<b>Montos de pago:</b> Inscripción: 1000 y Colegiatura: 800";

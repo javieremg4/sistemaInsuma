@@ -9,7 +9,7 @@ function recSaldoAjax(info){
         if(varajax.status === 200 && varajax.readyState === 4){
             document.getElementById('info').innerHTML = varajax.responseText;
             if(document.getElementById('grado').value==='0' && document.getElementById('monto').value==='0' && 
-            document.getElementById('algo').checked===false && document.getElementById('nada').checked===false){
+            document.getElementById('turno').value==='0'  && document.getElementById('cantidad').value===""){
                 limpiarTodo();
             }else{
                 consultaRecargo();

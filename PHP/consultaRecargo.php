@@ -1,10 +1,10 @@
 <?php
-    if(!isset($_POST['grado']) && !isset($_POST['monto']) && !isset($_POST['debe']) && !isset($_POST['bajas'])){
+    if(!isset($_POST['grado']) && !isset($_POST['turno']) && !isset($_POST['monto']) && !isset($_POST['cantidad']) && !isset($_POST['bajas'])){
         echo "error";
         exit;
     }
     require_once "conexion.php";
-    $query = "SELECT d.clave,d.apepat,d.apemat,d.nombre,a.grado,a.monto,a.saldo FROM datos d INNER JOIN altas a ON d.clave=a.clave WHERE ";
+    $query = "SELECT d.clave,d.apepat,d.apemat,d.nombre,a.grado,a.turno,a.monto,a.saldo FROM datos d INNER JOIN altas a ON d.clave=a.clave WHERE ";
     if(isset($_POST['grado'])){
         $grado = $_POST['grado'];
         $query .= "a.grado='$grado'";
@@ -16,17 +16,19 @@
         }
         $query .= "a.monto='$monto'";
     }
-    if(isset($_POST['debe'])){
+    if(isset($_POST['cantidad'])){
+        $cantidad = $_POST['cantidad'];
         if(isset($_POST['grado']) || isset($_POST['monto'])){
             $query .= " AND ";
         }
-        if($_POST['debe'] === 'true'){
-            $query .= " a.saldo>0";
-        }else if($_POST['debe'] === 'false'){
-            $query .= " a.saldo=0";
-        }else{
-            $query .= " a.saldo>=0";
+        $query .= " a.saldo>='$cantidad'";
+    }
+    if(isset($_POST['turno'])){
+        $turno = $_POST['turno'];
+        if(isset($_POST['grado']) || isset($_POST['monto']) || isset($_POST['cantidad'])){
+            $query .= " AND ";
         }
+        $query .= "a.turno='$turno'";
     }
     $query .= " ORDER BY d.apepat ASC";
     //echo $query;
@@ -47,7 +49,7 @@
         if(mysqli_num_rows($result)>0){
             $tot = mysqli_num_rows($result);
             $tabla .= "<table class='w80'>
-                <tr><th>Nombre<th>Grado<th>Monto<th>Saldo<th>Situación<th>Opciones";
+                <tr><th>Nombre<th>Grado<th>Turno<th>Monto<th>Saldo<th>Situación<th>Opciones";
             while($info = mysqli_fetch_array($result)){
                 if($bajas === 'false'){
                     if(!empty($arrayBajas)){
@@ -154,6 +156,8 @@
                 break;
         }
         $tabla .= "</select>";
+        $tabla .= "<td>";
+        $tabla .= ($info['turno']==='0') ? "Matutino":"Mixto";
         $tabla .= "<td>";
         if(!empty($arrayBajas)){
             if(in_array($info['clave'],$arrayBajas)){

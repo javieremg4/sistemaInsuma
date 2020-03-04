@@ -17,8 +17,9 @@
                 $clave = $_SESSION['idAlumno'];
                 include("conexion.php");
                 $concepto=trim($_POST['concepto']);
-                $query = mysqli_query($conexion,"SELECT saldo FROM altas WHERE clave='$clave'");
+                $query = mysqli_query($conexion,"SELECT grado,saldo FROM altas WHERE clave='$clave'");
                 if($saldo = mysqli_fetch_array($query)){
+                    $grado = $saldo['grado'];
                     $saldo = $saldo['saldo'];
                     $num=trim($_POST['num']);
                     $pago=trim($_POST['pago']);
@@ -44,7 +45,7 @@
                             if(mysqli_num_rows($query)!=0){
                                 warning('error','Ya Existe un Recibo con ese Número');
                             }else{
-                                $query = mysqli_query($conexion,"INSERT INTO pagos (num,clave,fpago,concepto,pago,debe,obs,tipo) VALUES ('$num','$clave','$fpago','$concepto','$pago','$debe','$obs','$tipo')");
+                                $query = mysqli_query($conexion,"INSERT INTO pagos (num,clave,fpago,cuatri,concepto,pago,debe,obs,tipo) VALUES ('$num','$clave','$fpago','$grado','$concepto','$pago','$debe','$obs','$tipo')");
                                 if(!$query){
                                     warning('error','Hubo un Error al Registrar el Recibo. Inténtelo de nuevo');
                                 }else{

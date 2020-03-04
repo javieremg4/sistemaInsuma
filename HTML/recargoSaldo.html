@@ -33,6 +33,14 @@
             </select>
         </div>
         <div class="div-style">
+            Turno: 
+            <select class="campo" id="turno">
+                <option value="0" selected>--Turno--</option>
+                <option value="1">Matutino</option>
+                <option value="2">Mixto</option>
+            </select>
+        </div>
+        <div class="div-style">
             Montos de pago: 
             <select class="campo" id="monto">
                 <option selected value="0">Eliga los montos de inscripción y colegiatura</option>
@@ -43,8 +51,7 @@
         </div>
         <div class="div-style">
             Saldo: 
-            <input type="radio" name="saldo" id="algo">Debe algo
-            <input type="radio" name="saldo" id="nada">No debe nada
+            <input type="number" id="cantidad">
         </div>
         ¿Mostrar Bajas?
         <div class="div-style">
