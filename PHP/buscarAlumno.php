@@ -8,7 +8,6 @@
     if(isset($_SESSION['operacion'],$_POST['indicio'])){
         include("../PHP/conexion.php");
         //Valoración de los parámetros para realizar la búsqueda
-        $indicio = trim($_POST['indicio']);
         $resultado = "<div style='font-weight: bold; font-size: 24px; text-align: center;'>";
         switch ($_SESSION['operacion']){
             case 'adp':
@@ -32,9 +31,8 @@
         }
         $resultado .= "</div>";  
         echo $resultado;
-        if(stripos($indicio,'ñ') !== false){
-            $indicio = str_replace('ñ','Ñ',$indicio);
-        }
+        $indicio = trim($_POST['indicio']);
+        $indicio = str_replace('ñ','Ñ',$indicio);
         /* Implementación de la leyenda BAJA que aparece en los resultados del buscador */
         $arrayBajas = null;
         $index = 0;
@@ -46,7 +44,8 @@
         }
         /* ***** */
         if($_SESSION['operacion'] === "adp"){
-            $consulta = "SELECT altas.numControl,datos.* FROM datos INNER JOIN altas ON datos.clave = altas.clave WHERE datos.nombre LIKE '%$indicio%' OR datos.apepat LIKE '%$indicio%' OR datos.apemat LIKE '%$indicio%' ORDER BY datos.apepat ASC";
+            $consulta = "SELECT altas.numControl,datos.* FROM datos INNER JOIN altas ON datos.clave = altas.clave 
+            WHERE datos.nombre='$indicio' OR datos.apepat='$indicio' OR datos.apemat='$indicio' ORDER BY datos.apepat ASC";
             $buscarAlumnos = mysqli_query($conexion,$consulta);
             if(mysqli_num_rows($buscarAlumnos)<1){
                 echo "No se encontraron resultados<hr>";
@@ -110,7 +109,8 @@
                 }
             }
         }else if($_SESSION['operacion'] === "ade"){
-            $consulta = "SELECT datos.apepat, datos.apemat, datos.nombre, datos.foto, altas.* FROM datos INNER JOIN altas ON datos.clave = altas.clave WHERE datos.nombre LIKE '%$indicio%' OR datos.apepat LIKE '%$indicio%' OR datos.apemat LIKE '%$indicio%' ORDER BY datos.apepat ASC";
+            $consulta = "SELECT datos.apepat, datos.apemat, datos.nombre, datos.foto, altas.* FROM datos INNER JOIN altas ON datos.clave = altas.clave 
+            WHERE datos.nombre='$indicio' OR datos.apepat='$indicio' OR datos.apemat='$indicio' ORDER BY datos.apepat ASC";
             $buscarAlumnos = mysqli_query($conexion,$consulta);
             if(mysqli_num_rows($buscarAlumnos)<1){
                 echo "No se encontraron resultados<hr>";
@@ -181,8 +181,8 @@
                 }
             }
         }else if($_SESSION['operacion'] === "ddb"){
-            //$consulta = "SELECT datos.clave,datos.nombre,datos.apepat,datos.apemat,datos.foto,altas.numControl,altas.monto,altas.saldo,bajas.fbaja,bajas.tipo,bajas.causa FROM datos INNER JOIN altas ON datos.clave=altas.clave INNER JOIN bajas ON datos.clave=bajas.clave";
-            $consulta = "SELECT datos.clave,datos.apepat,datos.apemat,datos.nombre,datos.foto,altas.numControl,altas.monto,altas.saldo FROM datos INNER JOIN altas ON datos.clave = altas.clave WHERE datos.nombre LIKE '%$indicio%' OR datos.apepat LIKE '%$indicio%' OR datos.apemat LIKE '%$indicio%' ORDER BY datos.apepat ASC";
+            $consulta = "SELECT datos.clave,datos.apepat,datos.apemat,datos.nombre,datos.foto,altas.numControl,altas.monto,altas.saldo FROM datos INNER JOIN altas ON datos.clave = altas.clave 
+            WHERE datos.nombre='$indicio' OR datos.apepat='$indicio' OR datos.apemat='$indicio' ORDER BY datos.apepat ASC";
             $buscarAlumnos = mysqli_query($conexion,$consulta);
             if(mysqli_num_rows($buscarAlumnos)<1){
                 echo "No se encontraron resultados<hr>";
@@ -250,7 +250,8 @@
                 }
             }
         }else if($_SESSION['operacion'] === "pago"){
-            $consulta = "SELECT datos.clave,datos.foto,altas.numControl,datos.apepat,datos.apemat,datos.nombre,altas.grado,altas.grupo,altas.turno,altas.monto,altas.saldo FROM datos INNER JOIN altas ON datos.clave=altas.clave WHERE datos.nombre LIKE '%$indicio%' OR datos.apepat LIKE '%$indicio%' OR datos.apemat LIKE '%$indicio%' ORDER BY datos.apepat ASC";
+            $consulta = "SELECT datos.clave,datos.foto,altas.numControl,datos.apepat,datos.apemat,datos.nombre,altas.grado,altas.grupo,altas.turno,altas.monto,altas.saldo FROM datos INNER JOIN altas ON datos.clave=altas.clave 
+            WHERE datos.nombre='$indicio' OR datos.apepat='$indicio' OR datos.apemat='$indicio' ORDER BY datos.apepat ASC";
             $buscarAlumnos = mysqli_query($conexion,$consulta);
             if(mysqli_num_rows($buscarAlumnos)<1){
                 echo "No se encontraron resultados<hr>";
@@ -318,7 +319,8 @@
                 }
             } 
         }else if($_SESSION['operacion'] === "cal"){
-            $consulta = "SELECT datos.clave, datos.apepat, datos.apemat, datos.nombre, datos.foto, altas.numControl, altas.grado, altas.grupo, altas.turno FROM datos INNER JOIN altas ON datos.clave = altas.clave WHERE datos.nombre LIKE '%$indicio%' OR datos.apepat LIKE '%$indicio%' OR datos.apemat LIKE '%$indicio%' ORDER BY datos.apepat ASC";
+            $consulta = "SELECT datos.clave, datos.apepat, datos.apemat, datos.nombre, datos.foto, altas.numControl, altas.grado, altas.grupo, altas.turno FROM datos INNER JOIN altas ON datos.clave = altas.clave 
+            WHERE datos.nombre='$indicio' OR datos.apepat='$indicio' OR datos.apemat='$indicio' ORDER BY datos.apepat ASC";
             $buscarAlumnos = mysqli_query($conexion,$consulta);
             if(mysqli_num_rows($buscarAlumnos)<1){
                 echo "No se encontraron resultados<hr>";

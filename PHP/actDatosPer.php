@@ -54,18 +54,12 @@
 					include("conexion.php");
 					//La funcion trim quita el carácter especificado del inicio y del final de la cadena
 					$curp = strtoupper(trim($_POST['curp']));
-					$nombre = trim($_POST['nombre']);
-					if(stripos($nombre,'ñ') !== false){
-						$nombre = str_replace('ñ','Ñ',$nombre);
-					}
+					$nombre = strtoupper(trim($_POST['nombre']));
+					$nombre = str_replace('ñ','Ñ',$nombre);
 					$apepat = strtoupper(trim($_POST['apepat']));
-					if(stripos($apepat,'ñ') !== false){
-						$apepat = str_replace('ñ','Ñ',$apepat);
-					}
-					$apemat = trim($_POST['apemat']);
-					if(stripos($apemat,'ñ') !== false){
-						$apemat = str_replace('ñ','Ñ',$apemat);
-					}
+					$apepat = str_replace('ñ','Ñ',$apepat);
+					$apemat = strtoupper(trim($_POST['apemat']));
+					$apemat = str_replace('ñ','Ñ',$apemat);
 					//Aqui se revisa si no existe un alumno registrado con esa curp o ese nombre
 					/*echo "CURP a buscar".":".$curp."<br>";
 					echo "Nombre a buscar".$apepat.$apemat.$nombre."<br>";*/
